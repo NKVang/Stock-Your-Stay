@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif !important;
+  line-height: 1.375;
+  letter-spacing: 0.25px;
+}
+
+.site-header,
+.site-footer {
+  background-color: #00180e;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  color: #fff;
+}
+
+/* .site-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+} */
+
+.center-align {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link,
+.logo-link {
+  color: #fff !important;
+}
+
+.nav-link:visited,
+.logo-link:visited {
+  color: #fff !important;
+}
+
+.nav-link:hover,
+.nav-link:active {
+  color: #c2e7d3 !important;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #fff;
+  color: #000;
+  border-radius: 0;
+}
+
+.d-flex {
+  padding-top: 10px;
+}
+
+.btn {
+  margin-right: 10px;
+  border-radius: 20px;
+  padding: 10px;
+  border: none;
+}
+
+.col-sm-auto {
+  margin-right: 10px;
+}
+
+.shopping-cart {
+  fill: #c2e7d3;
+}
+
+.shopping-cart:hover {
+  fill: #000;
+}
+
+.social-media {
+  fill: #98a099;
+  margin-right: 10px;
+}
+
+.social-media:hover {
+  fill: #fff;
+}
+
+.row-filter {
+  margin-bottom: -1px;
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+.carousel-control-prev,
+a.carousel-control-prev {
+  display: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.card {
+  border: none !important;
+}
