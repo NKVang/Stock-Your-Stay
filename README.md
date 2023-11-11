@@ -13,7 +13,7 @@ Do these before doing "npm start":
 3. Now you should be able to run the "npm start" command.
 
     Note: If you get an error like this: [eslint] Plugin "react" was conflicted between "package.json, 
-	  then click on the package-log.json file and press ctrl + s to save it.
+	      then click on the package-log.json file and press ctrl + s to save it.
           Then press on the package.json file and press ctrl + s to save it. If you are still getting
           an error, let me know.
 
