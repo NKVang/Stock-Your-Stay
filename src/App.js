@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import Shop from "./components/Shop";
 import LocationStay from "./components/LocationStay";
 import ViewAll from "./components/ViewAllPage/ViewAll"
+import SubCategory from "./components/SubCategory";
+
 
 function App() {
   return (
@@ -24,12 +26,16 @@ function App() {
           <li>
             <Link to="/view-all">view all</Link>
           </li>
+          <li>
+            <Link to="/sub-category">Sub-Category</Link>
+          </li>
         </ul>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
           <Route exact path="/shop" element={<Shop />}></Route>
           <Route exact path="/location-stay" element={<LocationStay />}></Route>
           <Route exact path="/view-all" element={<ViewAll />}></Route>
+          <Route exact path="/sub-category" element={<SubCategory />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
