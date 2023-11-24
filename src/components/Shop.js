@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "./Footer";
 import Category from "./Category";
 import Gallery from "./Gallery";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +9,6 @@ function Shop() {
     <div>
       <Category />
       <Gallery />
-      <Footer />
     </div>
   );
 }

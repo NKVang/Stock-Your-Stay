@@ -1,7 +1,7 @@
 import React from "react";
 import "./shop_style.css";
 import * as images from "./assets";
-import { Carousel, Card, Row, Button } from "react-bootstrap";
+import { Carousel, Card, Row, Col, Button } from "react-bootstrap";
 
 function LocalFavs() {
   return (
@@ -16,11 +16,10 @@ function LocalFavs() {
         prevIcon={null}
         nextLabel={null}
         indicators={null}
-        touch={false}
       >
         <Carousel.Item>
           <Row className="align-items-center">
-            <div className="col-sm-auto">
+            <Col xs={6} md="auto">
               {/* eslint-disable-next-line */}
               <a href="#">
                 <Card
@@ -39,8 +38,8 @@ function LocalFavs() {
                   </Card.Body>
                 </Card>
               </a>
-            </div>
-            <div className="col-sm-auto">
+            </Col>
+            <Col xs={6} md="auto">
               {/* eslint-disable-next-line */}
               <a href="#">
                 <Card
@@ -59,8 +58,8 @@ function LocalFavs() {
                   </Card.Body>
                 </Card>
               </a>
-            </div>
-            <div className="col-sm-auto">
+            </Col>
+            <Col xs={6} md="auto">
               {/* eslint-disable-next-line */}
               <a href="#">
                 <Card
@@ -79,8 +78,8 @@ function LocalFavs() {
                   </Card.Body>
                 </Card>
               </a>
-            </div>
-            <div className="col-sm-auto">
+            </Col>
+            <Col xs={6} md="auto">
               {/* eslint-disable-next-line */}
               <a href="#">
                 <Card
@@ -99,13 +98,13 @@ function LocalFavs() {
                   </Card.Body>
                 </Card>
               </a>
-            </div>
+            </Col>
           </Row>
         </Carousel.Item>
 
         <Carousel.Item>
           <Row className="align-items-center">
-            <div className="col-sm-auto">
+            <Col xs={6} md="auto">
               {/* eslint-disable-next-line */}
               <a href="#">
                 <Card
@@ -124,8 +123,8 @@ function LocalFavs() {
                   </Card.Body>
                 </Card>
               </a>
-            </div>
-            <div className="col-sm-auto">
+            </Col>
+            <Col xs={6} md="auto">
               {/* eslint-disable-next-line */}
               <a href="#">
                 <Card
@@ -144,8 +143,8 @@ function LocalFavs() {
                   </Card.Body>
                 </Card>
               </a>
-            </div>
-            <div className="col-sm-auto">
+            </Col>
+            <Col xs={6} md="auto">
               {/* eslint-disable-next-line */}
               <a href="#">
                 <Card
@@ -164,10 +163,10 @@ function LocalFavs() {
                   </Card.Body>
                 </Card>
               </a>
-            </div>
-            <div className="col-sm-auto d-flex justify-content-center">
+            </Col>
+            <Col xs={6} md={3} className="d-flex justify-content-center">
               <Button variant="light">View All</Button>
-            </div>
+            </Col>
           </Row>
         </Carousel.Item>
       </Carousel>

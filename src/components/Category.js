@@ -1,40 +1,63 @@
 import React from "react";
+import { Container, Col, Button, DropdownButton, Form } from "react-bootstrap";
 import "./shop_style.css";
 
 function Category() {
   return (
-    <div className="center-align">
-      <div className="col d-flex justify-content-center">
-        <button type="button" className="btn btn-light">
+    <Container fluid style={{ margin: 0, padding: 0 }} className="center-align">
+      <Col className="d-flex justify-content-center">
+        <Button size="sm" variant="light">
           Breakfast
-        </button>
-        <button type="button" className="btn btn-light">
+        </Button>
+        <Button size="sm" variant="light">
           Snacks
-        </button>
-        <button type="button" className="btn btn-light">
+        </Button>
+        <Button size="sm" variant="light">
           Lunch
-        </button>
-        <button type="button" className="btn btn-light">
+        </Button>
+        <Button size="sm" variant="light">
           Dinner
-        </button>
-      </div>
-      <div className="col-sm-auto">
-        {/* eslint-disable-next-line */}
-        <a className="shopping-cart" href="#">
-          <svg
-            width="27"
-            height="27"
-            aria-hidden="true"
-            focusable="false"
-            role="presentation"
-            className="icon icon-cart"
-            viewBox="0 0 31 32"
-          >
-            <path d="M14.568 25.629c-1.222 0-2.111.889-2.111 2.111 0 1.111 1 2.111 2.111 2.111 1.222 0 2.111-.889 2.111-2.111s-.889-2.111-2.111-2.111zm10.22 0c-1.222 0-2.111.889-2.111 2.111 0 1.111 1 2.111 2.111 2.111 1.222 0 2.111-.889 2.111-2.111s-.889-2.111-2.111-2.111zm2.555-3.777H12.457L7.347 7.078c-.222-.333-.555-.667-1-.667H1.792c-.667 0-1.111.444-1.111 1s.444 1 1.111 1h3.777l5.11 14.885c.111.444.555.666 1 .666h15.663c.555 0 1.111-.444 1.111-1 0-.666-.555-1.111-1.111-1.111zm2.333-11.442l-18.44-1.555h-.111c-.555 0-.777.333-.667.889l3.222 9.22c.222.555.889 1 1.444 1h13.441c.555 0 1.111-.444 1.222-1l.778-7.443c.111-.555-.333-1.111-.889-1.111zm-2 7.443H15.568l-2.333-6.776 15.108 1.222-.666 5.554z"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
+        </Button>
+        <DropdownButton
+          title="More Filters..."
+          size="sm"
+          variant="light mobile-filter filter-dropdown"
+        >
+          <Form.Check
+            type="checkbox"
+            aria-label="vegetables"
+            label="Vegetables"
+          />
+          <Form.Check type="checkbox" aria-label="meats" label="Meats" />
+          <Form.Check type="checkbox" aria-label="spices" label="Spices" />
+          <Form.Check type="checkbox" aria-label="drinks" label="Drinks" />
+          <Form.Check type="checkbox" aria-label="fruits" label="Fruits" />
+          <Form.Check type="checkbox" aria-label="dessert" label="Dessert" />
+          <Form.Check
+            type="checkbox"
+            aria-label="vegetables"
+            label="Vegetables"
+          />
+          <Form.Check
+            type="checkbox"
+            aria-label="frozen-foods"
+            label="Frozen Foods"
+          />
+          <Form.Check type="checkbox" aria-label="bread" label="Bread" />
+          <Form.Check
+            type="checkbox"
+            aria-label="quick-lunch"
+            label="Quick Lunch"
+          />
+          <Form.Check
+            type="checkbox"
+            aria-label="breakfast-for-lunch"
+            label="Breakfast for Lunch"
+          />
+          <Form.Check type="checkbox" aria-label="pastas" label="Pastas" />
+        </DropdownButton>
+      </Col>
+    </Container>
   );
 }
 

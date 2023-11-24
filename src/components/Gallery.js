@@ -1,30 +1,31 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import Filter from "./Filter";
+import LocalFavs from "./LocalFavs";
+import LastStay from "./LastStay";
+import Recommended from "./Recommended";
 import "./shop_style.css";
-import Filter from "./Filter.js";
-import LocalFavs from "./LocalFavs.js";
-import LastStay from "./LastStay.js";
-import Recommended from "./Recommended.js";
 
 function Gallery() {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-auto">
+    <Container>
+      <Row>
+        <Col md="auto" className="main-shop-page-filter">
           <Filter />
-        </div>
-        <div className="col">
-          <div className="row">
+        </Col>
+        <Col>
+          <Row>
             <LocalFavs />
-          </div>
-          <div className="row">
+          </Row>
+          <Row>
             <LastStay />
-          </div>
-          <div className="row">
+          </Row>
+          <Row>
             <Recommended />
-          </div>
-        </div>
-      </div>
-    </div>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
