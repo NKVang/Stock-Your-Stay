@@ -1,12 +1,15 @@
 import React from "react";
 // import MHlogo from "./assets/MHlogo.webp";
+import { Container, Row, Col, Nav, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./shop_style.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
-function Header() {
+const Header = (props) => {
   return (
-    <header className="site-header">
-      <div className="center-align">
-        <div className="col-sm-auto">
+    <Container fluid className="site-header">
+      <Row className="center-align">
+        <Col xs={10}>
           {/* eslint-disable-next-line */}
           <a className="logo-link" href="#">
             <svg
@@ -22,39 +25,47 @@ function Header() {
               ></path>
             </svg>
           </a>
-        </div>
-        <div className="col-sm justify-content-start">Destination</div>
-        <div className="col-6">
-          <ul className="nav nav-pills justify-content-end">
-            <li className="nav-item">
-              {/* eslint-disable-next-line */}
-              <a className="nav-link" href="#">
-                Experience
-              </a>
-            </li>
-            <li className="nav-item">
-              {/* eslint-disable-next-line */}
-              <a className="nav-link" href="#">
-                Explore
-              </a>
-            </li>
-            <li className="nav-item">
-              {/* eslint-disable-next-line */}
-              <a className="nav-link" href="#">
-                Partners
-              </a>
-            </li>
-            <li className="nav-item">
-              {/* eslint-disable-next-line */}
-              <a className="nav-link" href="#">
-                Login
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
+        </Col>
+        <Col xs={1} className="d-flex justify-content-end">
+          {/* eslint-disable-next-line */}
+          <a className="shopping-cart-header" href="#">
+            {props.getCartQuantity > 0 ? (
+              <i className="bi bi-cart-fill"></i>
+            ) : (
+              <i className="bi bi-cart"></i>
+            )}
+            <span className="p-1 header-cart-quantity">
+              {props.getCartQuantity}
+            </span>
+          </a>
+        </Col>
+        <Col xs={1} className="d-flex justify-content-start">
+          <Nav>
+            <NavDropdown title={<i className="bi bi-list"></i>}>
+              <NavDropdown.Item>
+                <Link to="/">Home</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/shop">Shop</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/location-stay">Location Stay</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/view-all">view all</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/sub-category">Sub-Category</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/shopping-cart">Shopping Cart</Link>
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Col>
+      </Row>
+    </Container>
   );
-}
+};
 
 export default Header;
