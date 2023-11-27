@@ -4,6 +4,7 @@ import { Container, Row, Col, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./shop_style.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { EmployeeLoginNav } from "./EmployeeLogin";
 
 const Header = (props) => {
   return (
@@ -60,6 +61,7 @@ const Header = (props) => {
               <NavDropdown.Item>
                 <Link to="/shopping-cart">Shopping Cart</Link>
               </NavDropdown.Item>
+              <EmployeeLoginNav />
             </NavDropdown>
           </Nav>
         </Col>

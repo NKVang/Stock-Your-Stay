@@ -8,6 +8,7 @@ import LocationStay from "./components/LocationStay";
 import ViewAll from "./components/ViewAllPage/ViewAll";
 import SubCategory from "./components/SubCategory";
 import Cart from "./components/Cart";
+import Employee from "./components/Employee";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -18,21 +19,23 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Header getCartQuantity={cartQuantity} />
-      <Routes>
-        <Route exact path="/" element={<Home />}></Route>
-        <Route exact path="/shop" element={<Shop />}></Route>
-        <Route exact path="/location-stay" element={<LocationStay />}></Route>
-        <Route exact path="/view-all" element={<ViewAll />}></Route>
-        <Route exact path="/sub-category" element={<SubCategory />}></Route>
-        <Route
-          exact
-          path="/shopping-cart"
-          element={<Cart sendCartQuantity={getCartQuantity} />}
-        ></Route>
-      </Routes>
+      {window.location.pathname !== '/employee' && <Header getCartQuantity={cartQuantity} />}
+        <Routes>
+          <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/shop" element={<Shop />}></Route>
+          <Route exact path="/location-stay" element={<LocationStay />}></Route>
+          <Route exact path="/view-all" element={<ViewAll />}></Route>
+          <Route exact path="/sub-category" element={<SubCategory />}></Route>
+          <Route
+            exact
+            path="/shopping-cart"
+            element={<Cart sendCartQuantity={getCartQuantity} />}
+          ></Route>
+          <Route exact path="/employee" element={<Employee />}></Route>
+        </Routes>
       <Footer />
     </BrowserRouter>
+
   );
 };
 
