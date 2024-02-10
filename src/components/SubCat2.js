@@ -1,133 +1,232 @@
 import React from "react";
 import "./shop_style.css";
 import * as images from "./assets";
-import { Carousel, Card, Row, } from "react-bootstrap";
+import { Carousel, Card, Row, Col } from "react-bootstrap";
+
+function isMobile() {
+  return window.innerWidth < 576;
+}
 
 function SubCat2() {
-    return (
-        <>
-            <h2>
-                <strong>Sub-Category 2</strong>
-            </h2>
-            <Carousel
-                interval={null}
-                variant="dark"
-                prevLabel={null}
-                prevIcon={null}
-                indicators={null}
-                touch={false}
-            >
-                    <Carousel.Item>
-                        <Row className="align-items-center">
-                        <div className="col-sm-auto">
-                        {/* eslint-disable-next-line */}
-                            <a href="#">
-                                <Card
-                                style={{
-                                    width: "200px",
-                                    padding: "15px",
-                                    marginRight: "1%",
-                                }}
-                                >
-                                <Card.Img variant="top" src={images.img2} />
-                                <Card.Body className="text-center">
-                                    <Card.Title style={{ fontSize: "15px" }}>
-                                    Sub-Category Item 1
-                                    </Card.Title>
-                                    <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
-                                </Card.Body>
-                                </Card>
-                            </a>
-                        </div>
-                        <div className="col-sm-auto">
-                        {/* eslint-disable-next-line */}
-                            <a href="#">
-                                <Card
-                                style={{
-                                    width: "200px",
-                                    padding: "15px",
-                                    marginRight: "1%",
-                                }}
-                                >
-                                <Card.Img variant="top" src={images.img2} />
-                                <Card.Body className="text-center">
-                                    <Card.Title style={{ fontSize: "15px" }}>
-                                    Sub-Category Item 2
-                                    </Card.Title>
-                                    <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
-                                </Card.Body>
-                                </Card>
-                            </a>
-                        </div>
-                        <div className="col-sm-auto">
-                        {/* eslint-disable-next-line */}
-                            <a href="#">
-                                <Card
-                                style={{
-                                    width: "200px",
-                                    padding: "15px",
-                                    marginRight: "1%",
-                                }}
-                                >
-                                <Card.Img variant="top" src={images.img2} />
-                                <Card.Body className="text-center">
-                                    <Card.Title style={{ fontSize: "15px" }}>
-                                    Sub-Category Item 3
-                                    </Card.Title>
-                                    <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
-                                </Card.Body>
-                                </Card>
-                            </a>
-                        </div>
-                        <div className="col-sm-auto">
-                        {/* eslint-disable-next-line */}
-                            <a href="#">
-                                <Card
-                                style={{
-                                    width: "200px",
-                                    padding: "15px",
-                                    marginRight: "1%",
-                                }}
-                                >
-                                <Card.Img variant="top" src={images.img2} />
-                                <Card.Body className="text-center">
-                                    <Card.Title style={{ fontSize: "15px" }}>
-                                    Sub-Category Item 4
-                                    </Card.Title>
-                                    <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
-                                </Card.Body>
-                                </Card>
-                            </a>
-                        </div>
-                    </Row>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <Row className="align-items-center">
-                        <div className="col-sm-auto">
-                        {/* eslint-disable-next-line */}
-                            <a href="#">
-                                <Card
-                                style={{
-                                    width: "200px",
-                                    padding: "15px",
-                                    marginRight: "1%",
-                                }}
-                                >
-                                <Card.Img variant="top" src={images.img2} />
-                                <Card.Body className="text-center">
-                                    <Card.Title style={{ fontSize: "15px" }}>
-                                    Sub-Category Item 4
-                                    </Card.Title>
-                                    <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
-                                </Card.Body>
-                                </Card>
-                            </a>
-                        </div>
-                    </Row>
-                </Carousel.Item>
-            </Carousel>
-        </>
-    );
+  return (
+    <>
+      <h2>
+        <strong>Sub-Category 2</strong>
+      </h2>
+      {/* Display this if on mobile */}
+      {isMobile() ? (
+        <Carousel interval={null} variant="dark" nextIcon={null} wrap={false}>
+          <Carousel.Item>
+            <Row className="align-items-center">
+              <Col xs={6} md="auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 1
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={6} md="auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 2
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </Col>
+            </Row>
+          </Carousel.Item>
+          <Carousel.Item>
+            <Row className="align-items-center">
+              <Col xs={6} md="auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 3
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </Col>
+              <Col xs={6} md="auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 4
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </Col>
+            </Row>
+          </Carousel.Item>
+        </Carousel>
+      ) : (
+        // Desktop view
+        <Carousel
+          interval={null}
+          variant="dark"
+          prevLabel={null}
+          prevIcon={null}
+          indicators={null}
+          touch={false}
+        >
+          <Carousel.Item>
+            <Row className="align-items-center">
+              <div className="col-sm-auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 1
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </div>
+              <div className="col-sm-auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 2
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </div>
+              <div className="col-sm-auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 3
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </div>
+              <div className="col-sm-auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 4
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </div>
+            </Row>
+          </Carousel.Item>
+          <Carousel.Item>
+            <Row className="align-items-center">
+              <div className="col-sm-auto">
+                {/* eslint-disable-next-line */}
+                <a href="#">
+                  <Card
+                    style={{
+                      width: "200px",
+                      padding: "15px",
+                      marginRight: "1%",
+                    }}
+                  >
+                    <Card.Img variant="top" src={images.img2} />
+                    <Card.Body className="text-center">
+                      <Card.Title style={{ fontSize: "15px" }}>
+                        Sub-Category Item 4
+                      </Card.Title>
+                      <Card.Text style={{ fontSize: "13px" }}>$9.99</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </a>
+              </div>
+            </Row>
+          </Carousel.Item>
+        </Carousel>
+      )}
+    </>
+  );
 }
 
 export default SubCat2;
