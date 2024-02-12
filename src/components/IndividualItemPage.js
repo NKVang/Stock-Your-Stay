@@ -24,9 +24,9 @@ const ItemPage = () => {
   }, [itemId]);
 
   const handleAddToCart = () => {
-    // Implement your add-to-cart logic here
+    
     console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
-    // For example, update global state, local storage, or send to backend
+    
   };
 
   if (!itemDetails) return <div>Loading...</div>;
