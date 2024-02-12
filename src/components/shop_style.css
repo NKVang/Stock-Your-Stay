@@ -2,11 +2,11 @@
 
 body,
 html {
-  background-color: #00180e;
   font-size: 16px;
   font-family: "Montserrat", sans-serif !important;
   line-height: 1.375;
   letter-spacing: 0.25px;
+  background-color: #FFFFFF;
 }
 
 .col,
@@ -21,11 +21,22 @@ html {
   font-size: 10px;
 }
 
+.site-header {
+  right: 0;
+  left: 0;
+  height: 76px;
+}
+
+.site-header-employee {
+  position: fixed !important;
+}
+
 .site-header,
 .site-footer {
   background-color: #00180e;
   padding: 20px 0 20px 20px;
   color: #fff;
+  z-index: 100;
 }
 
 .p-1.header-cart-quantity {
@@ -40,6 +51,7 @@ html {
   padding-bottom: 20 !important;
   padding-left: 0 !important;
   color: #fff;
+  position: relative;
 }
 
 .center-align {
