@@ -5,10 +5,10 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import Shop from "./components/Shop";
 import LocationStay from "./components/LocationStay";
-import ViewAll from "./components/ViewAllPage/ViewAll";
 import SubCategory from "./components/SubCategory";
 import Cart from "./components/Cart";
 import Employee from "./components/Employee";
+import ViewAll from "./components/viewAll";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
