@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import './ItemPage.css'; 
+
 
 const ItemPage = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
   const [itemDetails, setItemDetails] = useState(null);
-// Here we have itemID for the different items, navigate so when clicked on the item it directs to the item page
+  const [quantity, setQuantity] = useState(1); // Added state for quantity
 
   useEffect(() => {
-    // Placeholder for the actual fetch URL
     const fetchItemDetails = async () => {
       try {
         const response = await fetch(`/api/items/${itemId}`);
@@ -16,12 +17,17 @@ const ItemPage = () => {
         setItemDetails(data);
       } catch (error) {
         console.error("Failed to fetch item details:", error);
-        // Handle error or set default error itemDetails
       }
     };
 
     fetchItemDetails();
   }, [itemId]);
+
+  const handleAddToCart = () => {
+    // Implement your add-to-cart logic here
+    console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
+    // For example, update global state, local storage, or send to backend
+  };
 
   if (!itemDetails) return <div>Loading...</div>;
 
@@ -32,6 +38,18 @@ const ItemPage = () => {
         <h2>{itemDetails.name}</h2>
         <p>{itemDetails.description}</p>
         <p>{itemDetails.price}</p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value, 10)))}
+            min="1"
+            style={{ width: '60px' }}
+          />
+          <button onClick={handleAddToCart}>
+            <img src="addtocart.png" alt="Add to Cart" />
+          </button>
+        </div>
         <button onClick={() => navigate('/')}>Return to Home</button>
       </div>
     </div>

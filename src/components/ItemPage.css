@@ -1,0 +1,15 @@
+
+.add-to-cart-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 8px; 
+    border-radius: 5px; 
+  }
+  
+ 
+  .add-to-cart-button img {
+    width: auto; 
+    height: 40px; 
+  }
+  
