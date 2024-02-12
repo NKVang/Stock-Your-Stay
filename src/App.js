@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import LocationStay from "./components/LocationStay";
 import Shop from "./components/Shop";
 import SubCategory from "./components/SubCategory";
-import ViewAll from "./components/ViewAllPage/ViewAll";
+import ViewAll from "./components/viewAll";
 import Inventory from "./pages/employees/Inventory.jsx";
 import Layout from "./pages/employees/Layout.jsx";
 import Orders from "./pages/employees/Orders.jsx";
