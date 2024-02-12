@@ -26,7 +26,7 @@ const ItemPage = () => {
   const handleAddToCart = () => {
     
     console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
-    
+    // This is the quantity displaying how many items will be added
   };
 
   if (!itemDetails) return <div>Loading...</div>;
