@@ -10,6 +10,8 @@ import img9 from "./9.webp";
 import img10 from "./10.webp";
 import img11 from "./11.webp";
 import img12 from "./12.webp";
+import carousel1 from "./carousel1.webp";
+import carousel2 from "./carousel2.webp";
 
 export {
   img1,
@@ -24,4 +26,6 @@ export {
   img10,
   img11,
   img12,
+  carousel1,
+  carousel2,
 };
