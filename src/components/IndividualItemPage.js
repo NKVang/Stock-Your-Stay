@@ -23,11 +23,6 @@ const ItemPage = () => {
   }, [itemId]);
 
   const handleAddToCart = () => {
-<<<<<<< Updated upstream
-    
-    console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
-    // This is the quantity displaying how many items will be added
-=======
     console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
   };
 
@@ -37,7 +32,6 @@ const ItemPage = () => {
 
   const decrementQuantity = () => {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
->>>>>>> Stashed changes
   };
 
   if (!itemDetails) return <div>Loading...</div>;
