@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './ItemPage.css'; 
-
+import './ItemPage.css';
 
 const ItemPage = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
   const [itemDetails, setItemDetails] = useState(null);
-  const [quantity, setQuantity] = useState(1); // Added state for quantity
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const fetchItemDetails = async () => {
@@ -24,9 +23,21 @@ const ItemPage = () => {
   }, [itemId]);
 
   const handleAddToCart = () => {
+<<<<<<< Updated upstream
     
     console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
     // This is the quantity displaying how many items will be added
+=======
+    console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
+  };
+
+  const incrementQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const decrementQuantity = () => {
+    setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
+>>>>>>> Stashed changes
   };
 
   if (!itemDetails) return <div>Loading...</div>;
@@ -39,6 +50,9 @@ const ItemPage = () => {
         <p>{itemDetails.description}</p>
         <p>{itemDetails.price}</p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <button onClick={decrementQuantity}>
+            <img src="quantitybutton.png" alt="Decrease quantity" />
+          </button>
           <input
             type="number"
             value={quantity}
@@ -46,6 +60,9 @@ const ItemPage = () => {
             min="1"
             style={{ width: '60px' }}
           />
+          <button onClick={incrementQuantity}>
+            <img src="quantitybutton.png" alt="Increase quantity" />
+          </button>
           <button onClick={handleAddToCart}>
             <img src="addtocart.png" alt="Add to Cart" />
           </button>
