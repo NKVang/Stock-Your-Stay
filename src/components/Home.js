@@ -40,19 +40,19 @@ function App() {
       <Row className="justify-content-center">
         <Col xs={12} sm={6} md={3} className="text-center">
           <h4><u>About Us</u></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet neque viverra lacus ultricies, eu convallis dolor tristique. Aliquam nec tempor nunc. Pellentesque ut ipsum facilisis ex congue volutpat porttitor at massa. Maecenas eu malesuada nulla. Vestibulum erat nisl, finibus id lorem facilisis, dictum sodales sapien. Integer hendrerit commodo metus, congue elementum ipsum sodales sed. Quisque tincidunt commodo interdum.</p>
+          <p> TBA </p>
         </Col>
         <Col xs={12} sm={6} md={3} className="text-center">
           <h4><u>What We Do</u></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet neque viverra lacus ultricies, eu convallis dolor tristique. Aliquam nec tempor nunc. Pellentesque ut ipsum facilisis ex congue volutpat porttitor at massa. Maecenas eu malesuada nulla. Vestibulum erat nisl, finibus id lorem facilisis, dictum sodales sapien. Integer hendrerit commodo metus, congue elementum ipsum sodales sed. Quisque tincidunt commodo interdum.</p>
+          <p>TBA</p>
         </Col>
         <Col xs={12} sm={6} md={3} className="text-center">
           <h4><u>Ordering For Your Stay</u></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet neque viverra lacus ultricies, eu convallis dolor tristique. Aliquam nec tempor nunc. Pellentesque ut ipsum facilisis ex congue volutpat porttitor at massa. Maecenas eu malesuada nulla. Vestibulum erat nisl, finibus id lorem facilisis, dictum sodales sapien. Integer hendrerit commodo metus, congue elementum ipsum sodales sed. Quisque tincidunt commodo interdum.</p>
+          <p>TBA</p>
         </Col>
         <Col xs={12} sm={6} md={3} className="text-center">
           <h4><u>Help Us Stock Your Stay</u></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean laoreet neque viverra lacus ultricies, eu convallis dolor tristique. Aliquam nec tempor nunc. Pellentesque ut ipsum facilisis ex congue volutpat porttitor at massa. Maecenas eu malesuada nulla. Vestibulum erat nisl, finibus id lorem facilisis, dictum sodales sapien. Integer hendrerit commodo metus, congue elementum ipsum sodales sed. Quisque tincidunt commodo interdum.</p>
+          <p>TBA.</p>
         </Col>
       </Row>
     </Container>
