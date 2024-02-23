@@ -10,9 +10,7 @@ function isMobile() {
 function LocalFavs() {
   return (
     <>
-      <h2>
-        <strong>Local Favorites</strong>
-      </h2>
+      <h2>Local Favorites</h2>
       {isMobile() ? (
         <Carousel interval={null} variant="dark" nextIcon={null} wrap={false}>
           <Carousel.Item>

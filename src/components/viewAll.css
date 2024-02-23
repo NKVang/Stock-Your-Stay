@@ -7,7 +7,9 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  flex-basis: calc(20% - 2px);/* This makes it so that each box only takes up 20% of the contain, which allows for 5 boxes/products per row */
+  flex-basis: calc(
+    20% - 2px
+  ); /* This makes it so that each box only takes up 20% of the contain, which allows for 5 boxes/products per row */
   max-width: calc(20% - 2px);
   padding: 20px;
   box-sizing: border-box;
@@ -15,6 +17,16 @@
   overflow: hidden;
   word-wrap: break-word;
   border: 1px solid #dedede;
+  margin-left: -1px; /* Prevent border double stacking */
+  margin-top: -1px; /* Prevent border double stacking */
+}
+
+/* Mobile view for product boxes */
+.individualProduct {
+  @media screen and (max-width: 576px) {
+    flex-basis: calc(50% - 2px);
+    max-width: calc(50% - 2px);
+  }
 }
 
 .individualProduct img {
@@ -61,18 +73,39 @@
   display: flex;
 }
 
+.caret-dropdown,
+.dropdown-title {
+  @media screen and (max-width: 576px) {
+    justify-content: center !important;
+    text-align: center;
+  }
+}
+
+.dropdown-title > span,
+option {
+  font-size: 12px;
+  font-weight: bold;
+}
+
 .caret-dropdown > div {
-margin: 0px 10px;
+  margin: 0px 10px;
 }
 
 .caret-dropdown span {
-display: Block;
+  display: Block;
 }
 
 .caret-dropdown select {
-padding: 2px;
-font-size: 16px;
-border: 1px solid #dedede;
-border-radius: 4px;
-margin-bottom: 10px;
+  padding: 2px;
+  font-size: 16px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.category-name {
+  @media screen and (max-width: 576px) {
+    text-align: center;
+    padding-bottom: 20px;
+  }
 }

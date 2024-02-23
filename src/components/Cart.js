@@ -148,9 +148,7 @@ const Cart = (props) => {
       <Row>
         <Col xs={12} md={6} className="shop-container">
           <Container fluid className="shopping-cart-list-container">
-            <h3>
-              <strong>Shopping Cart</strong>
-            </h3>
+            <h2>Shopping Cart</h2>
             <Stack gap={2}>
               {cartItems.length === 0 ? (
                 <div className="shopping-cart-message">

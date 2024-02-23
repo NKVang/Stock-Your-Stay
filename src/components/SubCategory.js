@@ -5,7 +5,7 @@ import "./shop_style.css";
 
 function SubCategory() {
   return (
-    <div>
+    <div style={{ paddingTop: "20px" }}>
       <SubCatGallery />
     </div>
   );

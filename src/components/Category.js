@@ -19,7 +19,7 @@ function Category() {
           Dinner
         </Button>
         <DropdownButton
-          title="More Filters..."
+          title="More..."
           size="sm"
           variant="light mobile-filter filter-dropdown"
         >

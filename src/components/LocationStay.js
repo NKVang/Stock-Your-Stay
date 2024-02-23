@@ -1,14 +1,12 @@
-import * as React from 'react';
-import LocationCard from './LocationCard.js';
-import Footer from './Footer.js';
-import LocationBody from './LocationBody.js';
+import * as React from "react";
+import LocationCard from "./LocationCard.js";
+import LocationBody from "./LocationBody.js";
 
 function LocationStay() {
   return (
     <div>
-        <LocationCard />
-        <LocationBody />
-        <Footer />
+      <LocationCard />
+      <LocationBody />
     </div>
   );
 }

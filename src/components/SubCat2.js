@@ -10,9 +10,7 @@ function isMobile() {
 function SubCat2() {
   return (
     <>
-      <h2>
-        <strong>Sub-Category 2</strong>
-      </h2>
+      <h2>Sub-Category 2</h2>
       {/* Display this if on mobile */}
       {isMobile() ? (
         <Carousel interval={null} variant="dark" nextIcon={null} wrap={false}>
