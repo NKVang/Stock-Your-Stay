@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import LocationStay from "./components/LocationStay";
+import CheckReservation from "./components/CheckReservation";
 import Shop from "./components/Shop";
 import SubCategory from "./components/SubCategory";
 import ViewAll from "./components/viewAll";
@@ -31,6 +32,7 @@ const App = () => {
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/shop" element={<Shop />}></Route>
         <Route exact path="/location-stay" element={<LocationStay />}></Route>
+        <Route exact path="/reservations" element={<CheckReservation />}></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
         <Route exact path="/sub-category" element={<SubCategory />}></Route>
         <Route
