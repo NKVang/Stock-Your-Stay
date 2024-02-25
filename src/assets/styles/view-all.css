@@ -1,0 +1,80 @@
+.productsList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.individualProduct {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: calc(
+    20% - 2px
+  ); /* This makes it so that each box only takes up 20% of the contain, which allows for 5 boxes/products per row */
+  max-width: calc(20% - 2px);
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  border: 1px solid #dedede;
+}
+
+.individualProduct img {
+  max-width: 100%;
+  height: auto;
+}
+
+.individualProduct h3 {
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.individualProduct p {
+  color: #444;
+  margin-bottom: 0px;
+  margin-top: auto;
+}
+
+.individualProduct a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.productListContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.title h2 {
+  font-weight: bold;
+}
+
+.caret-dropdown {
+  display: flex;
+}
+
+.caret-dropdown > div {
+  margin: 0px 10px;
+}
+
+.caret-dropdown span {
+  display: Block;
+}
+
+.caret-dropdown select {
+  padding: 2px;
+  font-size: 16px;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
