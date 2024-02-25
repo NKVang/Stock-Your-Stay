@@ -15,6 +15,7 @@ import Orders from "./pages/employees/Orders.jsx";
 import Rooms from "./pages/employees/Rooms.jsx";
 import Customers from "./pages/employees/Customers.jsx";
 import Analytics from "./pages/employees/Analytics.jsx";
+import Signup from "./components/Signup.js";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -40,7 +41,7 @@ const App = () => {
           path="/shopping-cart"
           element={<Cart sendCartQuantity={getCartQuantity} />}
         ></Route>
-
+        <Route exact path="/signup" element={<Signup />} />
         <Route path="/employee" element={<Layout />}>
 
           <Route exact index element={<Orders />} />
@@ -48,6 +49,7 @@ const App = () => {
           <Route exact path="rooms" element={<Rooms />} />
           <Route exact path="customers" element={<Customers />} />
           <Route exact path="analytics" element={<Analytics />} />
+          
 
         </Route>
       </Routes>

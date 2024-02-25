@@ -64,6 +64,9 @@ const Header = (props) => {
               <NavDropdown.Item>
                 <Link to="/shopping-cart">Shopping Cart</Link>
               </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/signup">Signup</Link>
+              </NavDropdown.Item>
               <EmployeeLoginNav />
             </NavDropdown>
           </Nav>
