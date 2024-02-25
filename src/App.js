@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import LocationStay from "./components/LocationStay";
+import CheckReservation from "./components/CheckReservation";
 import Shop from "./components/Shop";
 import SubCategory from "./components/SubCategory";
 import ViewAll from "./components/viewAll";
@@ -14,6 +15,7 @@ import Orders from "./pages/employees/Orders.jsx";
 import Rooms from "./pages/employees/Rooms.jsx";
 import Customers from "./pages/employees/Customers.jsx";
 import Analytics from "./pages/employees/Analytics.jsx";
+import Signup from "./components/Signup.js";
 import "./components/shop_style.css";
 
 const App = () => {
@@ -25,13 +27,14 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {window.location.pathname.split("/")[1] !== "employee" && (
+      {window.location.pathname.split("/")[1] !== "employee" &&
         <Header getCartQuantity={cartQuantity} />
-      )}
+      }
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/shop" element={<Shop />}></Route>
         <Route exact path="/location-stay" element={<LocationStay />}></Route>
+        <Route exact path="/reservations" element={<CheckReservation />}></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
         <Route exact path="/sub-category" element={<SubCategory />}></Route>
         <Route
@@ -39,7 +42,7 @@ const App = () => {
           path="/shopping-cart"
           element={<Cart sendCartQuantity={getCartQuantity} />}
         ></Route>
-
+        <Route exact path="/signup" element={<Signup />} />
         <Route path="/employee" element={<Layout />}>
           <Route exact index element={<Orders />} />
           <Route exact path="inventory" element={<Inventory />} />

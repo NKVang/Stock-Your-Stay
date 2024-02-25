@@ -1,0 +1,52 @@
+.background {
+    background-image: url('./assets/LocationPlaceholder.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    height: 80vh;
+}
+
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/LocationPlaceholder.jpg');
+    background-size: cover;
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.box {
+    padding: 30px;
+    position: relative;
+    z-index: 0;
+}
+
+.box > div {
+    margin-bottom: 20px;
+}
+
+.box input {
+    text-align: center;
+    border: 1px solid #767676 ;
+    border-radius: 6px;
+    font-size: 16px;
+    padding: 4px 6px;
+    outline: none;
+}
+
+.signup-box {
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.input-field {
+    text-align: center;
+}

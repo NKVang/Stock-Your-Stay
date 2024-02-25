@@ -53,6 +53,9 @@ const Header = (props) => {
                 <Link to="/location-stay">Location Stay</Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
+                <Link to="/reservations">Reservations</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
                 <Link to="/view-all">view all</Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
@@ -60,6 +63,9 @@ const Header = (props) => {
               </NavDropdown.Item>
               <NavDropdown.Item>
                 <Link to="/shopping-cart">Shopping Cart</Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to="/signup">Signup</Link>
               </NavDropdown.Item>
               <EmployeeLoginNav />
             </NavDropdown>
