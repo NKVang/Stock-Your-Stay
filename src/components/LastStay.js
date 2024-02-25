@@ -10,9 +10,7 @@ function isMobile() {
 function LastStay() {
   return (
     <>
-      <h2>
-        <strong>From your last stay</strong>
-      </h2>
+      <h2>From your last stay</h2>
       {isMobile() ? (
         <Carousel interval={null} variant="dark" nextIcon={null} wrap={false}>
           <Carousel.Item>

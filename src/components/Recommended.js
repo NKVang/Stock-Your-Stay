@@ -10,9 +10,7 @@ function isMobile() {
 function Recommended() {
   return (
     <>
-      <h2>
-        <strong>Recommended</strong>
-      </h2>
+      <h2>Recommended</h2>
       {isMobile() ? (
         <Carousel interval={null} variant="dark" nextIcon={null} wrap={false}>
           <Carousel.Item>

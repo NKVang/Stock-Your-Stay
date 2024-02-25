@@ -1,26 +1,26 @@
 import React from "react";
-import "./CategoryButtons.css";
+import { Container, Col, Button } from "react-bootstrap";
+import "./shop_style.css";
 
-/* These are the category buttons at the top center that will be on pretty much every page */
-const CategoryButtons = () =>{
-    return (
-      <a href = "">
-        <div className = 'buttons'>
-          <div className = 'breakfastButton'>
-            <button>Breakfast</button>
-          </div>
-          <div className = 'snacksButton'>
-            <button>Snacks</button>
-          </div>
-          <div className = 'lunchButton'>
-            <button>Lunch</button>
-          </div>  
-          <div className = 'dinnerButton'>
-            <button>Dinner</button>
-          </div>
-      </div>
-      </a>
-    );
-};
-  
-export default CategoryButtons;
+function Category() {
+  return (
+    <Container fluid style={{ margin: 0, padding: 0 }} className="center-align">
+      <Col className="d-flex justify-content-center">
+        <Button size="sm" variant="light">
+          Breakfast
+        </Button>
+        <Button size="sm" variant="light">
+          Snacks
+        </Button>
+        <Button size="sm" variant="light">
+          Lunch
+        </Button>
+        <Button size="sm" variant="light">
+          Dinner
+        </Button>
+      </Col>
+    </Container>
+  );
+}
+
+export default Category;

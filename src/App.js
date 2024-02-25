@@ -16,6 +16,7 @@ import Rooms from "./pages/employees/Rooms.jsx";
 import Customers from "./pages/employees/Customers.jsx";
 import Analytics from "./pages/employees/Analytics.jsx";
 import Signup from "./components/Signup.js";
+import "./components/shop_style.css";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -26,7 +27,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {window.location.pathname.split('/')[1] !== 'employee' &&
+      {window.location.pathname.split("/")[1] !== "employee" &&
         <Header getCartQuantity={cartQuantity} />
       }
       <Routes>
@@ -43,19 +44,15 @@ const App = () => {
         ></Route>
         <Route exact path="/signup" element={<Signup />} />
         <Route path="/employee" element={<Layout />}>
-
           <Route exact index element={<Orders />} />
           <Route exact path="inventory" element={<Inventory />} />
           <Route exact path="rooms" element={<Rooms />} />
           <Route exact path="customers" element={<Customers />} />
           <Route exact path="analytics" element={<Analytics />} />
-          
-
         </Route>
       </Routes>
       <Footer />
     </BrowserRouter>
-
   );
 };
 
