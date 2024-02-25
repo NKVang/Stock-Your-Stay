@@ -5,11 +5,9 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import LocationStay from "./components/LocationStay";
-// import Shop from "./components/Shop";
 import CheckReservation from "./components/CheckReservation";
 import Shop from "./components/Shop";
 import SubCategory from "./components/SubCategory";
-// import ViewAll from "./components/viewAll";
 import ViewAll from "./components/viewAll";
 import Inventory from "./pages/employees/Inventory.jsx";
 import Layout from "./pages/employees/Layout.jsx";
@@ -17,7 +15,6 @@ import Orders from "./pages/employees/Orders.jsx";
 import Rooms from "./pages/employees/Rooms.jsx";
 import Customers from "./pages/employees/Customers.jsx";
 import Analytics from "./pages/employees/Analytics.jsx";
-import Shop from "./pages/shop/Shop.jsx";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
