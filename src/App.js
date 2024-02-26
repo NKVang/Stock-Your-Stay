@@ -16,6 +16,7 @@ import Rooms from "./pages/employees/Rooms.jsx";
 import Customers from "./pages/employees/Customers.jsx";
 import Analytics from "./pages/employees/Analytics.jsx";
 import Signup from "./components/Signup.js";
+import Login from "./pages/login/Customer_Login.js";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -36,6 +37,7 @@ const App = () => {
         <Route exact path="/reservations" element={<CheckReservation />}></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
         <Route exact path="/sub-category" element={<SubCategory />}></Route>
+        <Route exact path="/login" element={<Login />}></Route>
         <Route
           exact
           path="/shopping-cart"
