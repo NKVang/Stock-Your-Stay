@@ -15,7 +15,7 @@ const ItemPage = () => {
         const data = await response.json();
         setItemDetails(data);
       } catch (error) {
-        console.error("Failed to fetch item details:", error);
+        console.error("Failed to get item details:", error);
       }
     };
 
@@ -24,6 +24,7 @@ const ItemPage = () => {
 
   const handleAddToCart = () => {
     console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
+    // Implement feedback for user here, e.g., a toast message or modal popup
   };
 
   const incrementQuantity = () => {
@@ -42,25 +43,20 @@ const ItemPage = () => {
         <img src={itemDetails.imageUrl} alt={itemDetails.name} />
         <h2>{itemDetails.name}</h2>
         <p>{itemDetails.description}</p>
-        <p>{itemDetails.price}</p>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <button onClick={decrementQuantity}>
-            <img src="quantitybutton.png" alt="Decrease quantity" />
-          </button>
-          <input
-            type="number"
-            value={quantity}
-            onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value, 10)))}
-            min="1"
-            style={{ width: '60px' }}
-          />
-          <button onClick={incrementQuantity}>
-            <img src="quantitybutton.png" alt="Increase quantity" />
-          </button>
-          <button onClick={handleAddToCart}>
-            <img src="addtocart.png" alt="Add to Cart" />
-          </button>
+        <p>{`$${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(itemDetails.price)}`}</p>
+        <div className="quantity-selector" style={{ position: 'relative', width: '380px', height: '95px', backgroundImage: `url('GitHub/Stock-Your-Stay/src/components/assets/quantitybutton.png')` }}>
+          {/* Invisible button for decrement (-) */}
+          <button onClick={decrementQuantity} style={{ position: 'absolute', left: 0, top: 0, width: '50%', height: '100%', background: 'transparent', border: 'none' }} />
+          {/* Display quantity in the center */}
+          <span style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', fontWeight: 'bold' }}>
+            {quantity}
+          </span>
+          {/* Invisible button for increment (+) */}
+          <button onClick={incrementQuantity} style={{ position: 'absolute', right: 0, top: 0, width: '50%', height: '100%', background: 'transparent', border: 'none' }} />
         </div>
+        <button onClick={handleAddToCart} className="add-to-cart-button">
+          Add to Cart
+        </button>
         <button onClick={() => navigate('/')}>Return to Home</button>
       </div>
     </div>

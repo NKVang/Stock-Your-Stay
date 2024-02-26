@@ -1,15 +1,58 @@
-
 .add-to-cart-button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    padding: 8px; 
-    border-radius: 5px; 
-  }
-  
- 
-  .add-to-cart-button img {
-    width: auto; 
-    height: 40px; 
-  }
-  
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.add-to-cart-button img {
+  width: auto;
+  height: 40px;
+}
+
+.quantity-selector {
+  position: relative;
+  width: 380px; 
+  height: 95px; 
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* Ensure the image covers the div without being stretched */
+  cursor: pointer;
+}
+
+/* Invisible buttons for incrementing and decrementing */
+.quantity-selector button {
+  position: absolute;
+  top: 0;
+  width: 50%; /* Half the width of the container */
+  height: 100%; /* Full height of the container */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.quantity-selector button:focus {
+  outline: none;
+}
+
+/* Positioning the increment button on the right */
+.quantity-selector button.increment {
+  right: 0;
+}
+
+/* Positioning the decrement button on the left */
+.quantity-selector button.decrement {
+  left: 0;
+}
+
+/* Styling for the quantity display */
+.quantity-display {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  background-color: transparent; 
+  pointer-events: none; /* Prevents the span from being clickable */
+}
