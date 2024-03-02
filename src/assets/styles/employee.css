@@ -7,7 +7,7 @@
   left: 0;
   min-height: 100vh !important;
   z-index: 10;
-  width: 16%;
+  width: 225px;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
 #sidebar-wrapper {
@@ -28,4 +28,44 @@
   /* do not change the margin unless the size of the header changes */
   padding-top: 40px;
   padding-left: 40px;
+  padding-bottom: 40px;
+}
+
+.table-nav-wrapper {
+  overflow-x: auto;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 10px;
+}
+
+.table-nav-wrapper::-webkit-scrollbar,
+.table-wrapper::-webkit-scrollbar {
+  height: 3px;
+}
+
+/* Track */
+.table-nav-wrapper::-webkit-scrollbar-track,
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.table-nav-wrapper::-webkit-scrollbar-thumb,
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.table-nav-wrapper::-webkit-scrollbar-thumb:hover,
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media screen and (max-width: 1200px) {
+  #page-content-wrapper {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }

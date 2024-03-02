@@ -80,6 +80,10 @@ span.heading {
   padding-bottom: 20px;
 }
 
+.header-logo {
+  max-width: 286px;
+}
+
 .logo-link {
   color: #fff !important;
 }
@@ -93,10 +97,16 @@ span.heading {
 }
 
 .btn {
-  margin-right: 10px;
   border-radius: 20px;
   padding: 10px;
   border: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .btn {
+    font-size: 12px;
+    padding: 7px;
+  }
 }
 
 .col-sm-auto {
@@ -293,4 +303,8 @@ a:link {
   border-top: 1px solid #00321d;
   padding: 10px 0px !important;
   margin-top: 10px !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

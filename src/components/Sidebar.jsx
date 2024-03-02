@@ -13,8 +13,7 @@ import "../assets/styles/employee.css";
 const Sidebar = () => {
   return (
     <>
-      <Nav className="col-md-12 d-none d-md-block bg-light sidebar">
-        <div className="sidebar-sticky"></div>
+      <Nav className="d-block bg-light sidebar">
         <Nav.Item className="border-bottom m-2">
           <Nav.Link href="/employee" className="link-dark ">
             <div className="hstack">
