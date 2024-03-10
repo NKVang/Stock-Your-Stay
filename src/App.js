@@ -18,6 +18,7 @@ import Analytics from "./pages/employees/Analytics.jsx";
 import Signup from "./components/Signup.js";
 import "./components/shop_style.css";
 import Login from "./pages/login/Customer_Login.js";
+import Success from "./components/Success";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -28,14 +29,18 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {window.location.pathname.split("/")[1] !== "employee" &&
+      {window.location.pathname.split("/")[1] !== "employee" && (
         <Header getCartQuantity={cartQuantity} />
-      }
+      )}
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/shop" element={<Shop />}></Route>
         <Route exact path="/location-stay" element={<LocationStay />}></Route>
-        <Route exact path="/reservations" element={<CheckReservation />}></Route>
+        <Route
+          exact
+          path="/reservations"
+          element={<CheckReservation />}
+        ></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
         <Route exact path="/sub-category" element={<SubCategory />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
@@ -52,6 +57,7 @@ const App = () => {
           <Route exact path="customers" element={<Customers />} />
           <Route exact path="analytics" element={<Analytics />} />
         </Route>
+        <Route exact path="/success" element={<Success />} />
       </Routes>
       <Footer />
     </BrowserRouter>
