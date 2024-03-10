@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import {
   Container,
@@ -9,6 +10,7 @@ import {
   Button,
   Form,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./shop_style.css";
 import * as images from "./assets";
@@ -80,6 +82,7 @@ const Cart = (props) => {
       pricePerQuantity: 13.99,
     },
   ]);
+  const navigate = useNavigate();
 
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -141,6 +144,13 @@ const Cart = (props) => {
 
       updatedItems(updatedCart);
     }
+  };
+
+  const checkOut = () => {
+    props.getHistoryItems(cartItems);
+    updatedItems([]);
+    props.sendCartQuantity(0);
+    navigate("/payment");
   };
 
   return (
@@ -243,7 +253,9 @@ const Cart = (props) => {
                   <Row style={{ marginTop: 10 }}>
                     <Col xs="auto">
                       <Button variant="dark">Continue Shopping</Button>
-                      <Button variant="success">Check Out</Button>
+                      <Button variant="success" onClick={checkOut}>
+                        Check Out
+                      </Button>
                       <br />
                       **
                       <strong>
