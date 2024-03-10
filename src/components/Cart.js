@@ -7,18 +7,20 @@ import {
   CloseButton,
   Image,
   Button,
-  Form,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./shop_style.css";
-import * as images from "./assets";
+// import * as images from "./assets";
 
+// images hard coded so once passed to Stripe, it can display images at checkout
 const Cart = (props) => {
   const [cartItems, updatedItems] = useState([
     {
       id: 1,
       name: "Siggi's Mixed Berry Non Fat Yogurt 4 Pack",
-      image: images.img1,
+      image:
+        "https://stockyourstay.minthouse.com/cdn/shop/products/81IxzTEA_2L._SL1500_1024x1024.jpg",
       quantity: 1,
       price: 5.59,
       pricePerQuantity: 5.59,
@@ -26,7 +28,8 @@ const Cart = (props) => {
     {
       id: 2,
       name: "Kerrygold Pure Irish Butter",
-      image: images.img2,
+      image:
+        "https://stockyourstay.minthouse.com/cdn/shop/products/ScreenShot2021-09-01at3.10.03PM_1024x1024.png",
       quantity: 1,
       price: 5.59,
       pricePerQuantity: 5.59,
@@ -34,23 +37,26 @@ const Cart = (props) => {
     {
       id: 3,
       name: "Organic Mozzarella Sticks",
-      image: images.img3,
+      image:
+        "https://stockyourstay.minthouse.com/cdn/shop/products/ScreenShot2021-10-06at3.01.45PM_1024x1024.png",
       quantity: 1,
       price: 5.59,
       pricePerQuantity: 5.59,
     },
     {
       id: 4,
-      name: "Organic Nonfat Milk, 1 Quart",
-      image: images.img4,
+      name: "Organic Valley Cream Cheese Spread",
+      image:
+        "https://stockyourstay.minthouse.com/cdn/shop/products/ScreenShot2021-09-01at5.10.16PM_600x600.png",
       quantity: 1,
-      price: 5.59,
-      pricePerQuantity: 5.59,
+      price: 3.49,
+      pricePerQuantity: 3.49,
     },
     {
       id: 5,
       name: "Chicken & Apple Chicken Sausage",
-      image: images.img5,
+      image:
+        "https://stockyourstay.minthouse.com/cdn/shop/products/ScreenShot2021-11-11at10.56.26AM_1024x1024.png",
       quantity: 1,
       price: 9.29,
       pricePerQuantity: 9.29,
@@ -58,7 +64,8 @@ const Cart = (props) => {
     {
       id: 6,
       name: "RAOS Chicken Parmesan",
-      image: images.img6,
+      image:
+        "https://stockyourstay.minthouse.com/cdn/shop/products/81OjUj755IL._SL1500_1200x1200.jpg",
       quantity: 1,
       price: 6.99,
       pricePerQuantity: 6.99,
@@ -66,7 +73,8 @@ const Cart = (props) => {
     {
       id: 7,
       name: "Applegate Chicken Nuggets",
-      image: images.img7,
+      image:
+        "https://stockyourstay.minthouse.com/cdn/shop/products/ScreenShot2021-10-06at3.00.57PM_1024x1024.png",
       quantity: 1,
       price: 12.99,
       pricePerQuantity: 12.99,
@@ -74,7 +82,8 @@ const Cart = (props) => {
     {
       id: 8,
       name: "Frozen Salmon Fillets (2), 6oz/each",
-      image: images.img8,
+      image:
+        "https://stockyourstay.minthouse.com/cdn/shop/products/81gK3bRQuhL._SL1500_1024x1024.jpg",
       quantity: 1,
       price: 13.99,
       pricePerQuantity: 13.99,
@@ -143,19 +152,63 @@ const Cart = (props) => {
     }
   };
 
+  // grab current url to pass to server, for routing on mobile
+  const server_url = window.location.href.replace("/shopping-cart", "");
+
+  // checkout function
+  const goToCheckout = () => {
+    fetch("/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cartItems,
+        SERVER_URL: server_url,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .then(({ url }) => {
+        window.location = url;
+      })
+      .catch((e) => {
+        console.error(e.error);
+      });
+  };
+
+  const history = useNavigate();
+
+  const goToShop = () => {
+    history("/shop");
+  };
+
   return (
     <>
-      <Row>
-        <Col xs={12} md={6} className="shop-container">
-          <Container fluid className="shopping-cart-list-container">
-            <h2>Shopping Cart</h2>
-            <Stack gap={2}>
-              {cartItems.length === 0 ? (
-                <div className="shopping-cart-message">
-                  <i>Your cart is currently empty</i>
-                </div>
-              ) : (
-                cartItems.map((item) => (
+      {cartItems.length === 0 ? (
+        <Container className="shopping-cart-message">
+          <h2 style={{ marginBottom: "0px" }}>Shopping Cart</h2>
+          <span style={{ fontSize: "14px", marginTop: "40px" }}>
+            Your cart is currently empty.
+          </span>
+          <Button
+            variant="success"
+            style={{ marginTop: "40px", marginRight: "0px" }}
+            onClick={goToShop}
+          >
+            Continue Browsing
+          </Button>
+        </Container>
+      ) : (
+        <Row>
+          <Col xs={12} md={6} className="shop-container">
+            <Container fluid className="shopping-cart-list-container">
+              <h2>Shopping Cart</h2>
+
+              <Stack gap={3}>
+                {cartItems.map((item) => (
                   <div
                     key={item.id}
                     className="cart-item d-flex justify-content-between"
@@ -200,64 +253,50 @@ const Cart = (props) => {
                       onClick={() => removeItem(item.id)}
                     />
                   </div>
-                ))
-              )}
-            </Stack>
-          </Container>
-        </Col>
-
-        {/* Right column */}
-        <Col xs={12} md={6} className="shop-container">
-          <Row className="cart-total">
-            <Container fluid className="right-cart-container">
-              <div className="cart-total-main-container">
-                <Row>
-                  <Col>
-                    <Row>Delivery Date: 12-31-23</Row>
-                    <Row>Location: Austin, TX</Row>
-                    <Row style={{ marginTop: 50 }}>
-                      Subtotal (
-                      {cartQuantity > 1 || cartQuantity === 0
-                        ? cartQuantity + " items"
-                        : cartQuantity + " item"}
-                      ):
-                      <b style={{ paddingLeft: 0 }}>${totalPrice}</b>
-                    </Row>
-                    <Row>
-                      <i className="small-text" style={{ paddingLeft: 0 }}>
-                        Taxes and shipping calculated at checkout
-                      </i>
-                    </Row>
-                  </Col>
-                  <Row>
-                    <h6 style={{ paddingLeft: 0, marginTop: 30 }}>
-                      <i>Special Instructions For Seller:</i>
-                    </h6>
-                    <Form>
-                      <Form.Group>
-                        <Form.Label></Form.Label>
-                        <Form.Control as="textarea" rows={5} />
-                      </Form.Group>
-                    </Form>
-                  </Row>
-                  <Row style={{ marginTop: 10 }}>
-                    <Col xs="auto">
-                      <Button variant="dark">Continue Shopping</Button>
-                      <Button variant="success">Check Out</Button>
-                      <br />
-                      **
-                      <strong>
-                        Note: Only orders placed within 48 hours of check-in
-                        will be fufilled. **
-                      </strong>
-                    </Col>
-                  </Row>
-                </Row>
-              </div>
+                ))}
+              </Stack>
             </Container>
-          </Row>
-        </Col>
-      </Row>
+          </Col>
+
+          <Col xs={12} md={6} className="shop-container">
+            <Row className="cart-total">
+              <Container fluid className="right-cart-container">
+                <div className="cart-total-main-container">
+                  <Row>
+                    <Col>
+                      <Row>Delivery Date: 12-31-23</Row>
+                      <Row>Location: Austin, TX</Row>
+                      <Row style={{ marginTop: 50 }}>
+                        Subtotal (
+                        {cartQuantity > 1 || cartQuantity === 0
+                          ? cartQuantity + " items"
+                          : cartQuantity + " item"}
+                        ):
+                        <b style={{ paddingLeft: 0 }}>${totalPrice}</b>
+                      </Row>
+                      <Row>
+                        <i className="small-text" style={{ paddingLeft: 0 }}>
+                          Taxes and shipping calculated at checkout
+                        </i>
+                      </Row>
+                    </Col>
+                    <Row style={{ marginTop: 10 }}>
+                      <Col xs="auto">
+                        <Button variant="dark" onClick={goToShop}>
+                          Continue Shopping
+                        </Button>
+                        <Button variant="success" onClick={goToCheckout}>
+                          Check Out
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Row>
+                </div>
+              </Container>
+            </Row>
+          </Col>
+        </Row>
+      )}
     </>
   );
 };
