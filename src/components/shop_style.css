@@ -205,6 +205,11 @@ a:link {
   margin: 0px;
 }
 
+.payment-form {
+  min-height: 100%;
+  padding: 4rem 9rem;
+}
+
 .right-cart-container {
   display: flex;
   justify-content: center;
@@ -302,10 +307,12 @@ a:link {
 }
 
 .btn-success {
+  /* background-color: #c2e7d3 !important; */
   background-color: #c2e7d3 !important;
 }
 
 .btn-success:hover {
+  /* background-color: #9dd9b9 !important; */
   background-color: #9dd9b9 !important;
 }
 

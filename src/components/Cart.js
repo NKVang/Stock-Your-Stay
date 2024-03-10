@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import {
   Container,
@@ -8,6 +9,7 @@ import {
   Image,
   Button,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./shop_style.css";
@@ -89,6 +91,7 @@ const Cart = (props) => {
       pricePerQuantity: 13.99,
     },
   ]);
+  const navigate = useNavigate();
 
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -150,6 +153,13 @@ const Cart = (props) => {
 
       updatedItems(updatedCart);
     }
+  };
+
+  const checkOut = () => {
+    props.getHistoryItems(cartItems);
+    updatedItems([]);
+    props.sendCartQuantity(0);
+    navigate("/payment");
   };
 
   // grab current url to pass to server, for routing on mobile
@@ -258,6 +268,60 @@ const Cart = (props) => {
             </Container>
           </Col>
 
+        {/* Right column */}
+        <Col xs={12} md={6} className="shop-container">
+          <Row className="cart-total">
+            <Container fluid className="right-cart-container">
+              <div className="cart-total-main-container">
+                <Row>
+                  <Col>
+                    <Row>Delivery Date: 12-31-23</Row>
+                    <Row>Location: Austin, TX</Row>
+                    <Row style={{ marginTop: 50 }}>
+                      Subtotal (
+                      {cartQuantity > 1 || cartQuantity === 0
+                        ? cartQuantity + " items"
+                        : cartQuantity + " item"}
+                      ):
+                      <b style={{ paddingLeft: 0 }}>${totalPrice}</b>
+                    </Row>
+                    <Row>
+                      <i className="small-text" style={{ paddingLeft: 0 }}>
+                        Taxes and shipping calculated at checkout
+                      </i>
+                    </Row>
+                  </Col>
+                  <Row>
+                    <h6 style={{ paddingLeft: 0, marginTop: 30 }}>
+                      <i>Special Instructions For Seller:</i>
+                    </h6>
+                    <Form>
+                      <Form.Group>
+                        <Form.Label></Form.Label>
+                        <Form.Control as="textarea" rows={5} />
+                      </Form.Group>
+                    </Form>
+                  </Row>
+                  <Row style={{ marginTop: 10 }}>
+                    <Col xs="auto">
+                      <Button variant="dark">Continue Shopping</Button>
+                      <Button variant="success" onClick={checkOut}>
+                        Check Out
+                      </Button>
+                      <br />
+                      **
+                      <strong>
+                        Note: Only orders placed within 48 hours of check-in
+                        will be fufilled. **
+                      </strong>
+                    </Col>
+                  </Row>
+                </Row>
+              </div>
+            </Container>
+          </Row>
+        </Col>
+      </Row>
           <Col xs={12} md={6} className="shop-container">
             <Row className="cart-total">
               <Container fluid className="right-cart-container">
