@@ -1,23 +1,30 @@
 import Airtable from "airtable";
-import { default as React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Carousel, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./shop_style.css";
+import "../../components/shop_style.css";
 
 function isMobile() {
   return window.innerWidth < 576;
 }
 
-const LastStay = () => {
+const LocalFavs = () => {
+  var Airtable = require('airtable');
+  Airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: 'patwumKgifTrIXkAz.d261f22792e68e58a13faa15b76c91cec4f6e19f064cbdfd3325b76853c590a5'
+  });
+  var base = Airtable.base('appOwlhkqWdaF7YpR');
+  /*
   const base = new Airtable({
     apiKey: process.env.REACT_APP_AIRTABLE_TOKEN,
   }).base("appRWYLyPrYJ68yEu");
-
+  */
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     if (products.length === 0)
-      base("From Your Last Stay")
+      base("Local Favorites")
         .select({
           view: "Grid view",
           maxRecords: isMobile() ? 3 : 7,
@@ -50,18 +57,19 @@ const LastStay = () => {
         );
     // eslint-disable-next-line
   }, []);
+
   return (
     <>
       <h2>
-        <strong>From your last stay</strong>
+        <strong>Local Favorites</strong>
       </h2>
       {isMobile() ? (
         <Carousel interval={null} variant="dark" nextIcon={null} wrap={false}>
-          <Carousel.Item key={"5"}>
+          <Carousel.Item key={"1"}>
             <Row className="align-items-center">
               {products.slice(0, 2).map((product) => (
                 <Col xs={6} md="auto">
-                  <Link to={"#"}>
+                  <Link to={"/shop/product/${product.title}"}>
                     <Card
                       style={{
                         width: "200px",
@@ -85,7 +93,7 @@ const LastStay = () => {
             </Row>
           </Carousel.Item>
 
-          <Carousel.Item key={"6"}>
+          <Carousel.Item key={"2"}>
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 <Link to={"#"}>
@@ -116,11 +124,10 @@ const LastStay = () => {
         </Carousel>
       ) : (
         <Carousel interval={null} variant="dark" indicators={null}>
-          <Carousel.Item key={"7"}>
+          <Carousel.Item key={"3"}>
             <Row className="align-items-center">
               {products.slice(0, 4).map((product) => (
                 <Col xs={6} md="auto">
-                  {/* eslint-disable-next-line */}
                   <Link to={"#"}>
                     <Card
                       style={{
@@ -145,7 +152,7 @@ const LastStay = () => {
             </Row>
           </Carousel.Item>
 
-          <Carousel.Item key={"8"}>
+          <Carousel.Item key={"4"}>
             <Row className="align-items-center">
               {products.slice(4, 7).map((product) => (
                 <Col xs={6} md="auto">
@@ -182,4 +189,4 @@ const LastStay = () => {
   );
 };
 
-export default LastStay;
+export default LocalFavs;
