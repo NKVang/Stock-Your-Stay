@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import {
   Container,
@@ -7,12 +8,14 @@ import {
   CloseButton,
   Image,
   Button,
-  Form,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./shop_style.css";
-import * as images from "./assets";
+// import * as images from "./assets";
 
+// images hard coded so once passed to Stripe, it can display images at checkout
 const Cart = (props) => {
   const [cartItems, updatedItems] = useState([
     {
@@ -88,6 +91,7 @@ const Cart = (props) => {
       rId: "recPzZ6zoACMNM40C",
     },
   ]);
+  const navigate = useNavigate();
 
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -151,19 +155,70 @@ const Cart = (props) => {
     }
   };
 
+  const checkOut = () => {
+    props.getHistoryItems(cartItems);
+    updatedItems([]);
+    props.sendCartQuantity(0);
+    navigate("/payment");
+  };
+
+  // grab current url to pass to server, for routing on mobile
+  const server_url = window.location.href.replace("/shopping-cart", "");
+
+  // checkout function
+  const goToCheckout = () => {
+    fetch("/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cartItems,
+        SERVER_URL: server_url,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return res.json().then((json) => Promise.reject(json));
+      })
+      .then(({ url }) => {
+        window.location = url;
+      })
+      .catch((e) => {
+        console.error(e.error);
+      });
+  };
+
+  const history = useNavigate();
+
+  const goToShop = () => {
+    history("/shop");
+  };
+
   return (
     <>
-      <Row>
-        <Col xs={12} md={6} className="shop-container">
-          <Container fluid className="shopping-cart-list-container">
-            <h2>Shopping Cart</h2>
-            <Stack gap={2}>
-              {cartItems.length === 0 ? (
-                <div className="shopping-cart-message">
-                  <i>Your cart is currently empty</i>
-                </div>
-              ) : (
-                cartItems.map((item) => (
+      {cartItems.length === 0 ? (
+        <Container className="shopping-cart-message">
+          <h2 style={{ marginBottom: "0px" }}>Shopping Cart</h2>
+          <span style={{ fontSize: "14px", marginTop: "40px" }}>
+            Your cart is currently empty.
+          </span>
+          <Button
+            variant="success"
+            style={{ marginTop: "40px", marginRight: "0px" }}
+            onClick={goToShop}
+          >
+            Continue Browsing
+          </Button>
+        </Container>
+      ) : (
+        <Row>
+          <Col xs={12} md={6} className="shop-container">
+            <Container fluid className="shopping-cart-list-container">
+              <h2>Shopping Cart</h2>
+
+              <Stack gap={3}>
+                {cartItems.map((item) => (
                   <div
                     key={item.id}
                     className="cart-item d-flex justify-content-between"
@@ -208,11 +263,10 @@ const Cart = (props) => {
                       onClick={() => removeItem(item.id)}
                     />
                   </div>
-                ))
-              )}
-            </Stack>
-          </Container>
-        </Col>
+                ))}
+              </Stack>
+            </Container>
+          </Col>
 
         {/* Right column */}
         <Col xs={12} md={6} className="shop-container">
@@ -251,7 +305,9 @@ const Cart = (props) => {
                   <Row style={{ marginTop: 10 }}>
                     <Col xs="auto">
                       <Button variant="dark">Continue Shopping</Button>
-                      <Button variant="success">Check Out</Button>
+                      <Button variant="success" onClick={checkOut}>
+                        Check Out
+                      </Button>
                       <br />
                       **
                       <strong>
@@ -266,6 +322,45 @@ const Cart = (props) => {
           </Row>
         </Col>
       </Row>
+          <Col xs={12} md={6} className="shop-container">
+            <Row className="cart-total">
+              <Container fluid className="right-cart-container">
+                <div className="cart-total-main-container">
+                  <Row>
+                    <Col>
+                      <Row>Delivery Date: 12-31-23</Row>
+                      <Row>Location: Austin, TX</Row>
+                      <Row style={{ marginTop: 50 }}>
+                        Subtotal (
+                        {cartQuantity > 1 || cartQuantity === 0
+                          ? cartQuantity + " items"
+                          : cartQuantity + " item"}
+                        ):
+                        <b style={{ paddingLeft: 0 }}>${totalPrice}</b>
+                      </Row>
+                      <Row>
+                        <i className="small-text" style={{ paddingLeft: 0 }}>
+                          Taxes and shipping calculated at checkout
+                        </i>
+                      </Row>
+                    </Col>
+                    <Row style={{ marginTop: 10 }}>
+                      <Col xs="auto">
+                        <Button variant="dark" onClick={goToShop}>
+                          Continue Shopping
+                        </Button>
+                        <Button variant="success" onClick={goToCheckout}>
+                          Check Out
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Row>
+                </div>
+              </Container>
+            </Row>
+          </Col>
+        </Row>
+      )}
     </>
   );
 };
