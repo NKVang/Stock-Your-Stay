@@ -14,6 +14,7 @@ import Orders from "./pages/employees/Orders.jsx";
 import Rooms from "./pages/employees/Rooms.jsx";
 import Customers from "./pages/employees/Customers.jsx";
 import Analytics from "./pages/employees/Analytics.jsx";
+import ProductPage from "./components/IndividualItemPage";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
