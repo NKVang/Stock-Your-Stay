@@ -22,47 +22,49 @@ const Customers = () => {
     <>
       <h1 className="">Customers</h1>
       <div className="border p-2 bg-white">
-        <ul className="nav border-bottom ps-4">
-          <Anchor
-            className={
-              "px-4 py-3 text-black " +
-              (tab === "All"
-                ? "border-bottom border-3 border-success-subtle"
-                : "")
-            }
-            onClick={() => {
-              setTab("All");
-            }}
-          >
-            All
-          </Anchor>
-          <Anchor
-            className={
-              "px-4 py-3 text-black " +
-              (tab === "Active"
-                ? "border-bottom border-3 border-success-subtle"
-                : "")
-            }
-            onClick={() => {
-              setTab("Active");
-            }}
-          >
-            Active
-          </Anchor>
-          <Anchor
-            className={
-              "px-4 py-3 text-black " +
-              (tab === "Inactive"
-                ? "border-bottom border-3 border-success-subtle"
-                : "")
-            }
-            onClick={() => {
-              setTab("Inactive");
-            }}
-          >
-            Inactive
-          </Anchor>
-        </ul>
+        <div className="table-nav-wrapper">
+          <ul className="flex flex-col py-3 border-bottom ps-4">
+            <Anchor
+              className={
+                "px-4 py-3 text-black " +
+                (tab === "All"
+                  ? "border-bottom border-3 border-success-subtle"
+                  : "")
+              }
+              onClick={() => {
+                setTab("All");
+              }}
+            >
+              All
+            </Anchor>
+            <Anchor
+              className={
+                "px-4 py-3 text-black " +
+                (tab === "Active"
+                  ? "border-bottom border-3 border-success-subtle"
+                  : "")
+              }
+              onClick={() => {
+                setTab("Active");
+              }}
+            >
+              Active
+            </Anchor>
+            <Anchor
+              className={
+                "px-4 py-3 text-black " +
+                (tab === "Inactive"
+                  ? "border-bottom border-3 border-success-subtle"
+                  : "")
+              }
+              onClick={() => {
+                setTab("Inactive");
+              }}
+            >
+              Inactive
+            </Anchor>
+          </ul>
+        </div>
 
         <div className="row px-4 mt-4">
           <InputGroup className="my-2">
@@ -71,7 +73,7 @@ const Customers = () => {
           </InputGroup>
         </div>
 
-        <div className="px-2 py-4">
+        <div className="px-2 py-4 table-wrapper">
           <Table hover>
             <thead>
               <tr>
