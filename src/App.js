@@ -24,6 +24,7 @@ import OrderHistory from "./components/OrderHistory.js";
 import OrderDetails from "./components/OrderDetails.js";
 import Settings from "./components/Settings.js";
 import Success from "./components/Success";
+import ProductPage from "./components/IndividualItemPage";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");

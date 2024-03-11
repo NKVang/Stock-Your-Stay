@@ -56,3 +56,23 @@
   background-color: transparent; 
   pointer-events: none; /* Prevents the span from being clickable */
 }
+
+@media screen and (max-width: 600px) {
+  /* This is the style for mobile devices */
+ .item-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+ .item-image {
+    margin-bottom: 16px;
+  }
+
+ .item-details {
+    align-self: center;
+  }
+
+ .quantity-selector {
+    display: none;
+  }
+}
