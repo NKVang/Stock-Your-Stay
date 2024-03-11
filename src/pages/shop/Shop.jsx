@@ -1,8 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import "../../assets/styles/shop.css";
-import Category from "../../components/Category.jsx";
-import Gallery from "../../components/Gallery.jsx";
+import Category from "./Category.jsx";
+import Gallery from "./Gallery.jsx";
 
 const Shop = () => {
   return (

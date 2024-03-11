@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Col, Button, DropdownButton, Form } from "react-bootstrap";
-import "./shop_style.css";
+import "../../components/shop_style.css";
 
 function Category() {
   return (
