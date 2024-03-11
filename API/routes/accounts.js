@@ -4,43 +4,43 @@ const databasePool = require ('../dbConnection');
 
 router.get('/', async(req, res, next) => {
     let dbConnection = await databasePool.getConnection();
-    const users = await dbConnection.query(`SELECT * FROM stock.user`);
+    const accounts = await dbConnection.query(`SELECT * FROM stock.accounts`);
 
     res.status(200).json({
-        users: users
+        accounts: accounts
     });
 });
 
 router.post ('/', async(req, res, next) => {
     let dbConnection = await databasePool.getConnection();
-    let confirmationNum = req.body.confirmationNum;
+    let AccountID = req.body.AccountID;
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
     let email = req.body.email;
     let phoneNum = req.body.phoneNum;
-    let query = "INSERT INTO stock.user VALUES (" + confirmationNum + ", " + "'" + firstName + "'" + ", " + "'"  + lastName + "'" + ", " + "'" + email + "'" + ", " + "'" + phoneNum + "'" + ")";
+    let query = "INSERT INTO stock.accounts VALUES (" + AccountID + ", " + "'" + firstName + "'" + ", " + "'"  + lastName + "'" + ", " + "'" + email + "'" + ", " + "'" + phoneNum + "'" + ")";
 
     await dbConnection.query(query);
 
     res.status(201).json({
-        message: 'User Created!'
+        message: 'account Created!'
     });
 });
 
-router.get('/:confirmationNum', async(req, res, next) => {
+router.get('/:AccountID', async(req, res, next) => {
 
-    let confirmationNum = req.params.confirmationNum;
+    let AccountID = req.params.AccountID;
     let dbConnection = await databasePool.getConnection();
-    let query = "SELECT * FROM stock.user WHERE confirmationNum = " + confirmationNum
-    const user = await dbConnection.query(query);
+    let query = "SELECT * FROM stock.accounts WHERE AccountID = " + AccountID
+    const accounts = await dbConnection.query(query);
 
     res.status(200).json({
-        user: user
+        accounts: accounts
     });
 });
 
-router.patch('/:confirmationNum/', async(req, res, next) => {
-    let confirmationNum = req.params.confirmationNum;
+router.patch('/:AccountID/', async(req, res, next) => {
+    let AccountID = req.params.AccountID;
     let dbConnection = await databasePool.getConnection();
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
@@ -50,41 +50,41 @@ router.patch('/:confirmationNum/', async(req, res, next) => {
 
     if (typeof firstName  !== 'undefined')
     {
-        let query = "UPDATE stock.user SET FirstName = " + "'" + firstName + "'" + " WHERE ConfirmationNum = " + confirmationNum;
+        let query = "UPDATE stock.accounts SET FirstName = " + "'" + firstName + "'" + " WHERE AccountID = " + AccountID;
         await dbConnection.query(query);
     }
     if (typeof lastName  !== 'undefined')
     {
-        let query = "UPDATE stock.user SET LastName = " + "'" + lastName + "'" + " WHERE ConfirmationNum = " + confirmationNum;
+        let query = "UPDATE stock.accounts SET LastName = " + "'" + lastName + "'" + " WHERE AccountID = " + AccountID;
         console.log(query);
         await dbConnection.query(query);
     }
     if (typeof email  !== 'undefined')
     {
-        let query = "UPDATE stock.user SET Email = " + "'" + email + "' " +" WHERE ConfirmationNum = " + confirmationNum;
+        let query = "UPDATE stock.accounts SET Email = " + "'" + email + "' " +" WHERE AccountID = " + AccountID;
         console.log(query);
         await dbConnection.query(query);
     }
     if (typeof phoneNum  !== 'undefined')
     {
-        let query = "UPDATE stock.user SET PhoneNum = " + "'" + phoneNum + "'" + " WHERE ConfirmationNum = " + confirmationNum;
+        let query = "UPDATE stock.accounts SET PhoneNum = " + "'" + phoneNum + "'" + " WHERE AccountID = " + AccountID;
         console.log(query);
         await dbConnection.query(query);
     }
 
     res.status(200).json({
-        message: 'User information updated'
+        message: 'accounts information updated'
     });
 });
 
-router.delete('/:confirmationNum', async(req, res, next) => {
-    let confirmationNum = req.params.confirmationNum;
+router.delete('/:AccountID', async(req, res, next) => {
+    let AccountID = req.params.AccountID;
     let dbConnection = await databasePool.getConnection();
-    let query = "DELETE FROM stock.user WHERE ConfirmationNum = " + confirmationNum
+    let query = "DELETE FROM stock.accounts WHERE AccountID = " + AccountID
     await dbConnection.query(query);
 
     res.status(200).json({
-        message: 'User Information deleted',
+        message: 'account Information deleted',
     });
 });
 

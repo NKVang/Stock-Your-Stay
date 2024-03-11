@@ -8,7 +8,7 @@ router.post ('/', async(req, res, next) => {
     let itemID = req.body.itemID;
     let itemName = req.body.itemName;
     let Quantity = req.body.Quantity;
-    let query = "INSERT INTO stock.orderDetails VALUES (" + orderNum + ", " + itemID + ", " + "'"  + itemName + "'" + ", " + Quantity + ")";
+    let query = "INSERT INTO stock.orderdetails VALUES (" + orderNum + ", " + itemID + ", " + "'"  + itemName + "'" + ", " + Quantity + ")";
 
     await dbConnection.query(query);
 
@@ -21,11 +21,11 @@ router.get('/:orderNum', async(req, res, next) => {
 
     let orderNum = req.params.orderNum;
     let dbConnection = await databasePool.getConnection();
-    let query = "SELECT * FROM stock.orderDetails WHERE OrderNum = " + orderNum
-    const orderDetails = await dbConnection.query(query);
+    let query = "SELECT * FROM stock.orderdetails WHERE OrderNum = " + orderNum
+    const orderdetails = await dbConnection.query(query);
 
     res.status(200).json({
-        orderDetails: orderDetails
+        orderdetails: orderdetails
     });
 });
 
