@@ -24,61 +24,62 @@ const Orders = () => {
     <>
       <h1 className="">Orders</h1>
       <div className="border p-2 bg-white">
-        <ul className="nav border-bottom ps-4">
-          <Anchor
-            className={
-              "px-4 py-3 text-black " +
-              (tab === "All"
-                ? "border-bottom border-3 border-success-subtle"
-                : "")
-            }
-            onClick={() => {
-              setTab("All");
-            }}
-          >
-            All
-          </Anchor>
-          <Anchor
-            className={
-              "px-4 py-3 text-black " +
-              (tab === "Completed"
-                ? "border-bottom border-3 border-success-subtle"
-                : "")
-            }
-            onClick={() => {
-              setTab("Completed");
-            }}
-          >
-            Completed
-          </Anchor>
-          <Anchor
-            className={
-              "px-4 py-3 text-black " +
-              (tab === "Pending"
-                ? "border-bottom border-3 border-success-subtle"
-                : "")
-            }
-            onClick={() => {
-              setTab("Pending");
-            }}
-          >
-            Pending
-          </Anchor>
-          <Anchor
-            className={
-              "px-4 py-3 text-black " +
-              (tab === "Cancelled"
-                ? "border-bottom border-3 border-success-subtle"
-                : "")
-            }
-            onClick={() => {
-              setTab("Cancelled");
-            }}
-          >
-            Cancelled
-          </Anchor>
-        </ul>
-
+        <div className="table-nav-wrapper">
+          <ul className="flex flex-col py-3 border-bottom ps-4">
+            <Anchor
+              className={
+                "px-4 py-3 text-black " +
+                (tab === "All"
+                  ? "border-bottom border-3 border-success-subtle"
+                  : "")
+              }
+              onClick={() => {
+                setTab("All");
+              }}
+            >
+              All
+            </Anchor>
+            <Anchor
+              className={
+                "px-4 py-3 text-black " +
+                (tab === "Completed"
+                  ? "border-bottom border-3 border-success-subtle"
+                  : "")
+              }
+              onClick={() => {
+                setTab("Completed");
+              }}
+            >
+              Completed
+            </Anchor>
+            <Anchor
+              className={
+                "px-4 py-3 text-black " +
+                (tab === "Pending"
+                  ? "border-bottom border-3 border-success-subtle"
+                  : "")
+              }
+              onClick={() => {
+                setTab("Pending");
+              }}
+            >
+              Pending
+            </Anchor>
+            <Anchor
+              className={
+                "px-4 py-3 text-black " +
+                (tab === "Cancelled"
+                  ? "border-bottom border-3 border-success-subtle"
+                  : "")
+              }
+              onClick={() => {
+                setTab("Cancelled");
+              }}
+            >
+              Cancelled
+            </Anchor>
+          </ul>
+        </div>
         <div className="row px-4 mt-4">
           <InputGroup className="my-2">
             <Form.Control placeholder="Search for an Order.." />
@@ -86,7 +87,7 @@ const Orders = () => {
           </InputGroup>
         </div>
 
-        <div className="px-2 py-4">
+        <div className="px-2 py-4 table-wrapper">
           <Table hover>
             <thead>
               <tr>

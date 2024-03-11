@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 
 //Routes
-const userRoutes = require('./routes/user');
+const accountsRoutes = require('./routes/accounts');
 const orderRoutes = require('./routes/orders');
 const reservationRoutes = require('./routes/reservation');
 const orderDetailsRoutes = require('./routes/orderDetails');
@@ -25,7 +25,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/user', userRoutes);
+app.use('/accounts', accountsRoutes);
 app.use('/orders', orderRoutes);
 app.use('/reservation', reservationRoutes);
 app.use('/orderDetails', orderDetailsRoutes);

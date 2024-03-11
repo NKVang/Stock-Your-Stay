@@ -4,7 +4,7 @@ const databasePool = require ('../dbConnection');
 
 router.get('/', async(req, res, next) => {
     let dbConnection = await databasePool.getConnection();
-    const orders = await dbConnection.query(`SELECT * FROM stock.Orders`);
+    const orders = await dbConnection.query(`SELECT * FROM stock.orders`);
 
     res.status(200).json({
         orders: orders
@@ -14,11 +14,12 @@ router.get('/', async(req, res, next) => {
 router.post ('/', async(req, res, next) => {
     let dbConnection = await databasePool.getConnection();
     let orderNum = req.body.orderNum;
+    let AccountID = req.body.AccountID;
     let confirmationNum = req.body.confirmationNum;
     let date = req.body.date;
     let totalPrice = req.body.totalPrice;
     let status = req.body.status;
-    let query = "INSERT INTO stock.Orders VALUES (" + orderNum + ", " + confirmationNum + ", " + "'"  + date + "'" + ", " + totalPrice + ", " + "'" + status + "'" + ")";
+    let query = "INSERT INTO stock.orders VALUES (" + orderNum + ", " + AccountID + ", " + confirmationNum + ", " + "'"  + date + "'" + ", " + totalPrice + ", " + "'" + status + "'" + ")";
 
     await dbConnection.query(query);
 
@@ -31,7 +32,7 @@ router.get('/:orderNum', async(req, res, next) => {
 
     let orderNum = req.params.orderNum;
     let dbConnection = await databasePool.getConnection();
-    let query = "SELECT * FROM stock.Orders WHERE OrderNum = " + orderNum
+    let query = "SELECT * FROM stock.orders WHERE OrderNum = " + orderNum
     const order = await dbConnection.query(query);
 
     res.status(200).json({
@@ -49,12 +50,12 @@ router.patch('/:orderNum/', async(req, res, next) => {
 
     if (typeof totalPrice  !== 'undefined')
     {
-        let query = "UPDATE stock.Orders SET TotalPrice = " + totalPrice + " WHERE OrderNum = " + orderNum;
+        let query = "UPDATE stock.orders SET TotalPrice = " + totalPrice + " WHERE OrderNum = " + orderNum;
         await dbConnection.query(query);
     }
     if (typeof status  !== 'undefined')
     {
-        let query = "UPDATE stock.Orders SET Status = " + "'" + status + "' " + " WHERE OrderNum = " + orderNum;
+        let query = "UPDATE stock.orders SET Status = " + "'" + status + "' " + " WHERE OrderNum = " + orderNum;
         console.log(query);
         await dbConnection.query(query);
     }
@@ -67,7 +68,7 @@ router.patch('/:orderNum/', async(req, res, next) => {
 router.delete('/:orderNum', async(req, res, next) => {
     let orderNum = req.params.orderNum;
     let dbConnection = await databasePool.getConnection();
-    let query = "DELETE FROM stock.Orders WHERE OrderNum = " + orderNum
+    let query = "DELETE FROM stock.orders WHERE OrderNum = " + orderNum
     await dbConnection.query(query);
 
     res.status(200).json({
@@ -75,11 +76,23 @@ router.delete('/:orderNum', async(req, res, next) => {
     });
 });
 
-router.get('/confirmationNum/:confirmationNum', async(req, res, next) => {
+router.get('/reservation/:confirmationNum', async(req, res, next) => {
 
     let confirmationNum = req.params.confirmationNum;
     let dbConnection = await databasePool.getConnection();
-    let query = "SELECT * FROM stock.Orders WHERE confirmationNum = " + confirmationNum
+    let query = "SELECT * FROM stock.orders WHERE confirmationNum = " + confirmationNum
+    const order = await dbConnection.query(query);
+
+    res.status(200).json({
+        order: order
+    });
+});
+
+router.get('/account/:AccountID', async(req, res, next) => {
+
+    let AccountID = req.params.AccountID;
+    let dbConnection = await databasePool.getConnection();
+    let query = "SELECT * FROM stock.orders WHERE AccountID = " + AccountID
     const order = await dbConnection.query(query);
 
     res.status(200).json({

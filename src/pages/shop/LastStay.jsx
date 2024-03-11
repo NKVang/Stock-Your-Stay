@@ -2,22 +2,29 @@ import Airtable from "airtable";
 import { default as React, useEffect, useState } from "react";
 import { Button, Card, Carousel, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./shop_style.css";
+import "../../components/shop_style.css";
 
 function isMobile() {
   return window.innerWidth < 576;
 }
 
-const Recommended = () => {
+const LastStay = () => {
+  var Airtable = require('airtable');
+  Airtable.configure({
+    endpointUrl: 'https://api.airtable.com',
+    apiKey: 'patwumKgifTrIXkAz.d261f22792e68e58a13faa15b76c91cec4f6e19f064cbdfd3325b76853c590a5'
+  });
+  var base = Airtable.base('appOwlhkqWdaF7YpR');
+  /*
   const base = new Airtable({
     apiKey: process.env.REACT_APP_AIRTABLE_TOKEN,
   }).base("appRWYLyPrYJ68yEu");
-
+  */
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     if (products.length === 0)
-      base("Recommended")
+      base("From Your Last Stay")
         .select({
           view: "Grid view",
           maxRecords: isMobile() ? 3 : 7,
@@ -53,11 +60,11 @@ const Recommended = () => {
   return (
     <>
       <h2>
-        <strong>Recommended</strong>
+        <strong>From your last stay</strong>
       </h2>
       {isMobile() ? (
         <Carousel interval={null} variant="dark" nextIcon={null} wrap={false}>
-          <Carousel.Item key={"9"}>
+          <Carousel.Item key={"5"}>
             <Row className="align-items-center">
               {products.slice(0, 2).map((product) => (
                 <Col xs={6} md="auto">
@@ -85,7 +92,7 @@ const Recommended = () => {
             </Row>
           </Carousel.Item>
 
-          <Carousel.Item key={"10"}>
+          <Carousel.Item key={"6"}>
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 <Link to={"#"}>
@@ -116,7 +123,7 @@ const Recommended = () => {
         </Carousel>
       ) : (
         <Carousel interval={null} variant="dark" indicators={null}>
-          <Carousel.Item key={"11"}>
+          <Carousel.Item key={"7"}>
             <Row className="align-items-center">
               {products.slice(0, 4).map((product) => (
                 <Col xs={6} md="auto">
@@ -145,7 +152,7 @@ const Recommended = () => {
             </Row>
           </Carousel.Item>
 
-          <Carousel.Item key={"12"}>
+          <Carousel.Item key={"8"}>
             <Row className="align-items-center">
               {products.slice(4, 7).map((product) => (
                 <Col xs={6} md="auto">
@@ -182,4 +189,4 @@ const Recommended = () => {
   );
 };
 
-export default Recommended;
+export default LastStay;

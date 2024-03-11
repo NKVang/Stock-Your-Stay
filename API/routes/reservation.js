@@ -13,12 +13,13 @@ router.get('/', async(req, res, next) => {
 
 router.post ('/', async(req, res, next) => {
     let dbConnection = await databasePool.getConnection();
+    let AccountID = req.body.AccountID;
     let confirmationNum = req.body.confirmationNum;
     let hotelAddress = req.body.hotelAddress;
     let roomNum = req.body.roomNum;
     let startDate = req.body.startDate;
     let endDate = req.body.endDate;
-    let query = "INSERT INTO stock.reservation VALUES (" + confirmationNum + ", " + "'" + hotelAddress + "'" + ", " + "'"  + roomNum + "'" + ", " + "'" + startDate + "'" + ", " + "'" + endDate + "'" + ")";
+    let query = "INSERT INTO stock.reservation VALUES (" + AccountID + ", " + confirmationNum + ", " + "'" + hotelAddress + "'" + ", " + "'"  + roomNum + "'" + ", " + "'" + startDate + "'" + ", " + "'" + endDate + "'" + ")";
 
     await dbConnection.query(query);
 
@@ -32,6 +33,18 @@ router.get('/:confirmationNum', async(req, res, next) => {
     let confirmationNum = req.params.confirmationNum;
     let dbConnection = await databasePool.getConnection();
     let query = "SELECT * FROM stock.reservation WHERE confirmationNum = " + confirmationNum
+    const reservation = await dbConnection.query(query);
+
+    res.status(200).json({
+        reservation: reservation
+    });
+});
+
+router.get('/account/:AccountID', async(req, res, next) => {
+
+    let AccountID = req.params.AccountID;
+    let dbConnection = await databasePool.getConnection();
+    let query = "SELECT * FROM stock.reservation WHERE AccountID = " + AccountID
     const reservation = await dbConnection.query(query);
 
     res.status(200).json({
