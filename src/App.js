@@ -7,7 +7,6 @@ import Home from "./components/Home";
 import LocationStay from "./components/LocationStay";
 import CheckReservation from "./components/CheckReservation";
 import Shop from "./pages/shop/Shop.jsx";
-import SubCategory from "./components/SubCategory";
 import ViewAll from "./pages/shop/ViewAll.jsx"
 import Inventory from "./pages/employees/Inventory.jsx";
 import Layout from "./pages/employees/Layout.jsx";
@@ -24,7 +23,8 @@ import OrderHistory from "./components/OrderHistory.js";
 import OrderDetails from "./components/OrderDetails.js";
 import Settings from "./components/Settings.js";
 import Success from "./components/Success";
-import ProductPage from "./components/IndividualItemPage";
+import SubCategory from "./pages/shop/SubCategory.jsx";
+//import ProductPage from "./components/IndividualItemPage";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -48,18 +48,13 @@ const App = () => {
         <Route exact path="/shop" element={<Shop />}></Route>
         <Route exact path="/shop/product/:recordId" element={<Product />}></Route>
         <Route exact path="/location-stay" element={<LocationStay />}></Route>
-        <Route 
-          exact 
-          path="/reservations" 
-          element={<CheckReservation />}
-          ></Route>
         <Route
           exact
           path="/reservations"
           element={<CheckReservation />}
         ></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
-        <Route exact path="/sub-category" element={<SubCategory />}></Route>
+        <Route exact path="/sub-category/:categoryName" element={<SubCategory />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/settings" element={<Settings />}></Route>
         <Route
