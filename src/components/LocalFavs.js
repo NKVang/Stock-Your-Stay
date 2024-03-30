@@ -3,6 +3,7 @@ import "./shop_style.css";
 import * as images from "./assets";
 import { Carousel, Card, Row, Col, Button } from "react-bootstrap";
 
+
 function isMobile() {
   return window.innerWidth < 576;
 }
@@ -17,7 +18,7 @@ function LocalFavs() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recwOkdA0wz8ZP2IW">
                   <Card
                     style={{
                       width: "200px",
@@ -37,7 +38,7 @@ function LocalFavs() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recAlBsh6pftBMWUD">
                   <Card
                     style={{
                       width: "200px",
@@ -62,7 +63,7 @@ function LocalFavs() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recpvBgJ35kz3DfOa">
                   <Card
                     style={{
                       width: "200px",
@@ -92,7 +93,7 @@ function LocalFavs() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recwOkdA0wz8ZP2IW">
                   <Card
                     style={{
                       width: "200px",
@@ -112,7 +113,7 @@ function LocalFavs() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recAlBsh6pftBMWUD">
                   <Card
                     style={{
                       width: "200px",
@@ -132,7 +133,7 @@ function LocalFavs() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="product/reccDjPkbHZBBDzTU">
                   <Card
                     style={{
                       width: "200px",
@@ -152,7 +153,7 @@ function LocalFavs() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recpvBgJ35kz3DfOa">
                   <Card
                     style={{
                       width: "200px",
@@ -177,7 +178,7 @@ function LocalFavs() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recwOkdA0wz8ZP2IW">
                   <Card
                     style={{
                       width: "200px",
@@ -197,7 +198,7 @@ function LocalFavs() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recAlBsh6pftBMWUD">
                   <Card
                     style={{
                       width: "200px",
@@ -217,7 +218,7 @@ function LocalFavs() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="product/reccDjPkbHZBBDzTU">
                   <Card
                     style={{
                       width: "200px",

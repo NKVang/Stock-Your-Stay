@@ -1,5 +1,6 @@
 import React from "react";
 import "./shop_style.css";
+import { useParams, useNavigate } from 'react-router-dom';
 import { Carousel, Card, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
@@ -24,7 +25,7 @@ function SubCat1() {
   var base = Airtable.base('appOwlhkqWdaF7YpR');
 
   const [products, setProducts] = useState([]);
-  
+
   useEffect(() => {
     if (products.length === 0)
       base("Local Favorites")
@@ -40,6 +41,7 @@ function SubCat1() {
                 title: tempRecord.title,
                 price: tempRecord.price,
                 image: tempRecord.image[0].url,
+                
               };
               setProducts((oldProducts) =>
                 !oldProducts.find(
@@ -72,7 +74,7 @@ function SubCat1() {
             <Row className="align-items-center">
               {seg.map((product) => (
                 <Col xs={6} md="auto">
-                  <a href={"#"}>
+                  <a href={"shop/product/" + product.recordId}>
                     <Card
                       style={{
                         width: "200px",
@@ -113,7 +115,7 @@ function SubCat1() {
             <Row className="align-items-center">
               {seg.map((product) => (
                 <Col xs={6} md="auto">
-                  <a href={"#"}>
+                  <a href={"shop/product/" + product.recordId}>
                     <Card
                       style={{
                         width: "200px",

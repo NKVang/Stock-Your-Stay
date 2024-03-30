@@ -17,7 +17,7 @@ function Recommended() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recpwZKzsUojbULXp">
                   <Card
                     style={{
                       width: "200px",
@@ -37,7 +37,7 @@ function Recommended() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recjDuERRLZ1NlDGI">
                   <Card
                     style={{
                       width: "200px",
@@ -62,7 +62,7 @@ function Recommended() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recHh7L74dJWmJb8N">
                   <Card
                     style={{
                       width: "200px",
@@ -92,7 +92,7 @@ function Recommended() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recpwZKzsUojbULXp">
                   <Card
                     style={{
                       width: "200px",
@@ -112,7 +112,7 @@ function Recommended() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recjDuERRLZ1NlDGI">
                   <Card
                     style={{
                       width: "200px",
@@ -132,7 +132,7 @@ function Recommended() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recHh7L74dJWmJb8N">
                   <Card
                     style={{
                       width: "200px",
@@ -152,7 +152,7 @@ function Recommended() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/rec2Y2MXijdx7aSPQ">
                   <Card
                     style={{
                       width: "200px",
@@ -177,7 +177,7 @@ function Recommended() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recpwZKzsUojbULXp">
                   <Card
                     style={{
                       width: "200px",
@@ -197,7 +197,7 @@ function Recommended() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recjDuERRLZ1NlDGI">
                   <Card
                     style={{
                       width: "200px",
@@ -217,7 +217,7 @@ function Recommended() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recHh7L74dJWmJb8N">
                   <Card
                     style={{
                       width: "200px",

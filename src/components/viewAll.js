@@ -14,7 +14,7 @@ const ProductList = ({ products }) => {
         <div className="individualProduct" key={index}>
           {/* temporary to disable compile warnings until actual linking  */}
           {/* eslint-disable-next-line */}
-          <a href="#">
+          <a href={"shop/product/" + product.recordId}>
             <img src={product.image} alt={product.title} />
             <h3>{product.title}</h3>
           </a>

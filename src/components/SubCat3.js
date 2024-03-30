@@ -72,7 +72,7 @@ function SubCat3() {
             <Row className="align-items-center">
               {seg.map((product) => (
                 <Col xs={6} md="auto">
-                  <a href={"#"}>
+                  <a href={"shop/product/" + product.recordId}>
                     <Card
                       style={{
                         width: "200px",
@@ -113,7 +113,7 @@ function SubCat3() {
             <Row className="align-items-center">
               {seg.map((product) => (
                 <Col xs={6} md="auto">
-                  <a href={"#"}>
+                  <a href={"shop/product/" + product.recordId}>
                     <Card
                       style={{
                         width: "200px",
