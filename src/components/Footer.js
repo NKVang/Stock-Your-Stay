@@ -8,16 +8,28 @@ function Footer() {
     <Container fluid className="site-footer">
       <Row className="justify-content-center">FOLLOW US</Row>
       <Row xs="auto" className="justify-content-center">
-        {/* eslint-disable-next-line */}
-        <a className="social-media" href="#">
+        <a
+          className="social-media"
+          href="https://www.facebook.com/StayMintHouse/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <i className="bi bi-facebook"></i>
         </a>
-        {/* eslint-disable-next-line */}
-        <a className="social-media" href="#">
+        <a
+          className="social-media"
+          href="https://twitter.com/theminthouse?lang=en"
+          target="_blank"
+          rel="noreferrer"
+        >
           <i className="bi bi-twitter"></i>
         </a>
-        {/* eslint-disable-next-line */}
-        <a className="social-media" href="#">
+        <a
+          className="social-media"
+          href="https://www.instagram.com/staymint/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <i className="bi bi-instagram"></i>
         </a>
       </Row>

@@ -8,7 +8,7 @@ import LocationStay from "./components/LocationStay";
 import CheckReservation from "./components/CheckReservation";
 import Shop from "./pages/shop/Shop.jsx";
 import SubCategory from "./components/SubCategory";
-import ViewAll from "./pages/shop/ViewAll.jsx"
+import ViewAll from "./pages/shop/ViewAll.jsx";
 import Inventory from "./pages/employees/Inventory.jsx";
 import Layout from "./pages/employees/Layout.jsx";
 import Orders from "./pages/employees/Orders.jsx";
@@ -23,7 +23,7 @@ import Payment from "./components/Payment.js";
 import OrderHistory from "./components/OrderHistory.js";
 import OrderDetails from "./components/OrderDetails.js";
 import Settings from "./components/Settings.js";
-import Success from "./components/Success";
+import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import ProductPage from "./components/IndividualItemPage";
 
 const App = () => {
@@ -46,13 +46,17 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/shop" element={<Shop />}></Route>
-        <Route exact path="/shop/product/:recordId" element={<Product />}></Route>
+        <Route
+          exact
+          path="/shop/product/:recordId"
+          element={<Product />}
+        ></Route>
         <Route exact path="/location-stay" element={<LocationStay />}></Route>
-        <Route 
-          exact 
-          path="/reservations" 
+        <Route
+          exact
+          path="/reservations"
           element={<CheckReservation />}
-          ></Route>
+        ></Route>
         <Route
           exact
           path="/reservations"
@@ -96,7 +100,8 @@ const App = () => {
           <Route exact path="customers" element={<Customers />} />
           <Route exact path="analytics" element={<Analytics />} />
         </Route>
-        <Route exact path="/success" element={<Success />} />
+        <Route exact path="/pp" element={<ProductPage />} />
+        <Route exact path="/checkout-success" element={<CheckoutSuccess />} />
       </Routes>
       <Footer />
     </BrowserRouter>

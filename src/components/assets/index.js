@@ -12,6 +12,14 @@ import img11 from "./11.webp";
 import img12 from "./12.webp";
 import carousel1 from "./carousel1.webp";
 import carousel2 from "./carousel2.webp";
+import addtocart from "./addtocart.png";
+import quantitybutton from "./quantitybutton.png";
+import visa from "./visa.png";
+import mastercard from "./mastercard.png";
+import amex from "./amex.png";
+import discover from "./discover.png";
+import diners from "./diners.png";
+import jcb from "./jcb.png";
 
 export {
   img1,
@@ -28,4 +36,12 @@ export {
   img12,
   carousel1,
   carousel2,
+  addtocart,
+  quantitybutton,
+  visa,
+  mastercard,
+  amex,
+  discover,
+  diners,
+  jcb,
 };

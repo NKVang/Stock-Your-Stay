@@ -64,7 +64,7 @@ const Cart = (props) => {
       name: "Chicken & Apple Chicken Sausage",
       image:
         "https://stockyourstay.minthouse.com/cdn/shop/products/ScreenShot2021-11-11at10.56.26AM_1024x1024.png",
-        quantity: 1,
+      quantity: 1,
       price: 9.29,
       pricePerQuantity: 9.29,
       rId: "recVeoABJ2kjHotjo",
@@ -176,7 +176,7 @@ const Cart = (props) => {
 
   // checkout function
   const goToCheckout = () => {
-    fetch("/checkout", {
+    fetch("/create-checkout-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -198,10 +198,8 @@ const Cart = (props) => {
       });
   };
 
-  const history = useNavigate();
-
   const goToShop = () => {
-    history("/shop");
+    navigate("/shop");
   };
 
   return (
@@ -277,7 +275,7 @@ const Cart = (props) => {
             </Container>
           </Col>
 
-        {/* Right column */}
+          {/* Right column */}
           <Col xs={12} md={6} className="shop-container">
             <Row className="cart-total">
               <Container fluid className="right-cart-container">
