@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Airtable from "airtable";
 import CategoryButtons from "../../components/CategoryButtons";
 import SortFilter from "../../components/SortFilter";
 import ProductList from "../../components/ProductList";
@@ -12,13 +11,14 @@ const ViewAll = () => {
     apiKey: process.env.REACT_APP_AIRTABLE_TOKEN,
   }).base("appRWYLyPrYJ68yEu");
   */
-  
-  var Airtable = require('airtable');
-    Airtable.configure({
-      endpointUrl: 'https://api.airtable.com',
-      apiKey: 'patwumKgifTrIXkAz.d261f22792e68e58a13faa15b76c91cec4f6e19f064cbdfd3325b76853c590a5'
-    });
-  var base = Airtable.base('appOwlhkqWdaF7YpR');
+
+  var Airtable = require("airtable");
+  Airtable.configure({
+    endpointUrl: "https://api.airtable.com",
+    apiKey:
+      "patwumKgifTrIXkAz.d261f22792e68e58a13faa15b76c91cec4f6e19f064cbdfd3325b76853c590a5",
+  });
+  var base = Airtable.base("appOwlhkqWdaF7YpR");
 
   const [products, setProducts] = useState([]);
 
