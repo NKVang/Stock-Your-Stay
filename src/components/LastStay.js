@@ -17,7 +17,7 @@ function LastStay() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recVeoABJ2kjHotjo">
                   <Card
                     style={{
                       width: "200px",
@@ -37,7 +37,7 @@ function LastStay() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/rec5C8Pdv1COwPhtc">
                   <Card
                     style={{
                       width: "200px",
@@ -62,7 +62,7 @@ function LastStay() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/rec4OGfTPZQYicy77">
                   <Card
                     style={{
                       width: "200px",
@@ -92,7 +92,7 @@ function LastStay() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recVeoABJ2kjHotjo">
                   <Card
                     style={{
                       width: "200px",
@@ -112,7 +112,7 @@ function LastStay() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/rec5C8Pdv1COwPhtc">
                   <Card
                     style={{
                       width: "200px",
@@ -132,7 +132,7 @@ function LastStay() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/rec4OGfTPZQYicy77">
                   <Card
                     style={{
                       width: "200px",
@@ -152,7 +152,7 @@ function LastStay() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recPzZ6zoACMNM40C">
                   <Card
                     style={{
                       width: "200px",
@@ -177,7 +177,7 @@ function LastStay() {
             <Row className="align-items-center">
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/recVeoABJ2kjHotjo">
                   <Card
                     style={{
                       width: "200px",
@@ -197,7 +197,7 @@ function LastStay() {
               </Col>
               <Col xs={6} md="auto">
                 {/* eslint-disable-next-line */}
-                <a href="#">
+                <a href="/product/rec5C8Pdv1COwPhtc">
                   <Card
                     style={{
                       width: "200px",
