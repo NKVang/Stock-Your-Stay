@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import * as images from './assets';
 import { Button } from "react-bootstrap";
+import * as images from './assets';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const ItemPage = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
   const [itemDetails, setItemDetails] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
-        const response = await fetch(`/api/items/${itemId}`);
-        const data = await response.json();
-        setItemDetails(data);
+        const response = await axios.get(`/api/items/${itemId}`);
+        setItemDetails(response.data);
       } catch (error) {
         console.error("Failed to get item details:", error);
       }
@@ -24,8 +25,18 @@ const ItemPage = () => {
     fetchItemDetails();
   }, [itemId]);
 
-  const handleAddToCart = () => {
-    console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
+  const handleAddToCart = async () => {
+    try {
+      const response = await axios.post('/api/cart', {
+        itemId,
+        quantity,
+      });
+      const updatedCart = [...cartItems, response.data];
+      setCartItems(updatedCart);
+      navigate('/cart');
+    } catch (error) {
+      console.error("Failed to add item to cart:", error);
+    }
   };
 
   const incrementQuantity = () => {
