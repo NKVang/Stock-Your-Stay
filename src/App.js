@@ -22,7 +22,7 @@ import Payment from "./components/Payment.js";
 import OrderHistory from "./components/OrderHistory.js";
 import OrderDetails from "./components/OrderDetails.js";
 import Settings from "./components/Settings.js";
-import Success from "./components/Success";
+import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import SubCategory from "./pages/shop/SubCategory.jsx";
 //import ProductPage from "./components/IndividualItemPage";
 
@@ -46,7 +46,11 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/shop" element={<Shop />}></Route>
-        <Route exact path="/shop/product/:recordId" element={<Product />}></Route>
+        <Route
+          exact
+          path="/shop/product/:recordId"
+          element={<Product />}
+        ></Route>
         <Route exact path="/location-stay" element={<LocationStay />}></Route>
         <Route
           exact
@@ -91,7 +95,8 @@ const App = () => {
           <Route exact path="customers" element={<Customers />} />
           <Route exact path="analytics" element={<Analytics />} />
         </Route>
-        <Route exact path="/success" element={<Success />} />
+        <Route exact path="/pp" element={<ProductPage />} />
+        <Route exact path="/checkout-success" element={<CheckoutSuccess />} />
       </Routes>
       <Footer />
     </BrowserRouter>
