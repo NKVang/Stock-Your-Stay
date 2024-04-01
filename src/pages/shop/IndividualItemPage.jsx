@@ -15,23 +15,8 @@ const ItemPage = () => {
   useEffect(() => {
     base("Products").find(recordId, function (err, record) {
       if (err) {
-        base("Local Favorites").find(recordId, function (err, record) {
-          if (err) {
-            base("From Your Last Stay").find(recordId, function (err, record) {
-              if (err) {
-                base("Recommended").find(recordId, function (err, record) {
-                  if (err) {
-                    console.error(err);
-                    return;
-                  }
-                  setProduct(record);
-                });
-              }
-              setProduct(record);
-            });
-          }
-          setProduct(record);
-        });
+        console.error(err);
+        return;
       }
       setProduct(record);
     });
@@ -57,7 +42,7 @@ const ItemPage = () => {
       <div className="item-details">
         <Row>
           <Col xs={12} sm={6} md={6}>
-            <img src={product.fields.image[0].url} alt={product.title} />
+            <img src={product.fields.image[0].url} alt={product.title} style={{ maxWidth: '60%', maxHeight: '60%' }}/>
             <h3>{product.fields.title}</h3>
             <p>
               {product.fields.title} is a product. Filler description to fill up

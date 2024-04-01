@@ -6,10 +6,12 @@ import ShopSection from "../../components/ShopSection.jsx";
 
 function Gallery() {
   const categories = [
-    { name: "Breakfast", tableName: "Breakfast" },
-    { name: "Snacks", tableName: "Snacks" },
-    { name: "Lunch", tableName: "Lunch" },
-    // add more category as needed
+    { name: "Recommended", tableName: "Products", tableField: "Tags", tableTag: "recommended", sortField: 'Purchase Count' },
+    { name: "Local Favorites", tableName: "Products", tableField: "Tags", tableTag: "", sortField: 'Purchase Count' },
+    { name: "Breakfast", tableName: "Products", tableField: "Tags", tableTag: "breakfast", sortField: '' },
+    { name: "Snacks", tableName: "Products", tableField: "Tags", tableTag: "snacks", sortField: '' },
+    { name: "Lunch", tableName: "Products", tableField: "Tags", tableTag: "lunch", sortField: '' },
+    // add more category as needed, local favorates incomplete due to lacking location information saved and in airtable field
   ];
 
   return (
@@ -19,32 +21,13 @@ function Gallery() {
           <Filter />
         </Col>
         <Col>
-          <Row>
-            <h2>
-              <strong>Local Favorites</strong>
-            </h2>
-            <ShopSection tableName={"Local Favorites"} />
-          </Row>
-          <Row>
-            <h2>
-              <strong>From Your Last Stay</strong>
-            </h2>
-            <ShopSection tableName={"From Your Last Stay"} />
-          </Row>
-          <Row>
-            <h2>
-              <strong>Recommended</strong>
-            </h2>
-            <ShopSection tableName={"Recommended"} />
-          </Row>
-
           {categories.map((category) => (
             <>
               <Row>
                 <h2>
                   <strong>{category.name}</strong>
                 </h2>
-                <ShopSection tableName={category.tableName} />
+                <ShopSection name={category.name} tableName={category.tableName} tableField={category.tableField} tableTag={category.tableTag} sortField={category.sortField} />
               </Row>
             </>
           ))}

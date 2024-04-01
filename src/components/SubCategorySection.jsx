@@ -16,17 +16,17 @@ function segmentation(array, size) {
   return segments;
 }
 
-const SubCategorySection = ({ tableName, filterByFormula }) => {
+const SubCategorySection = ({ tagName }) => {
   var base = useBase();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     if (products.length === 0)
-      base(tableName)
+      base("Products")
         .select({
           view: "Grid view",
-          maxRecords: isMobile() ? 3 : 7,
-          filterByFormula: filterByFormula,
+          maxRecords: isMobile() ? 3 : 9,
+          filterByFormula: `OR(FIND('${tagName}', {Tags}))`
         })
         .eachPage(
           function page(records, fetchNextPage) {
@@ -136,7 +136,7 @@ const SubCategorySection = ({ tableName, filterByFormula }) => {
                     md="auto"
                     className="d-flex justify-content-center"
                   >
-                    <Link to={`#`}>
+                    <Link to={`/view-all`}>
                       <Button variant="light">View All</Button>
                     </Link>
                   </Col>
