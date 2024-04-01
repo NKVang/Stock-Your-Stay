@@ -24,7 +24,7 @@ import OrderDetails from "./components/OrderDetails.js";
 import Settings from "./components/Settings.js";
 import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import SubCategory from "./pages/shop/SubCategory.jsx";
-//import ProductPage from "./components/IndividualItemPage";
+import ProductPage from "./components/IndividualItemPage";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
