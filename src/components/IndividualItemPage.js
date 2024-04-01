@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import './ItemPage.css';
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { Button } from "react-bootstrap";
 import * as images from './assets';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const ItemPage = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
   const [itemDetails, setItemDetails] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
-        const response = await fetch(`/api/items/${itemId}`);
-        const data = await response.json();
-        setItemDetails(data);
+        const response = await axios.get(`/api/items/${itemId}`);
+        setItemDetails(response.data);
       } catch (error) {
         console.error("Failed to get item details:", error);
       }
@@ -23,9 +25,18 @@ const ItemPage = () => {
     fetchItemDetails();
   }, [itemId]);
 
-  const handleAddToCart = () => {
-    console.log(`Added ${quantity} of ${itemDetails.name} to cart.`);
-    // Implement feedback for user here, e.g., a toast message or modal popup
+  const handleAddToCart = async () => {
+    try {
+      const response = await axios.post('/api/cart', {
+        itemId,
+        quantity,
+      });
+      const updatedCart = [...cartItems, response.data];
+      setCartItems(updatedCart);
+      navigate('/cart');
+    } catch (error) {
+      console.error("Failed to add item to cart:", error);
+    }
   };
 
   const incrementQuantity = () => {
@@ -50,26 +61,28 @@ const ItemPage = () => {
         <p>{itemDetails.description}</p>
         <p>{`$${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(itemDetails.price)}`}</p>
         <div className="quantity-selector" style={{ position: 'relative', width: '380px', height: '95px', backgroundImage: `url(${images.quantitybutton.png})` }}>
-          {/* Invisible button for decrement (-) */}
-          <button onClick={decrementQuantity} style={{ position: 'absolute', left: 0, top: 0, width: '50%', height: '100%', background: 'transparent', border: 'none' }} />
-          {/* Display quantity in the center */}
+          <Button variant="light" onClick={decrementQuantity}>
+            -
+          </Button>
           <span style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', fontWeight: 'bold' }}>
             {quantity}
           </span>
-          {/* Invisible button for increment (+) */}
-          <button onClick={incrementQuantity} style={{ position: 'absolute', right: 0, top: 0, width: '50%', height: '100%', background: 'transparent', border: 'none' }} />
-          <button onClick={handleAddToCart} className="add-to-cart-button" style={{ position: 'absolute', right: '100px', top: '50%' }}>
-            <img src={images.addtocart.png} alt="Add to Cart" />
-          </button>
+          <Button variant="light" onClick={incrementQuantity}>
+            +
+          </Button>
+          <Button variant="success" onClick={handleAddToCart}>
+            <AddShoppingCartIcon />
+          </Button>
         </div>
-        <button onClick={() => navigate(`/item/${itemId}`)}>View Item</button>
       </div>
-      {isMobile()? (  /* Mobile View */
+      {isMobile()? (
         <div className="mobile-view">
           <h2>{itemDetails.name}</h2>
           <p>{itemDetails.description}</p>
           <p>{`$${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(itemDetails.price)}`}</p>
-          <button onClick={handleAddToCart}>Add to Cart</button>
+          <Button variant="success" onClick={handleAddToCart}>
+            <AddShoppingCartIcon />
+          </Button>
         </div>
       ) : (
         <div className="desktop-view">
