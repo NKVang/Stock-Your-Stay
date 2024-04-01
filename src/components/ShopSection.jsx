@@ -8,7 +8,7 @@ function isMobile() {
   return window.innerWidth < 576;
 }
 
-const ShopSection = ({ tableName }) => {
+const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
   var base = useBase();
   /*
   const base = new Airtable({
@@ -16,6 +16,18 @@ const ShopSection = ({ tableName }) => {
   }).base("appRWYLyPrYJ68yEu");
   */
   const [products, setProducts] = useState([]);
+  /*
+  function generateURL(tags) {
+    let url = "/sub-category/";
+  
+    if (tags.includes("Local Favorites")) {
+      url += "local-favorites";
+    } else {
+      url += tags.join("-");
+    }
+  
+    return url;
+  }*/
 
   useEffect(() => {
     if (products.length === 0)
@@ -23,6 +35,8 @@ const ShopSection = ({ tableName }) => {
         .select({
           view: "Grid view",
           maxRecords: isMobile() ? 3 : 7,
+          ...(sortField && { sort: [{ field: sortField, direction: 'desc' }] }),
+          ...(tableTag && { filterByFormula: `FIND('${tableTag}', {${tableField}})` }),
         })
         .eachPage(
           function page(records, fetchNextPage) {
@@ -32,6 +46,7 @@ const ShopSection = ({ tableName }) => {
                 title: tempRecord.title,
                 price: tempRecord.price,
                 image: tempRecord.image[0].url,
+                id: record.id,
               };
               setProducts((oldProducts) =>
                 !oldProducts.find(
@@ -61,7 +76,7 @@ const ShopSection = ({ tableName }) => {
             <Row className="align-items-center">
               {products.slice(0, 2).map((product) => (
                 <Col xs={6} md="auto">
-                  <Link to={`/shop/product/${product.title}`}>
+                  <Link to={`/shop/product/${product.id}`}>
                     <Card
                       style={{
                         width: "200px",
@@ -88,7 +103,7 @@ const ShopSection = ({ tableName }) => {
           <Carousel.Item key={"2"}>
             <Row className="align-items-center">
               <Col xs={6} md="auto">
-                <Link to={`/shop/product/${products[2]?.title}`}>
+                <Link to={`/shop/product/${products[2]?.id}`}>
                   <Card
                     style={{
                       width: "200px",
@@ -109,7 +124,7 @@ const ShopSection = ({ tableName }) => {
                 </Link>
               </Col>
               <Col xs={6} md={3} className="d-flex justify-content-center">
-                <Link>
+                <Link to={`/sub-category/${tableTag}`}>
                   <Button variant="light">View All</Button>
                 </Link>
               </Col>
@@ -122,7 +137,7 @@ const ShopSection = ({ tableName }) => {
             <Row className="align-items-center">
               {products.slice(0, 4).map((product) => (
                 <Col xs={6} md="auto">
-                  <Link to={`/shop/product/${product.title}`}>
+                  <Link to={`/shop/product/${product.id}`}>
                     <Card
                       style={{
                         width: "200px",
@@ -151,7 +166,7 @@ const ShopSection = ({ tableName }) => {
               {products.slice(4, 7).map((product) => (
                 <Col xs={6} md="auto">
                   {/* eslint-disable-next-line */}
-                  <Link to={`/shop/product/${product.title}`}>
+                  <Link to={`/shop/product/${product.id}`}>
                     <Card
                       style={{
                         width: "200px",
@@ -173,7 +188,7 @@ const ShopSection = ({ tableName }) => {
                 </Col>
               ))}
               <Col xs={6} md={3} className="d-flex justify-content-center">
-                <Link to={`/sub-category/${tableName}`}>
+                <Link to={`/sub-category/${tableTag}`}>
                   <Button variant="light">View All</Button>
                 </Link>
               </Col>
