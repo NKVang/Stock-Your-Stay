@@ -59,9 +59,6 @@ const Header = (props) => {
                 <Link to="/view-all">view all</Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <Link to="/sub-category">Sub-Category</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
                 <Link to="/shopping-cart">Shopping Cart</Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
