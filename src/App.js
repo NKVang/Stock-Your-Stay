@@ -24,7 +24,6 @@ import OrderDetails from "./components/OrderDetails.js";
 import Settings from "./components/Settings.js";
 import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import SubCategory from "./pages/shop/SubCategory.jsx";
-import ProductPage from "./components/IndividualItemPage";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -95,7 +94,6 @@ const App = () => {
           <Route exact path="customers" element={<Customers />} />
           <Route exact path="analytics" element={<Analytics />} />
         </Route>
-        <Route exact path="/pp" element={<ProductPage />} />
         <Route exact path="/checkout-success" element={<CheckoutSuccess />} />
       </Routes>
       <Footer />
