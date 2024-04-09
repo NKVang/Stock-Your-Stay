@@ -35,8 +35,10 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
         .select({
           view: "Grid view",
           maxRecords: isMobile() ? 3 : 7,
-          ...(sortField && { sort: [{ field: sortField, direction: 'desc' }] }),
-          ...(tableTag && { filterByFormula: `FIND('${tableTag}', {${tableField}})` }),
+          ...(sortField && { sort: [{ field: sortField, direction: "desc" }] }),
+          ...(tableTag && {
+            filterByFormula: `FIND('${tableTag}', {${tableField}})`,
+          }),
         })
         .eachPage(
           function page(records, fetchNextPage) {
@@ -145,8 +147,15 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                         marginRight: "1%",
                       }}
                     >
-                      <Card.Img variant="top" src={product.image} />
-                      <Card.Body className="text-center">
+                      <Card.Img
+                        variant="top"
+                        src={product.image}
+                        style={{ height: "200px" }}
+                      />
+                      <Card.Body
+                        className="text-center"
+                        style={{ height: "180px" }}
+                      >
                         <Card.Title style={{ fontSize: "15px" }}>
                           {product.title}
                         </Card.Title>
@@ -174,8 +183,15 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                         marginRight: "1%",
                       }}
                     >
-                      <Card.Img variant="top" src={product.image} />
-                      <Card.Body className="text-center">
+                      <Card.Img
+                        variant="top"
+                        src={product.image}
+                        style={{ height: "200px" }}
+                      />
+                      <Card.Body
+                        className="text-center"
+                        style={{ height: "180px" }}
+                      >
                         <Card.Title style={{ fontSize: "15px" }}>
                           {product.title}
                         </Card.Title>
@@ -187,7 +203,12 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                   </Link>
                 </Col>
               ))}
-              <Col xs={6} md={3} className="d-flex justify-content-center">
+              <Col
+                xs={6}
+                md={3}
+                className="d-flex justify-content-center"
+                style={{ height: "410px", paddingTop: "100px" }}
+              >
                 <Link to={`/sub-category/${tableTag}`}>
                   <Button variant="light">View All</Button>
                 </Link>
