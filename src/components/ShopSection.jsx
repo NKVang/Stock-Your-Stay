@@ -35,8 +35,10 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
         .select({
           view: "Grid view",
           maxRecords: isMobile() ? 3 : 7,
-          ...(sortField && { sort: [{ field: sortField, direction: 'desc' }] }),
-          ...(tableTag && { filterByFormula: `FIND('${tableTag}', {${tableField}})` }),
+          ...(sortField && { sort: [{ field: sortField, direction: "desc" }] }),
+          ...(tableTag && {
+            filterByFormula: `FIND('${tableTag}', {${tableField}})`,
+          }),
         })
         .eachPage(
           function page(records, fetchNextPage) {
@@ -75,7 +77,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
           <Carousel.Item key={"1"}>
             <Row className="align-items-center">
               {products.slice(0, 2).map((product) => (
-                <Col xs={6} md="auto">
+                <Col key={product.id} xs={6} md="auto">
                   <Link to={`/shop/product/${product.id}`}>
                     <Card
                       style={{
@@ -90,7 +92,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                           {product.title}
                         </Card.Title>
                         <Card.Text style={{ fontSize: "13px" }}>
-                          ${product.price}
+                          ${product.price.toFixed(2)}
                         </Card.Text>
                       </Card.Body>
                     </Card>
@@ -102,7 +104,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
 
           <Carousel.Item key={"2"}>
             <Row className="align-items-center">
-              <Col xs={6} md="auto">
+              <Col key={products[2]?.id} xs={6} md="auto">
                 <Link to={`/shop/product/${products[2]?.id}`}>
                   <Card
                     style={{
@@ -136,7 +138,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
           <Carousel.Item key={"3"}>
             <Row className="align-items-center">
               {products.slice(0, 4).map((product) => (
-                <Col xs={6} md="auto">
+                <Col key={product.id} xs={6} md="auto">
                   <Link to={`/shop/product/${product.id}`}>
                     <Card
                       style={{
@@ -151,7 +153,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                           {product.title}
                         </Card.Title>
                         <Card.Text style={{ fontSize: "13px" }}>
-                          ${product.price}
+                          ${product.price.toFixed(2)}
                         </Card.Text>
                       </Card.Body>
                     </Card>
@@ -164,8 +166,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
           <Carousel.Item key={"4"}>
             <Row className="align-items-center">
               {products.slice(4, 7).map((product) => (
-                <Col xs={6} md="auto">
-                  {/* eslint-disable-next-line */}
+                <Col key={product.id} xs={6} md="auto">
                   <Link to={`/shop/product/${product.id}`}>
                     <Card
                       style={{
@@ -180,7 +181,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                           {product.title}
                         </Card.Title>
                         <Card.Text style={{ fontSize: "13px" }}>
-                          ${product.price}
+                          ${product.price.toFixed(2)}
                         </Card.Text>
                       </Card.Body>
                     </Card>

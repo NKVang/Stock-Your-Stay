@@ -25,6 +25,10 @@ function CheckoutSuccess() {
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
+
+    // clear local storage after successful order
+    localStorage.clear(localStorage.getItem("cartItems"));
+    localStorage.clear(localStorage.getItem("cartQuantity"));
   }, []);
 
   // switch function to display card brand
@@ -82,11 +86,37 @@ function CheckoutSuccess() {
         <ul style={{ listStyleType: "none" }}>
           {orderDetails?.items.map((item, index) => (
             <li key={index} className="order-details-list">
-              <p className="order-details-item">
-                <b>{item.name}</b>
-                <span>${(item.amountTotal / 100).toFixed(2)}</span>
-              </p>
-              <span style={{ fontSize: "13px" }}>Qty {item.quantity}</span>
+              <span
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={{
+                      maxWidth: "50px",
+                      maxHeight: "auto",
+                      marginRight: "10px",
+                    }}
+                  />
+                  <b>{item.name}</b>
+                </span>
+                <span>${(item.price * item.quantity).toFixed(2)}</span>
+              </span>
+              <span
+                style={{
+                  fontSize: "13px",
+                  fontWeight: "bold",
+                  paddingLeft: "5px",
+                }}
+              >
+                Qty {item.quantity}
+              </span>
             </li>
           ))}
         </ul>
