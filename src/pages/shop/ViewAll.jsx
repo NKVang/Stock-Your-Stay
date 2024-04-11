@@ -36,6 +36,7 @@ const ViewAll = () => {
                 title: tempRecord.title,
                 price: tempRecord.price,
                 image: tempRecord.image[0].url,
+                id: record.id,
               };
               setProducts((oldProducts) =>
                 !oldProducts.find(
