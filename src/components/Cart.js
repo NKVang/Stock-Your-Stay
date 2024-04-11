@@ -18,6 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./shop_style.css";
 import { useBase } from "../assets/hooks/useBase";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import { pascalCase, truncate } from "./Functions";
 
 const Cart = (props) => {
   const [cartItems, setCartItems] = useState([]);
@@ -179,7 +180,7 @@ const Cart = (props) => {
       }
 
       // if item found in airtable, compare quantity with stocked quantity
-      if (newQuantity > 0 && newQuantity < record.fields.stocked) {
+      if (newQuantity > 0 && newQuantity <= record.fields.stocked) {
         // build updated cart
         const updatedCart = cartItems.map((item) => {
           // item found
@@ -359,13 +360,13 @@ const Cart = (props) => {
                     </Col>
                     <Col className="item-info">
                       <Row>
-                        <h6 style={{ paddingLeft: 0 }}>
-                          <strong>{item.name}</strong>
-                        </h6>
+                        <span style={{ paddingLeft: 0 }}>
+                          <strong>{truncate(pascalCase(item.name))}</strong>
+                        </span>
                       </Row>
                       <Row>
                         <i style={{ paddingLeft: 0 }}>
-                          $ {item.pricePerQuantity.toFixed(2)}
+                          ${item.pricePerQuantity.toFixed(2)}
                         </i>
                       </Row>
                       <Form>

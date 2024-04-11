@@ -8,12 +8,14 @@ import {
   ToastContainer,
   Form,
   InputGroup,
+  CloseButton,
 } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useBase } from "../../assets/hooks/useBase";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LinearProgress from "@mui/material/LinearProgress";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import { pascalCase } from "../../components/Functions";
 
 import "../../components/ItemPage.css";
 import "../../components/shop_style.css";
@@ -30,6 +32,7 @@ const ItemPage = () => {
   const [isLoading, setLoading] = useState(false);
   const [addToCartLoading, setAddToCartLoading] = useState(false);
   const [error, setError] = useState("");
+  const [imageClicked, setImageClicked] = useState(false);
 
   // set loading to true when product hasn't been fetched, aka when it is null
   useEffect(() => {
@@ -237,20 +240,58 @@ const ItemPage = () => {
     ) : null;
   }
 
+  // function to change quantity manually, going into input box and typing a quantity
   const handleManualQuantity = (event) => {
+    // get the value inside input
     const newQuantity = parseInt(event.target.value);
 
+    // if new quantity is a number and greater than 0 set it as the current quantity
     if (!isNaN(newQuantity) && newQuantity > 0) setQuantity(newQuantity);
+    // if new quantity is not a number, show toast
     else if (isNaN(newQuantity)) setError("Invalid quantity.");
+    // otherwise set quantity to 1, i.e. for when quantity is set to 0
     else {
       setQuantity(1);
     }
   };
 
+  // handling of the product image being clicked
+  const handleImgClick = () => {
+    setImageClicked(true);
+  };
+
+  // if image is clicked show div with zoomed image
+  function showZoomedImage() {
+    return (
+      imageClicked && (
+        <div
+          className="zoomed-img-container d-flex align-items-center justify-content-center"
+          onClick={closeZoomedImg}
+        >
+          <CloseButton
+            className="zoomed-img-close-btn"
+            onClick={closeZoomedImg}
+          />
+          <img
+            src={product.fields.image[0].url}
+            alt={product.fields.title}
+            style={{ maxWidth: "100vw", maxHeight: "50vh" }}
+          />
+        </div>
+      )
+    );
+  }
+
+  // when close button is clicked, set image clicked to false to close div
+  function closeZoomedImg() {
+    setImageClicked(false);
+  }
+
   return (
     <Container className="individual-container">
       {loadingToCart(product)}
       {showToast()}
+      {showZoomedImage()}
       {isLoading ? (
         <div
           className="d-flex align-items-between justify-content-center"
@@ -282,19 +323,21 @@ const ItemPage = () => {
             >
               <img
                 src={product.fields.image[0].url}
-                alt={product.fields.title}
+                alt={pascalCase(product.fields.title)}
                 style={{ maxWidth: "60%", maxHeight: "60%" }}
+                onClick={handleImgClick}
+                className="indv-page-item"
               />
             </Col>
-            <Col xs={12} sm={6} md={6}>
+            <Col xs={12} sm={6} md={6} className="indv-item-details">
               <Row>
                 <h3>{product.fields.title}</h3>
               </Row>
 
               <Row>
                 <p>
-                  {product.fields.title} is a product. Filler description to
-                  fill up text as the airtable field is missing.
+                  {pascalCase(product.fields.title)} is a product. Filler
+                  description to fill up text as the airtable field is missing.
                 </p>
               </Row>
 
