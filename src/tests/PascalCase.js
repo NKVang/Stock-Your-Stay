@@ -1,5 +1,7 @@
+// PascalCase.js
+
 // function to convert string to PascalCase
-export function pascalCase(itemName) {
+function pascalCase(itemName) {
   // lowercase all letters in string and split into array
   let pascalCaseName = itemName?.toLowerCase().split(" ");
 
@@ -36,22 +38,10 @@ export function pascalCase(itemName) {
 }
 
 // function to check if char is a lowercase letter
-export function isLowerCaseAlpha(char) {
+function isLowerCaseAlpha(char) {
   const c = char.charCodeAt(0);
 
   return c >= 97 && c <= 122;
 }
 
-// Truncate item name if more than 30 characters
-export function truncate(itemName) {
-  let truncatedName;
-
-  if (itemName?.length > 25) {
-    // truncate to 25 characters and "..." at the end
-    truncatedName = itemName.slice(0, 25) + "...";
-
-    return truncatedName;
-  }
-
-  return itemName;
-}
+module.exports = pascalCase;

@@ -18,7 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./shop_style.css";
 import { useBase } from "../assets/hooks/useBase";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import { pascalCase, truncate } from "./Functions";
+import { truncate } from "./Functions";
 
 const Cart = (props) => {
   const [cartItems, setCartItems] = useState([]);
@@ -361,7 +361,7 @@ const Cart = (props) => {
                     <Col className="item-info">
                       <Row>
                         <span style={{ paddingLeft: 0 }}>
-                          <strong>{truncate(pascalCase(item.name))}</strong>
+                          <strong>{truncate(item.name)}</strong>
                         </span>
                       </Row>
                       <Row>

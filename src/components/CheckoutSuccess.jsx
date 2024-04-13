@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./shop_style.css";
 import { Container, Row, Col } from "react-bootstrap";
 import * as images from "./assets";
-import { pascalCase, truncate } from "./Functions";
+import { truncate } from "./Functions";
 
 function CheckoutSuccess() {
   const [orderDetails, setOrderDetails] = useState(null);
@@ -98,14 +98,16 @@ function CheckoutSuccess() {
                 <span style={{ display: "flex", alignItems: "center" }}>
                   <img
                     src={item.image}
-                    alt={pascalCase(item.name)}
+                    alt={item.name}
                     style={{
                       maxWidth: "50px",
                       maxHeight: "auto",
                       marginRight: "10px",
                     }}
                   />
-                  <b>{truncate(pascalCase(item.name))}</b>
+                  <b>
+                    {window.innerWidth < 576 ? truncate(item.name) : item.name}
+                  </b>
                 </span>
                 <span>${(item.price * item.quantity).toFixed(2)}</span>
               </span>
