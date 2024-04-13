@@ -6,8 +6,11 @@ const express = require("express");
 const app = express();
 const pool = require("./dbConnection.js");
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
+const { useBase } = require("../src/assets/hooks/useBase.js");
 
+const base = useBase();
 let order = initializeOrder();
+let cart = initializeCart();
 
 // need this or else webhook won't execute due to payload not being sent as a string or buffer
 app.use(
@@ -41,6 +44,19 @@ function initializeOrder() {
     cardBrand: null,
     cardLast4: null,
   };
+}
+
+function initializeCart() {
+  return [
+    {
+      id: null,
+      name: null,
+      image: null,
+      quantity: null,
+      price: null,
+      pricePerQuantity: null,
+    },
+  ];
 }
 
 // stripe webhook
@@ -127,17 +143,6 @@ async function processCheckoutSessionCompleted(order, event) {
     paymentIntent.payment_method
   );
 
-  // get line items aka items from checkout
-  const items = await stripe.checkout.sessions.listLineItems(orderDetails.id);
-
-  // build cart
-  const cart = items.data.map((item) => ({
-    id: item.id,
-    amountTotal: item.amount_total.toFixed(2),
-    name: item.description,
-    quantity: item.quantity,
-  }));
-
   // build order object with customer and cart info
   order.id = orderId;
   order.customer.name = customer.name;
@@ -156,34 +161,49 @@ async function processCheckoutSessionCompleted(order, event) {
   order.cardLast4 = paymentMethod.card.last4;
 
   // send order to database
-  sendOrderToDatabase(order, items);
+  sendOrderToDatabase(order, cart);
 }
 
 // routes to a Stripe hosted url, can change domain if needed via Stripe dashboard
 app.post("/create-checkout-session", async (req, res) => {
   try {
+    cart = req.body.items;
+
     const server_url = req.body.SERVER_URL;
+
+    // build line items asynchronously (mainly to grab price from airtable)
+    const promise = req.body.items.map(
+      (item) =>
+        new Promise((resolve, reject) => {
+          base("Products").find(item.id, function (err, record) {
+            if (err) {
+              console.error(err);
+              reject(err);
+              return;
+            }
+
+            item.price = record.fields.price;
+
+            resolve({
+              price_data: {
+                currency: "usd",
+                product_data: {
+                  name: item.name,
+                  images: [item.image],
+                },
+                // price is required to be in cents
+                unit_amount: Math.round(item.price * 100),
+              },
+              quantity: item.quantity,
+            });
+          });
+        })
+    );
+
+    const lineItems = await Promise.all(promise);
+
     const session = await stripe.checkout.sessions.create({
-      line_items: req.body.items.map((item) => {
-        return {
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: item.name,
-              images: [item.image],
-            },
-            // price is required to be in cents
-            unit_amount: Math.round(item.price * 100),
-          },
-          // allows item quantity to be adjusted on payment page
-          adjustable_quantity: {
-            enabled: true,
-            minimum: 0,
-            maximum: 100,
-          },
-          quantity: item.quantity,
-        };
-      }),
+      line_items: lineItems,
       mode: "payment",
       billing_address_collection: "required",
       // creates a customer, possibly delete after customer migration from minthouse
@@ -225,6 +245,7 @@ app.post("/create-checkout-session", async (req, res) => {
 });
 
 // to send order to database
+// NEED TO FIX AFTER UPDATING CART
 async function sendOrderToDatabase(order, items) {
   // get current date
   const currentDate = new Date().toJSON().slice(0, 10);

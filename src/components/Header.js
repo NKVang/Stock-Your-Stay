@@ -1,19 +1,30 @@
 import React from "react";
 // import MHlogo from "./assets/MHlogo.webp";
 import { Container, Row, Col, Nav, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./shop_style.css";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Badge from "@mui/material/Badge";
 
 import { EmployeeLoginNav } from "./EmployeeLogin";
 
 const Header = (props) => {
+  const location = useLocation();
+
+  // function to check if currnet path is /checkout-success
+  const notCheckoutSuccess = () => {
+    return location.pathname !== "/checkout-success";
+  };
+
+  // cart quantity, show only if not in path /checkout-success
+  const cartQuantity = notCheckoutSuccess()
+    ? props.getCartQuantity || JSON.parse(localStorage.getItem("cartQuantity"))
+    : null;
   return (
     <Container fluid className="site-header">
       <Row className="center-align">
         <Col xs={10}>
-          {/* eslint-disable-next-line */}
           <svg
             width="262"
             height="25"
@@ -28,48 +39,54 @@ const Header = (props) => {
           </svg>
         </Col>
         <Col xs={1} className="d-flex justify-content-end">
-          {/* eslint-disable-next-line */}
-          <a className="shopping-cart-header" href="#">
-            {props.getCartQuantity > 0 ? (
-              <ShoppingCartIcon />
+          <Link to="/shopping-cart" className="shopping-cart-header">
+            {cartQuantity > 0 ? (
+              <>
+                <Badge
+                  badgeContent={cartQuantity}
+                  color="primary"
+                  overlap="circular"
+                >
+                  <ShoppingCartIcon />
+                </Badge>
+                {/* <span className="p-1 header-cart-quantity">{cartQuantity}</span> */}
+              </>
             ) : (
               <ShoppingCartOutlinedIcon />
             )}
-            <span className="p-1 header-cart-quantity">
-              {props.getCartQuantity}
-            </span>
-          </a>
+          </Link>
         </Col>
         <Col xs={1} className="d-flex justify-content-start">
           <Nav>
             <NavDropdown title={<i className="bi bi-list"></i>}>
-              <NavDropdown.Item>
+              <Row>
                 <Link to="/">Home</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </Row>
+              <Row>
                 <Link to="/shop">Shop</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </Row>
+              <Row>
                 <Link to="/location-stay">Location Stay</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </Row>
+              <Row>
                 <Link to="/reservations">Reservations</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to="/view-all">view all</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </Row>
+              <Row>
+                <Link to="/view-all">View All</Link>
+              </Row>
+              <Row>
                 <Link to="/shopping-cart">Shopping Cart</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-              <Link to="/order-histories">Order History</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </Row>
+              <Row>
+                <Link to="/order-histories">Order History</Link>
+              </Row>
+              <Row>
                 <Link to="/signup">Signup</Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
+              </Row>
+              <Row>
                 <Link to="/settings">Settings</Link>
-              </NavDropdown.Item>
+              </Row>
+
               <EmployeeLoginNav />
             </NavDropdown>
           </Nav>

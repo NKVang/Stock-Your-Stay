@@ -7,7 +7,7 @@ import Home from "./components/Home";
 import LocationStay from "./components/LocationStay";
 import CheckReservation from "./components/CheckReservation";
 import Shop from "./pages/shop/Shop.jsx";
-import ViewAll from "./pages/shop/ViewAll.jsx"
+import ViewAll from "./pages/shop/ViewAll.jsx";
 import Inventory from "./pages/employees/Inventory.jsx";
 import Layout from "./pages/employees/Layout.jsx";
 import Orders from "./pages/employees/Orders.jsx";
@@ -57,7 +57,11 @@ const App = () => {
           element={<CheckReservation />}
         ></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
-        <Route exact path="/sub-category/:categoryName" element={<SubCategory />}></Route>
+        <Route
+          exact
+          path="/sub-category/:categoryName"
+          element={<SubCategory />}
+        ></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/settings" element={<Settings />}></Route>
         <Route
