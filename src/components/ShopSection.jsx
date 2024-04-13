@@ -30,13 +30,17 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
   }*/
 
   useEffect(() => {
-    if (products.length === 0)
+    if (products.length === 0){
+      let tag = tableTag;
+      if (tag.toLowerCase().includes('local favorite')) {
+        tag = '';
+      }
       base(tableName)
         .select({
           view: "Grid view",
           maxRecords: isMobile() ? 3 : 7,
           ...(sortField && { sort: [{ field: sortField, direction: 'desc' }] }),
-          ...(tableTag && { filterByFormula: `FIND('${tableTag}', {${tableField}})` }),
+          ...(tableTag && { filterByFormula: `FIND('${tag}', {${tableField}})` }),
         })
         .eachPage(
           function page(records, fetchNextPage) {
@@ -65,6 +69,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
             }
           }
         );
+    }
     // eslint-disable-next-line
   }, []);
 

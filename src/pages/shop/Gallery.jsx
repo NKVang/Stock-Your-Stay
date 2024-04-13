@@ -6,8 +6,8 @@ import ShopSection from "../../components/ShopSection.jsx";
 
 function Gallery() {
   const categories = [
-    { name: "Recommended", tableName: "Products", tableField: "Tags", tableTag: "recommended", sortField: 'Purchase Count' },
-    { name: "Local Favorites", tableName: "Products", tableField: "Tags", tableTag: "", sortField: 'Purchase Count' },
+    { name: "Recommended", tableName: "Products", tableField: "Tags", tableTag: "recommended", sortField: '' },
+    { name: "Local Favorites", tableName: "Products", tableField: "Tags", tableTag: "local favorites", sortField: 'Purchase Count' },
     { name: "Breakfast", tableName: "Products", tableField: "Tags", tableTag: "breakfast", sortField: '' },
     { name: "Snacks", tableName: "Products", tableField: "Tags", tableTag: "snacks", sortField: '' },
     { name: "Lunch", tableName: "Products", tableField: "Tags", tableTag: "lunch", sortField: '' },
