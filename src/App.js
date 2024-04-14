@@ -24,6 +24,7 @@ import OrderDetails from "./components/OrderDetails.js";
 import Settings from "./components/Settings.js";
 import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import SubCategory from "./pages/shop/SubCategory.jsx";
+import BackButton from "./components/BackButton.js";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -57,7 +58,11 @@ const App = () => {
           element={<CheckReservation />}
         ></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
-        <Route exact path="/sub-category/:categoryName" element={<SubCategory />}></Route>
+        <Route 
+          exact 
+          path="/sub-category/:categoryName" 
+          element={<SubCategory />}
+          ></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/settings" element={<Settings />}></Route>
         <Route
@@ -97,6 +102,7 @@ const App = () => {
         <Route exact path="/checkout-success" element={<CheckoutSuccess />} />
       </Routes>
       <Footer />
+      <BackButton />
     </BrowserRouter>
   );
 };
