@@ -3,6 +3,7 @@ import { Card, Col, Row } from "react-bootstrap";
 import { useBase } from "../assets/hooks/useBase";
 import "./shop_style.css";
 import { Link } from "react-router-dom";
+import { pascalCase, truncate } from "./Functions";
 
 const SubCategorySection = ({ mainTag, subTag }) => {
   var base = useBase();
@@ -54,15 +55,15 @@ const SubCategorySection = ({ mainTag, subTag }) => {
 
   return (
       <Row>
-        <h2>{subTag}</h2>
+        <h2>{subTag === "" ? '\u00A0' : subTag}</h2>
         {products.map((product) => (
           <Col key={product.id} xs={6} md={3} lg={2}>
             <Link to={`/shop/product/${product.id}`}>
               <Card className="product-card">
-                <Card.Img variant="top" src={product.image} alt={product.title} style={{ maxWidth: '40%', maxHeight: '40%', margin: "auto" }}/>
+                <Card.Img variant="top" src={product.image} alt={product.title} style={{ maxWidth: '60%', maxHeight: '60%', margin: "auto" }}/>
                 <Card.Body>
-                  <Card.Title className="product-title" style={{ textAlign: "center" }}>{product.title}</Card.Title>
-                  <Card.Text className="product-price" style={{ textAlign: "center" }}>${product.price}</Card.Text>
+                  <Card.Title className="product-title" style={{ textAlign: "center", fontSize: "15px" }}>{truncate(pascalCase(product.title))}</Card.Title>
+                  <Card.Text className="product-price" style={{ textAlign: "center", fontSize: "13px" }}>${product.price.toFixed(2)}</Card.Text>
                 </Card.Body>
               </Card>
             </Link>
