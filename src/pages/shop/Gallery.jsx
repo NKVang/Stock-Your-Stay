@@ -12,14 +12,14 @@ function Gallery() {
       tableName: "Products",
       tableField: "Tags",
       tableTag: "recommended",
-      sortField: "Purchase Count",
+      sortField: "",
     },
     {
       id: 2,
       name: "Local Favorites",
       tableName: "Products",
       tableField: "Tags",
-      tableTag: "",
+      tableTag: "local favorites",
       sortField: "Purchase Count",
     },
     {
