@@ -20,6 +20,8 @@ import amex from "./amex.png";
 import discover from "./discover.png";
 import diners from "./diners.png";
 import jcb from "./jcb.png";
+import splash1 from "./splash1.jpeg";
+import splash2 from "./splash2.webp";
 
 export {
   img1,
@@ -44,4 +46,6 @@ export {
   discover,
   diners,
   jcb,
+  splash1,
+  splash2,
 };
