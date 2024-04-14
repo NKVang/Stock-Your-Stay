@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SubCategorySection from "../../components/SubCategorySection";
 import { useParams } from "react-router-dom";
 import { useBase } from "../../assets/hooks/useBase";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Dropdown } from "react-bootstrap";
 
 const SubCategory = () => {
   const { categoryName } = useParams();
@@ -10,7 +10,8 @@ const SubCategory = () => {
   let adjustedCategoryName = decodedCategoryName;
   const base = useBase();
   const [tags, setTags] = useState(new Set(['']));
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [active, setActive] = useState(0);
+  const [selected, setSelected] = useState("Select Category");
   
   if (adjustedCategoryName === 'local favorites') {
     adjustedCategoryName = '';
@@ -41,24 +42,30 @@ const SubCategory = () => {
   }, [adjustedCategoryName, base]);
 
   const handleSelect = (selectedIndex) => {
-    setActiveIndex(selectedIndex);
+    setActive(selectedIndex);
+    setSelected([...tags][selectedIndex]);
   };
-
-
-  // carousel may require additional styling, couldn't leave it default for the dots indicating index
-  // as the background is pure white
+  
   return (
     <div style={{ paddingTop: "20px" }}>
       <div className="container">
         <div className="row">
           <div className="col">
             <h2><strong>{decodedCategoryName}</strong></h2>
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-              <button onClick={() => handleSelect(activeIndex - 1)} disabled={activeIndex === 0}>Previous</button> {"   "}
-              <button onClick={() => handleSelect(activeIndex + 1)} disabled={activeIndex === tags.size - 1}>Next</button>
-            </div>
-            <Carousel activeIndex={activeIndex} onSelect={handleSelect} interval={null} controls={false} style={{ touchAction: "none" }}>
-              {[...tags].map((tag, index) => (
+            <Dropdown onSelect={(eventKey) => handleSelect(eventKey - 1)} style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{ textTransform: 'capitalize' }}>
+                {selected === "" ? "View All" : selected}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {[...tags].map((tag, index) => (
+                  <Dropdown.Item key={index} eventKey={index + 1} style={{ textTransform: 'capitalize'}}>
+                    {tag === "" ? "View All" : tag}
+                  </Dropdown.Item>
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+            <Carousel activeIndex={active} onSelect={handleSelect} interval={null} controls={false} style={{ touchAction: "none" }}>
+              {[...tags].map((tag) => (
                 <Carousel.Item>
                   <div>
                     <SubCategorySection mainTag={decodedCategoryName} subTag={tag} />
