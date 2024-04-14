@@ -24,7 +24,7 @@ import OrderDetails from "./components/OrderDetails.js";
 import Settings from "./components/Settings.js";
 import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import SubCategory from "./pages/shop/SubCategory.jsx";
-import BackButton from "./components/BackButton.js";
+import Breadcrumbs from "./components/Breadcrumbs.js";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -43,6 +43,7 @@ const App = () => {
       {window.location.pathname.split("/")[1] !== "employee" && (
         <Header getCartQuantity={cartQuantity} />
       )}
+      <Breadcrumbs />
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/shop" element={<Shop />}></Route>
@@ -102,7 +103,6 @@ const App = () => {
         <Route exact path="/checkout-success" element={<CheckoutSuccess />} />
       </Routes>
       <Footer />
-      <BackButton />
     </BrowserRouter>
   );
 };
