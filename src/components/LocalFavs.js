@@ -3,7 +3,6 @@ import "./shop_style.css";
 import * as images from "./assets";
 import { Carousel, Card, Row, Col, Button } from "react-bootstrap";
 
-
 function isMobile() {
   return window.innerWidth < 576;
 }

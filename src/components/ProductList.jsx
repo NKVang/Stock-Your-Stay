@@ -6,7 +6,7 @@ const ProductList = ({ products }) => {
     <div className="productsList">
       {products.map((product, index) => (
         <div className="individualProduct" key={index}>
-          <Link to={"#"}>
+          <Link to={`/shop/product/${product.id}`}>
             <img src={product.image} alt={product.title} />
             <h3>{product.title}</h3>
           </Link>

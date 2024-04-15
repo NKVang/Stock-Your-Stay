@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card, Carousel, Col, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import { useBase } from "../assets/hooks/useBase";
 import "./shop_style.css";
 import { Link } from "react-router-dom";
+import { pascalCase, truncate } from "./Functions";
 
-function isMobile() {
-  return window.innerWidth < 576;
-}
-
-function segmentation(array, size) {
-  const segments = [];
-  for (let i = 0; i < array.length; i += size) {
-    segments.push(array.slice(i, i + size));
-  }
-  return segments;
-}
-
-const SubCategorySection = ({ tagName }) => {
+const SubCategorySection = ({ mainTag, subTag }) => {
   var base = useBase();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    let tempMaintag = mainTag;
+    let sortPattern = null;
+    if (tempMaintag === 'local favorites') {
+      tempMaintag = ''
+      sortPattern = 'Purchase Count';
+    }
     if (products.length === 0)
       base("Products")
         .select({
           view: "Grid view",
-          maxRecords: isMobile() ? 3 : 9,
-          filterByFormula: `OR(FIND('${tagName}', {Tags}))`
+          filterByFormula: `AND(FIND('${tempMaintag}', {Tags}), FIND('${subTag}', {Tags}))`,
+          ...(sortPattern && { sort: [{ field: sortPattern, direction: 'desc' }] }),
         })
         .eachPage(
           function page(records, fetchNextPage) {
@@ -36,6 +31,7 @@ const SubCategorySection = ({ tagName }) => {
                 title: tempRecord.title,
                 price: tempRecord.price,
                 image: tempRecord.image[0].url,
+                id: record.id
               };
               setProducts((oldProducts) =>
                 !oldProducts.find(
@@ -58,107 +54,23 @@ const SubCategorySection = ({ tagName }) => {
   }, []);
 
   return (
-    <>
-      {/* Display this if on mobile */}
-      {isMobile() ? (
-        <Carousel interval={null} variant="dark" nextIcon={null} wrap={false}>
-          {segmentation(products, 2).map((seg, index) => (
-            <Carousel.Item key={index}>
-              <Row className="align-items-center">
-                {seg.map((product) => (
-                  <Col xs={6} md="auto">
-                    <a href={"#"}>
-                      <Card
-                        style={{
-                          width: "200px",
-                          padding: "15px",
-                          marginRight: "1%",
-                        }}
-                      >
-                        <Card.Img variant="top" src={product.image} />
-                        <Card.Body className="text-center">
-                          <Card.Title style={{ fontSize: "15px" }}>
-                            {product.title}
-                          </Card.Title>
-                          <Card.Text style={{ fontSize: "13px" }}>
-                            ${product.price}
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </a>
-                  </Col>
-                ))}
-              </Row>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      ) : (
-        // Desktop view
-        <Carousel
-          interval={null}
-          variant="dark"
-          prevLabel={null}
-          prevIcon={null}
-          nextLabel={null}
-          indicators={null}
-          touch={false}
-        >
-          {segmentation(products, 5).map((seg, index) => (
-            <Carousel.Item key={index}>
-              <Row className="align-items-center">
-                {seg.map((product) => (
-                  <Col xs={6} md="auto">
-                    <a href={"#"}>
-                      <Card
-                        style={{
-                          width: "200px",
-                          padding: "15px",
-                          marginRight: "1%",
-                        }}
-                      >
-                        <Card.Img variant="top" src={product.image} />
-                        <Card.Body className="text-center">
-                          <Card.Title style={{ fontSize: "15px" }}>
-                            {product.title}
-                          </Card.Title>
-                          <Card.Text style={{ fontSize: "13px" }}>
-                            ${product.price}
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
-                    </a>
-                  </Col>
-                ))}
-
-                {seg.length < 5 && (
-                  <Col
-                    xs={6}
-                    md="auto"
-                    className="d-flex justify-content-center"
-                  >
-                    <Link to={`/view-all`}>
-                      <Button variant="light">View All</Button>
-                    </Link>
-                  </Col>
-                )}
-              </Row>
-            </Carousel.Item>
-          ))}
-          {products.length % 5 === 0 && (
-            <Carousel.Item>
-              <Row className="align-items-center">
-                <Col xs={6} md="auto" className="d-flex justify-content-center">
-                  <Link to={`#`}>
-                    <Button variant="light">View All</Button>
-                  </Link>
-                </Col>
-              </Row>
-            </Carousel.Item>
-          )}
-        </Carousel>
-      )}
-    </>
-  );
+      <Row>
+        <h2>{subTag === "" ? '\u00A0' : subTag}</h2>
+        {products.map((product) => (
+          <Col key={product.id} xs={6} md={3} lg={2}>
+            <Link to={`/shop/product/${product.id}`}>
+              <Card className="product-card">
+                <Card.Img variant="top" src={product.image} alt={product.title} style={{ maxWidth: '60%', maxHeight: '60%', margin: "auto" }}/>
+                <Card.Body>
+                  <Card.Title className="product-title" style={{ textAlign: "center", fontSize: "15px" }}>{truncate(pascalCase(product.title))}</Card.Title>
+                  <Card.Text className="product-price" style={{ textAlign: "center", fontSize: "13px" }}>${product.price.toFixed(2)}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+        ))}
+      </Row>
+    );
 };
 
 export default SubCategorySection;
