@@ -47,10 +47,6 @@ const ItemPage = () => {
     setQuantity((prevQuantity) => Math.max(1, prevQuantity - 1));
   };
 
-  const isMobile = () => {
-    return window.innerWidth < 576;
-  };
-
   if (!itemDetails) return <div>Loading...</div>;
 
   return (
@@ -60,13 +56,11 @@ const ItemPage = () => {
         <h2>{itemDetails.name}</h2>
         <p>{itemDetails.description}</p>
         <p>{`$${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(itemDetails.price)}`}</p>
-        <div className="quantity-selector" style={{ position: 'relative', width: '380px', height: '95px', backgroundImage: `url(${images.quantitybutton.png})` }}>
+        <div className="quantity-selector">
           <Button variant="light" onClick={decrementQuantity}>
             -
           </Button>
-          <span style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', fontWeight: 'bold' }}>
-            {quantity}
-          </span>
+          <span>{quantity}</span>
           <Button variant="light" onClick={incrementQuantity}>
             +
           </Button>
@@ -75,20 +69,9 @@ const ItemPage = () => {
           </Button>
         </div>
       </div>
-      {isMobile()? (
-        <div className="mobile-view">
-          <h2>{itemDetails.name}</h2>
-          <p>{itemDetails.description}</p>
-          <p>{`$${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(itemDetails.price)}`}</p>
-          <Button variant="success" onClick={handleAddToCart}>
-            <AddShoppingCartIcon />
-          </Button>
-        </div>
-      ) : (
-        <div className="desktop-view">
-          <img src={itemDetails.imageUrl} alt={itemDetails.name} />
-        </div>
-      )}
+      <div className="item-image">
+        <img src={itemDetails.imageUrl} alt={itemDetails.name} />
+      </div>
     </div>
   );
 };
