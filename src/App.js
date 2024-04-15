@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import LocationStay from "./components/LocationStay";
-import CheckReservation from "./components/CheckReservation";
+import AddReservation from "./components/CheckReservation";
 import Shop from "./pages/shop/Shop.jsx";
 import ViewAll from "./pages/shop/ViewAll.jsx";
 import Inventory from "./pages/employees/Inventory.jsx";
@@ -25,6 +25,7 @@ import Settings from "./components/Settings.js";
 import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import SubCategory from "./pages/shop/SubCategory.jsx";
 import Breadcrumbs from "./components/Breadcrumbs.js";
+import Reservations from "./components/ReservationPage.js";
 
 const App = () => {
   const [cartQuantity, setCartQuantity] = useState("");
@@ -56,7 +57,12 @@ const App = () => {
         <Route
           exact
           path="/reservations"
-          element={<CheckReservation />}
+          element={<Reservations />}
+        ></Route>
+        <Route
+          exact
+          path="/Add-Reservation"
+          element={<AddReservation />}
         ></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
         <Route 
