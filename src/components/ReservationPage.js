@@ -3,9 +3,9 @@ import './ReservationPage.css';
 
 function ReservationsPage() {
     
-    const [reservations, setReservations] = useState([{ id: 1, name: 'Reservation 1', destination: '/reservation1' },
-                                                        { id: 2, name: 'Reservation 2', destination: '/reservation2' },
-                                                        { id: 3, name: 'Reservation 3', destination: '/reservation3' }]);
+    const [reservations, setReservations] = useState([{ id: 1, name: 'Reservation 1', destination: '/shop' },
+                                                        { id: 2, name: 'Reservation 2', destination: '/shop' },
+                                                        { id: 3, name: 'Reservation 3', destination: '/shop' }]);
 
     const ReservationClick = (destination) => {
     window.location.href = destination;

@@ -1,6 +1,5 @@
 import React from "react";
 import "./viewAll.css"; // Import CSS file for styling
-import products from "./viewAllExampleProducts";
 import CategoryButtons from "./CategoryButtons";
 import { Row, Col } from "react-bootstrap";
 

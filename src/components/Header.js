@@ -66,27 +66,11 @@ const Header = (props) => {
                 <Link to="/shop">Shop</Link>
               </Row>
               <Row>
-                <Link to="/location-stay">Location Stay</Link>
-              </Row>
-              <Row>
-                <Link to="/reservations">Reservations</Link>
-              </Row>
-              <Row>
                 <Link to="/view-all">View All</Link>
-              </Row>
-              <Row>
-                <Link to="/shopping-cart">Shopping Cart</Link>
               </Row>
               <Row>
                 <Link to="/order-histories">Order History</Link>
               </Row>
-              <Row>
-                <Link to="/signup">Signup</Link>
-              </Row>
-              <Row>
-                <Link to="/settings">Settings</Link>
-              </Row>
-
               <EmployeeLoginNav />
             </NavDropdown>
           </Nav>

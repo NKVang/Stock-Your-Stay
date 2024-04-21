@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Button, Card, Container, Form, Stack } from 'react-bootstrap';
-import './App.css';
+import './Customer_Login.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

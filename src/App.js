@@ -4,7 +4,6 @@ import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./components/Home";
-import LocationStay from "./components/LocationStay";
 import AddReservation from "./components/CheckReservation";
 import Shop from "./pages/shop/Shop.jsx";
 import ViewAll from "./pages/shop/ViewAll.jsx";
@@ -21,7 +20,6 @@ import Product from "./pages/shop/IndividualItemPage.jsx";
 import Payment from "./components/Payment.js";
 import OrderHistory from "./components/OrderHistory.js";
 import OrderDetails from "./components/OrderDetails.js";
-import Settings from "./components/Settings.js";
 import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import SubCategory from "./pages/shop/SubCategory.jsx";
 import Breadcrumbs from "./components/Breadcrumbs.js";
@@ -46,14 +44,13 @@ const App = () => {
       )}
       <Breadcrumbs />
       <Routes>
-        <Route exact path="/" element={<Home />}></Route>
+        <Route exact path="/" element={<Login />}></Route>
         <Route exact path="/shop" element={<Shop />}></Route>
         <Route
           exact
           path="/shop/product/:recordId"
           element={<Product />}
         ></Route>
-        <Route exact path="/location-stay" element={<LocationStay />}></Route>
         <Route
           exact
           path="/reservations"
@@ -70,8 +67,6 @@ const App = () => {
           path="/sub-category/:categoryName" 
           element={<SubCategory />}
           ></Route>
-        <Route exact path="/login" element={<Login />}></Route>
-        <Route exact path="/settings" element={<Settings />}></Route>
         <Route
           exact
           path="/shopping-cart"
