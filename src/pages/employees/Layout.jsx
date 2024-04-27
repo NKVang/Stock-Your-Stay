@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { Outlet } from "react-router-dom";
 import "../../assets/styles/employee.css";
 import EmployeeHeader from "../../components/EmployeeHeader";
@@ -29,4 +30,6 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default withAuthenticationRequired(Layout, {
+  onRedirecting: () => <EmployeeHeader/>,
+});
