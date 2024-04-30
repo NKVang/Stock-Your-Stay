@@ -1,65 +1,60 @@
 import React from "react";
-import { Row, Form } from "react-bootstrap";
+import { Row, Form, Button } from "react-bootstrap";
 import "./shop_style.css";
+import { Link } from "react-router-dom";
 
 function Filter() {
   return (
     <>
       <Row className="row-filter">
-        <Form.Check
-          type="checkbox"
-          aria-label="vegetables"
-          label="Vegetables"
-        />
+        <Link to="/sub-category/meat">
+          <Button variant="light" className="filter-button">Meat</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check type="checkbox" aria-label="meats" label="Meats" />
+        <Link to="/sub-category/vegetables">
+          <Button variant="light" className="filter-button">Vegetables</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check type="checkbox" aria-label="spices" label="Spices" />
+        <Link to="/sub-category/water">
+          <Button variant="light" className="filter-button">Water</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check type="checkbox" aria-label="drinks" label="Drinks" />
+        <Link to="/sub-category/fruits">
+          <Button variant="light" className="filter-button">Fruits</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check type="checkbox" aria-label="fruits" label="Fruits" />
+        <Link to="/sub-category/dessert">
+          <Button variant="light" className="filter-button">Dessert</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check type="checkbox" aria-label="dessert" label="Dessert" />
+        <Link to="/sub-category/frozen">
+          <Button variant="light" className="filter-button">Frozen</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check
-          type="checkbox"
-          aria-label="vegetables"
-          label="Vegetables"
-        />
+        <Link to="/sub-category/bread">
+          <Button variant="light" className="filter-button">Bread</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check
-          type="checkbox"
-          aria-label="frozen-foods"
-          label="Frozen Foods"
-        />
+        <Link to="/sub-category/pasta">
+          <Button variant="light" className="filter-button">Pasta</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check type="checkbox" aria-label="bread" label="Bread" />
+        <Link to="/sub-category/beverages">
+          <Button variant="light" className="filter-button">Beverages</Button>
+        </Link>
       </Row>
       <Row className="row-filter">
-        <Form.Check
-          type="checkbox"
-          aria-label="quick-lunch"
-          label="Quick Lunch"
-        />
-      </Row>
-      <Row className="row-filter">
-        <Form.Check
-          type="checkbox"
-          aria-label="breakfast-for-lunch"
-          label="Breakfast for Lunch"
-        />
-      </Row>
-      <Row className="row-filter">
-        <Form.Check type="checkbox" aria-label="pastas" label="Pastas" />
+        <Link to="/sub-category/pasta">
+          <Button variant="light" className="filter-button">Pasta</Button>
+        </Link>
       </Row>
     </>
   );

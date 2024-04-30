@@ -1,62 +1,67 @@
 import React, { useState, useEffect } from "react";
-import SubCategorySection from "../../components/SubCategorySection";
 import { useParams } from "react-router-dom";
 import { useBase } from "../../assets/hooks/useBase";
-import { Carousel, Dropdown } from "react-bootstrap";
+import { Dropdown, Card, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { pascalCase, truncate } from "../../components/Functions";
 
 const SubCategory = () => {
   const { categoryName } = useParams();
   const decodedCategoryName = decodeURIComponent(categoryName);
   let adjustedCategoryName = decodedCategoryName;
   const base = useBase();
-  const [tags, setTags] = useState(new Set([""]));
-  const [active, setActive] = useState(0);
-  const [selected, setSelected] = useState("Select Category");
+  const [products, setProducts] = useState([]);
+  const [sortField, setSort] = useState("Purchase Count");
+  const [sortDirection, setDirection] = useState("desc");
+  const [sortText, setSortText] = useState("Best Selling");
+  const [loading, setLoading] = useState(true);
 
   if (adjustedCategoryName === "local favorites") {
     adjustedCategoryName = "";
   }
 
   useEffect(() => {
-    const subCategoriesBlacklist = [
-      "breakfast",
-      "lunch",
-      "dinner",
-      "snacks",
-      "recommended",
-    ];
-
+    setLoading(true);
+    const filterFormula = adjustedCategoryName ? `FIND('${adjustedCategoryName}', {Tags})` : '';
     base("Products")
       .select({
-        fields: ["Tags"],
-        filterByFormula: `FIND('${adjustedCategoryName}', {Tags})`,
+        view: "Grid view",
+        filterByFormula: filterFormula,
+        ...(sortField && {
+          sort: [{ field: sortField, direction: sortDirection }],
+        }),
       })
       .eachPage(
-        (records, fetchNextPage) => {
+        function page(records, fetchNextPage) {
+          let pulledProducts = [];
           records.forEach((record) => {
-            const recordTags = record.fields["Tags"] || [];
-            const filteredTags = recordTags.filter(
-              (tag) =>
-                tag !== adjustedCategoryName &&
-                !subCategoriesBlacklist.includes(tag)
-            );
-            filteredTags.forEach((tag) =>
-              setTags((prevTags) => new Set([...prevTags, tag]))
-            );
+            const tempRecord = record._rawJson.fields;
+            const newProduct = {
+              title: tempRecord.title,
+              price: tempRecord.price,
+              image: tempRecord.image[0].url,
+              date: new Date(record.Created_Time),
+              id: record.id,
+            };
+            pulledProducts.push(newProduct);
           });
+          setProducts(pulledProducts);
+          setLoading(false);
           fetchNextPage();
         },
-        (err) => {
+        function done(err) {
           if (err) {
             console.error(err);
+            return;
           }
         }
       );
-  }, [adjustedCategoryName, base]);
+  }, [adjustedCategoryName, sortField, sortDirection]);
 
-  const handleSelect = (selectedIndex) => {
-    setActive(selectedIndex);
-    setSelected([...tags][selectedIndex]);
+  const handleSortChange = (selectedSort, selectedDirection, selectedText) => {
+    setSort(selectedSort);
+    setDirection(selectedDirection);
+    setSortText(selectedText);
   };
 
   return (
@@ -67,47 +72,59 @@ const SubCategory = () => {
             <h2>
               <strong>{decodedCategoryName}</strong>
             </h2>
-            <Dropdown
-              onSelect={(eventKey) => handleSelect(eventKey - 1)}
-              style={{ display: "flex", justifyContent: "flex-end" }}
-            >
-              <Dropdown.Toggle
-                variant="secondary"
-                id="dropdown-basic"
-                style={{ textTransform: "capitalize" }}
-              >
-                {selected === "" ? "View All" : selected}
+
+            <Dropdown style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Dropdown.Toggle variant="secondary" id="dropdown-basic" style={{ display: "flex", justifyContent: "flex-end" }}>
+                {sortText}
               </Dropdown.Toggle>
+
               <Dropdown.Menu>
-                {[...tags].map((tag, index) => (
-                  <Dropdown.Item
-                    key={index}
-                    eventKey={index + 1}
-                    style={{ textTransform: "capitalize" }}
-                  >
-                    {tag === "" ? "View All" : tag}
-                  </Dropdown.Item>
-                ))}
+                <Dropdown.Item onClick={() => handleSortChange("Purchase Count", "desc", "Best Selling")}>Best Selling</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("price", "asc", "Price Asc")}>Price Asc</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("price", "desc", "Price Desc")}>Price Desc</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("title", "asc", "A to Z")}>A to Z</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("title", "desc", "Z to A")}>Z to A</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("created time", "asc", "New to Old")}>New to Old</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSortChange("created time", "desc", "Old to New")}>Old to New</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Carousel
-              activeIndex={active}
-              onSelect={handleSelect}
-              interval={null}
-              controls={false}
-              style={{ touchAction: "none" }}
-            >
-              {[...tags].map((tag) => (
-                <Carousel.Item>
-                  <div>
-                    <SubCategorySection
-                      mainTag={decodedCategoryName}
-                      subTag={tag}
-                    />
-                  </div>
-                </Carousel.Item>
-              ))}
-            </Carousel>
+            {loading ? (
+              <p></p> 
+            ) : (
+              <Row>
+                {products.map((product) => (
+                  <Col key={product.id} xs={6} md={3} lg={2}>
+                    <Link
+                      to={`/shop/product/${product.id}`}
+                      state={{ category: `${categoryName}` }}
+                    >
+                      <Card className="product-card">
+                        <Card.Img
+                          variant="top"
+                          src={product.image}
+                          alt={product.title}
+                          style={{ maxWidth: "60%", maxHeight: "60%", margin: "auto" }}
+                        />
+                        <Card.Body>
+                          <Card.Title
+                            className="product-title"
+                            style={{ textAlign: "center", fontSize: "15px" }}
+                          >
+                            {truncate(pascalCase(product.title))}
+                          </Card.Title>
+                          <Card.Text
+                            className="product-price"
+                            style={{ textAlign: "center", fontSize: "13px" }}
+                          >
+                            ${product.price.toFixed(2)}
+                          </Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </Link>
+                  </Col>
+                ))}
+              </Row>
+            )}
           </div>
         </div>
       </div>
