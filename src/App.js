@@ -22,7 +22,6 @@ import OrderHistory from "./components/OrderHistory.js";
 import OrderDetails from "./components/OrderDetails.js";
 import CheckoutSuccess from "./components/CheckoutSuccess.jsx";
 import SubCategory from "./pages/shop/SubCategory.jsx";
-import Breadcrumbs from "./components/Breadcrumbs.js";
 import Reservations from "./components/ReservationPage.js";
 
 const App = () => {
@@ -42,7 +41,6 @@ const App = () => {
       {window.location.pathname.split("/")[1] !== "employee" && (
         <Header getCartQuantity={cartQuantity} />
       )}
-      <Breadcrumbs />
       <Routes>
         <Route exact path="/" element={<Login />}></Route>
         <Route exact path="/shop" element={<Shop />}></Route>
@@ -51,22 +49,18 @@ const App = () => {
           path="/shop/product/:recordId"
           element={<Product />}
         ></Route>
-        <Route
-          exact
-          path="/reservations"
-          element={<Reservations />}
-        ></Route>
+        <Route exact path="/reservations" element={<Reservations />}></Route>
         <Route
           exact
           path="/Add-Reservation"
           element={<AddReservation />}
         ></Route>
         <Route exact path="/view-all" element={<ViewAll />}></Route>
-        <Route 
-          exact 
-          path="/sub-category/:categoryName" 
+        <Route
+          exact
+          path="/sub-category/:categoryName"
           element={<SubCategory />}
-          ></Route>
+        ></Route>
         <Route
           exact
           path="/shopping-cart"

@@ -12,16 +12,18 @@ const SubCategorySection = ({ mainTag, subTag }) => {
   useEffect(() => {
     let tempMaintag = mainTag;
     let sortPattern = null;
-    if (tempMaintag === 'local favorites') {
-      tempMaintag = ''
-      sortPattern = 'Purchase Count';
+    if (tempMaintag === "local favorites") {
+      tempMaintag = "";
+      sortPattern = "Purchase Count";
     }
     if (products.length === 0)
       base("Products")
         .select({
           view: "Grid view",
           filterByFormula: `AND(FIND('${tempMaintag}', {Tags}), FIND('${subTag}', {Tags}))`,
-          ...(sortPattern && { sort: [{ field: sortPattern, direction: 'desc' }] }),
+          ...(sortPattern && {
+            sort: [{ field: sortPattern, direction: "desc" }],
+          }),
         })
         .eachPage(
           function page(records, fetchNextPage) {
@@ -31,7 +33,7 @@ const SubCategorySection = ({ mainTag, subTag }) => {
                 title: tempRecord.title,
                 price: tempRecord.price,
                 image: tempRecord.image[0].url,
-                id: record.id
+                id: record.id,
               };
               setProducts((oldProducts) =>
                 !oldProducts.find(
@@ -54,23 +56,41 @@ const SubCategorySection = ({ mainTag, subTag }) => {
   }, []);
 
   return (
-      <Row>
-        <h2>{subTag === "" ? '\u00A0' : subTag}</h2>
-        {products.map((product) => (
-          <Col key={product.id} xs={6} md={3} lg={2}>
-            <Link to={`/shop/product/${product.id}`}>
-              <Card className="product-card">
-                <Card.Img variant="top" src={product.image} alt={product.title} style={{ maxWidth: '60%', maxHeight: '60%', margin: "auto" }}/>
-                <Card.Body>
-                  <Card.Title className="product-title" style={{ textAlign: "center", fontSize: "15px" }}>{truncate(pascalCase(product.title))}</Card.Title>
-                  <Card.Text className="product-price" style={{ textAlign: "center", fontSize: "13px" }}>${product.price.toFixed(2)}</Card.Text>
-                </Card.Body>
-              </Card>
-            </Link>
-          </Col>
-        ))}
-      </Row>
-    );
+    <Row>
+      <h2>{subTag === "" ? "\u00A0" : subTag}</h2>
+      {products.map((product) => (
+        <Col key={product.id} xs={6} md={3} lg={2}>
+          <Link
+            to={`/shop/product/${product.id}`}
+            state={{ category: `${mainTag}` }}
+          >
+            <Card className="product-card">
+              <Card.Img
+                variant="top"
+                src={product.image}
+                alt={product.title}
+                style={{ maxWidth: "60%", maxHeight: "60%", margin: "auto" }}
+              />
+              <Card.Body>
+                <Card.Title
+                  className="product-title"
+                  style={{ textAlign: "center", fontSize: "15px" }}
+                >
+                  {truncate(pascalCase(product.title))}
+                </Card.Title>
+                <Card.Text
+                  className="product-price"
+                  style={{ textAlign: "center", fontSize: "13px" }}
+                >
+                  ${product.price.toFixed(2)}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Link>
+        </Col>
+      ))}
+    </Row>
+  );
 };
 
 export default SubCategorySection;

@@ -3,11 +3,7 @@ import { Button, Card, Carousel, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./shop_style.css";
 import { useBase } from "../assets/hooks/useBase";
-import { pascalCase, truncate } from "./Functions";
-
-function isMobile() {
-  return window.innerWidth < 576;
-}
+import { pascalCase, truncate, isMobile } from "./Functions";
 
 const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
   var base = useBase();
@@ -31,10 +27,10 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
   }*/
 
   useEffect(() => {
-    if (products.length === 0){
+    if (products.length === 0) {
       let tag = tableTag;
-      if (tag.toLowerCase().includes('local favorite')) {
-        tag = '';
+      if (tag.toLowerCase().includes("local favorite")) {
+        tag = "";
       }
       base(tableName)
         .select({
@@ -54,6 +50,7 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                 price: tempRecord.price,
                 image: tempRecord.image[0].url,
                 id: record.id,
+                table: tableTag,
               };
               setProducts((oldProducts) =>
                 !oldProducts.find(
@@ -73,7 +70,6 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
           }
         );
     }
-    // eslint-disable-next-line
   }, []);
 
   return (
@@ -84,12 +80,15 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
             <Row className="align-items-center">
               {products.slice(0, 2).map((product) => (
                 <Col key={product.id} xs={6} md="auto">
-                  <Link to={`/shop/product/${product.id}`}>
+                  <Link
+                    to={`/shop/product/${product.id}`}
+                    state={{ category: `${product.table}` }}
+                  >
                     <Card
                       style={{
                         width: "200px",
-                        minHeight: "400px",
-                        maxHeight: "400px",
+                        minHeight: "300px",
+                        maxHeight: "300px",
                         padding: "15px",
                         marginRight: "1%",
                       }}
@@ -104,10 +103,16 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                       />
                       <Card.Body
                         className="text-center"
-                        style={{ minHeight: "200px", maxHeight: "200px" }}
+                        style={{
+                          minHeight: "100px",
+                          maxHeight: "100px",
+                          padding: "16px 0px 0px 0px",
+                        }}
                       >
-                        <Card.Title style={{ fontSize: "15px" }}>
-                          {truncate(pascalCase(product.title))}
+                        <Card.Title
+                          style={{ fontSize: "15px", minHeight: "36px" }}
+                        >
+                          {truncate(product.title)}
                         </Card.Title>
                         <Card.Text style={{ fontSize: "13px" }}>
                           ${product.price.toFixed(2)}
@@ -123,12 +128,15 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
           <Carousel.Item key={"2"}>
             <Row className="align-items-center">
               <Col key={products[2]?.id} xs={6} md="auto">
-                <Link to={`/shop/product/${products[2]?.id}`}>
+                <Link
+                  to={`/shop/product/${products[2]?.id}`}
+                  state={{ category: `${products[2]?.table}` }}
+                >
                   <Card
                     style={{
                       width: "220px",
-                      minHeight: "400px",
-                      maxHeight: "400px",
+                      minHeight: "300px",
+                      maxHeight: "300px",
                       padding: "15px",
                       marginRight: "1%",
                     }}
@@ -144,10 +152,16 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                     />
                     <Card.Body
                       className="text-center"
-                      style={{ minHeight: "200px", maxHeight: "200px" }}
+                      style={{
+                        minHeight: "100px",
+                        maxHeight: "100px",
+                        padding: "16px 0px 0px 0px",
+                      }}
                     >
-                      <Card.Title style={{ fontSize: "15px" }}>
-                        {truncate(pascalCase(products[2]?.title))}
+                      <Card.Title
+                        style={{ fontSize: "15px", minHeight: "36px" }}
+                      >
+                        {truncate(products[2]?.title)}
                       </Card.Title>
                       <Card.Text style={{ fontSize: "13px" }}>
                         ${products[2]?.price}
@@ -161,8 +175,8 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                 md={3}
                 className="d-flex justify-content-center"
                 style={{
-                  minHeight: "400px",
-                  maxHeight: "400px",
+                  minHeight: "300px",
+                  maxHeight: "300px",
                   paddingTop: "100px",
                 }}
               >
@@ -179,12 +193,15 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
             <Row className="align-items-center">
               {products.slice(0, 4).map((product) => (
                 <Col key={product.id} xs={6} md="auto">
-                  <Link to={`/shop/product/${product.id}`}>
+                  <Link
+                    to={`/shop/product/${product.id}`}
+                    state={{ category: `${product.table}` }}
+                  >
                     <Card
                       style={{
                         width: "220px",
-                        minHeight: "400px",
-                        maxHeight: "400px",
+                        minHeight: "300px",
+                        maxHeight: "300px",
                         padding: "15px",
                         marginRight: "1%",
                       }}
@@ -199,10 +216,16 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                       />
                       <Card.Body
                         className="text-center"
-                        style={{ minHeight: "200px", maxHeight: "200px" }}
+                        style={{
+                          minHeight: "100px",
+                          maxHeight: "100px",
+                          padding: "16px 0px 0px 0px",
+                        }}
                       >
-                        <Card.Title style={{ fontSize: "15px" }}>
-                          {truncate(pascalCase(product.title))}
+                        <Card.Title
+                          style={{ fontSize: "15px", minHeight: "36px" }}
+                        >
+                          {truncate(product.title)}
                         </Card.Title>
                         <Card.Text style={{ fontSize: "13px" }}>
                           ${product.price.toFixed(2)}
@@ -219,12 +242,15 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
             <Row className="align-items-center">
               {products.slice(4, 7).map((product) => (
                 <Col key={product.id} xs={6} md="auto">
-                  <Link to={`/shop/product/${product.id}`}>
+                  <Link
+                    to={`/shop/product/${product.id}`}
+                    state={{ category: `${product.table}` }}
+                  >
                     <Card
                       style={{
                         width: "220px",
-                        minHeight: "400px",
-                        maxHeight: "400px",
+                        minHeight: "300px",
+                        maxHeight: "300px",
                         padding: "15px",
                         marginRight: "1%",
                       }}
@@ -239,10 +265,16 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                       />
                       <Card.Body
                         className="text-center"
-                        style={{ minHeight: "200px", maxHeight: "200px" }}
+                        style={{
+                          minHeight: "100px",
+                          maxHeight: "100px",
+                          padding: "16px 0px 0px 0px",
+                        }}
                       >
-                        <Card.Title style={{ fontSize: "15px" }}>
-                          {truncate(pascalCase(product.title))}
+                        <Card.Title
+                          style={{ fontSize: "15px", minHeight: "36px" }}
+                        >
+                          {truncate(product.title)}
                         </Card.Title>
                         <Card.Text style={{ fontSize: "13px" }}>
                           ${product.price.toFixed(2)}
@@ -257,8 +289,8 @@ const ShopSection = ({ name, tableName, tableField, tableTag, sortField }) => {
                 md={3}
                 className="d-flex justify-content-center"
                 style={{
-                  minHeight: "400px",
-                  maxHeight: "400px",
+                  minHeight: "300px",
+                  maxHeight: "300px",
                   paddingTop: "100px",
                 }}
               >

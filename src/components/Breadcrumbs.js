@@ -1,28 +1,21 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Breadcrumb } from "react-bootstrap";
+import { isMobile } from "./Functions";
 
-const Breadcrumbs = () => {
-  const location = useLocation();
-
-  let currentLink = "";
-
-  const crumbs = location.pathname
-    .split("/")
-    .filter((crumb) => crumb !== "")
-    .map((crumb) => {
-      currentLink += `/${crumb}`;
-
-      return (
-        <div className="crumb" key={crumb}>
-          <Link to={currentLink}>{crumb}</Link>
-        </div>
-      );
-    });
-
+const Breadcrumbs = ({ category, productName }) => {
   return (
-    <div className="breadcrumbs" style={{ position: "sticky", top: "5px" }}>
-      {crumbs}
-    </div>
+    <>
+      <Breadcrumb>
+        <Breadcrumb.Item href="/shop">Shop</Breadcrumb.Item>
+        {category ? (
+          <Breadcrumb.Item href={`/sub-category/${category}`}>
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </Breadcrumb.Item>
+        ) : null}
+        <Breadcrumb.Item active>
+          {isMobile() ? productName.slice(0, 15) + "..." : productName}
+        </Breadcrumb.Item>
+      </Breadcrumb>
+    </>
   );
 };
 

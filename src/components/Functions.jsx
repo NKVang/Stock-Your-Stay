@@ -55,3 +55,8 @@ export function truncate(itemName) {
 
   return itemName;
 }
+
+// Checks for mobile screens
+export function isMobile() {
+  return window.innerWidth < 576;
+}

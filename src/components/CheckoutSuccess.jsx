@@ -85,7 +85,7 @@ function CheckoutSuccess() {
           <hr />
         </h6>
         <ul style={{ listStyleType: "none" }}>
-          {orderDetails?.items.map((item, index) => (
+          {orderDetails?.items?.map((item, index) => (
             <li key={index} className="order-details-list">
               <span
                 style={{
@@ -147,7 +147,7 @@ function CheckoutSuccess() {
                 boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.4)",
                 borderRadius: "2px",
               }}
-              alt={orderDetails?.cardBrand.toUpperCase()}
+              alt={orderDetails?.cardBrand}
             />
             **** {orderDetails?.cardLast4}
           </span>

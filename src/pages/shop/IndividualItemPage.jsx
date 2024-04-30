@@ -10,7 +10,7 @@ import {
   InputGroup,
   CloseButton,
 } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useBase } from "../../assets/hooks/useBase";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -19,6 +19,8 @@ import { pascalCase } from "../../components/Functions";
 
 import "../../components/ItemPage.css";
 import "../../components/shop_style.css";
+
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 const ItemPage = () => {
   var base = useBase();
@@ -33,6 +35,9 @@ const ItemPage = () => {
   const [addToCartLoading, setAddToCartLoading] = useState(false);
   const [error, setError] = useState("");
   const [imageClicked, setImageClicked] = useState(false);
+
+  const location = useLocation();
+  const category = location.state.category;
 
   // set loading to true when product hasn't been fetched, aka when it is null
   useEffect(() => {
@@ -53,6 +58,10 @@ const ItemPage = () => {
       setLoading(false);
     });
   }, [recordId, base]);
+
+  useEffect(() => {
+    console.log(location);
+  }, []);
 
   // add item to cart
   const addItemToCart = (newItem) => {
@@ -314,81 +323,88 @@ const ItemPage = () => {
         </div>
       ) : (
         product && (
-          <Row className="d-flex align-items-center">
-            <Col
-              xs={12}
-              sm={6}
-              md={6}
-              className="d-flex justify-content-center align-items-center"
-            >
-              <img
-                src={product.fields.image[0].url}
-                alt={pascalCase(product.fields.title)}
-                style={{ maxWidth: "60%", maxHeight: "60%" }}
-                onClick={handleImgClick}
-                className="indv-page-item"
-              />
-            </Col>
-            <Col xs={12} sm={6} md={6} className="indv-item-details">
-              <Row>
-                <h3>{product.fields.title}</h3>
-              </Row>
+          <>
+            <Breadcrumbs
+              category={category}
+              productName={product.fields.title}
+            />
+            <Row className="d-flex align-items-center">
+              <Col
+                xs={12}
+                sm={6}
+                md={6}
+                className="d-flex justify-content-center align-items-center"
+              >
+                <img
+                  src={product.fields.image[0].url}
+                  alt={pascalCase(product.fields.title)}
+                  style={{ maxWidth: "60%", maxHeight: "60%" }}
+                  onClick={handleImgClick}
+                  className="indv-page-item"
+                />
+              </Col>
+              <Col xs={12} sm={6} md={6} className="indv-item-details">
+                <Row>
+                  <h3>{product.fields.title}</h3>
+                </Row>
 
-              <Row>
-                <p>
-                  {pascalCase(product.fields.title)} is a product. Filler
-                  description to fill up text as the airtable field is missing.
-                </p>
-              </Row>
+                <Row>
+                  <p>
+                    {pascalCase(product.fields.title)} is a product. Filler
+                    description to fill up text as the airtable field is
+                    missing.
+                  </p>
+                </Row>
 
-              <Row>
-                <p>
-                  {`${new Intl.NumberFormat("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  }).format(product.fields.price)}`}
-                </p>
-              </Row>
+                <Row>
+                  <p>
+                    {`${new Intl.NumberFormat("en-US", {
+                      style: "currency",
+                      currency: "USD",
+                    }).format(product.fields.price)}`}
+                  </p>
+                </Row>
 
-              <Row style={{ marginBottom: "20px" }}>
-                <Form>
-                  <InputGroup>
-                    <Button
-                      className="quantity-button"
-                      variant="light"
-                      onClick={() => decrementQuantity()}
-                    >
-                      -
-                    </Button>
-                    <Form.Control
-                      value={quantity}
-                      style={{
-                        border: "1px solid #f3f3f3",
-                        maxWidth: "50px",
-                        textAlign: "center",
-                        fontSize: "0.9rem",
-                      }}
-                      onChange={handleManualQuantity}
-                    />
-                    <Button
-                      className="quantity-button"
-                      variant="light"
-                      onClick={() => incrementQuantity()}
-                    >
-                      +
-                    </Button>
-                  </InputGroup>
-                </Form>
-              </Row>
+                <Row style={{ marginBottom: "20px" }}>
+                  <Form>
+                    <InputGroup>
+                      <Button
+                        className="quantity-button"
+                        variant="light"
+                        onClick={() => decrementQuantity()}
+                      >
+                        -
+                      </Button>
+                      <Form.Control
+                        value={quantity}
+                        style={{
+                          border: "1px solid #f3f3f3",
+                          maxWidth: "50px",
+                          textAlign: "center",
+                          fontSize: "0.9rem",
+                        }}
+                        onChange={handleManualQuantity}
+                      />
+                      <Button
+                        className="quantity-button"
+                        variant="light"
+                        onClick={() => incrementQuantity()}
+                      >
+                        +
+                      </Button>
+                    </InputGroup>
+                  </Form>
+                </Row>
 
-              <Button onClick={handleAddToCart} className="btn-success">
-                <AddShoppingCartIcon /> Add to Cart
-              </Button>
-              <Button onClick={() => navigate("/shop")} className="btn-dark">
-                Continue Shopping
-              </Button>
-            </Col>
-          </Row>
+                <Button onClick={handleAddToCart} className="btn-success">
+                  <AddShoppingCartIcon /> Add to Cart
+                </Button>
+                <Button onClick={() => navigate("/shop")} className="btn-dark">
+                  Continue Shopping
+                </Button>
+              </Col>
+            </Row>
+          </>
         )
       )}
     </Container>

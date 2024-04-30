@@ -160,6 +160,8 @@ async function processCheckoutSessionCompleted(order, event) {
   order.cardBrand = paymentMethod.card.brand;
   order.cardLast4 = paymentMethod.card.last4;
 
+  console.log(order.items);
+
   // send order to database
   sendOrderToDatabase(order, cart);
 }
@@ -168,6 +170,10 @@ async function processCheckoutSessionCompleted(order, event) {
 app.post("/create-checkout-session", async (req, res) => {
   try {
     cart = req.body.items;
+
+    console.log("req.body.items", req.body.items);
+
+    console.log("cart", cart);
 
     const server_url = req.body.SERVER_URL;
 
@@ -267,7 +273,7 @@ async function sendOrderToDatabase(order, items) {
 
     // insert data into orders table
     await conn.query(
-      "INSERT INTO stock.orders (OrderNum, AccountID, ConfirmationNum, Date, TotalPrice, Status, Instructions) VALUES (?,?,?,?,?,?,?)",
+      "INSERT INTO stock.orders (OrderNum, PersonID, ReservationID, Date, TotalPrice, Status, Instructions) VALUES (?,?,?,?,?,?,?)",
       [
         order.id,
         12345, // dummy value

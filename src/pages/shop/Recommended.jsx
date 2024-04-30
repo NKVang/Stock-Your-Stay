@@ -9,12 +9,13 @@ function isMobile() {
 }
 
 const Recommended = () => {
-  var Airtable = require('airtable');
+  var Airtable = require("airtable");
   Airtable.configure({
-    endpointUrl: 'https://api.airtable.com',
-    apiKey: 'patwumKgifTrIXkAz.d261f22792e68e58a13faa15b76c91cec4f6e19f064cbdfd3325b76853c590a5'
+    endpointUrl: "https://api.airtable.com",
+    apiKey:
+      "patwumKgifTrIXkAz.d261f22792e68e58a13faa15b76c91cec4f6e19f064cbdfd3325b76853c590a5",
   });
-  var base = Airtable.base('appOwlhkqWdaF7YpR');
+  var base = Airtable.base("appOwlhkqWdaF7YpR");
   /*
   const base = new Airtable({
     apiKey: process.env.REACT_APP_AIRTABLE_TOKEN,
