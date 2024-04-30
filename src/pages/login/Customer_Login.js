@@ -6,8 +6,28 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-async function mockAuthenticate(username, password) {
-  if (username === 'user' && password === 'pass') {
+let accountEmail
+let accountLastName
+let accountFirstName
+let accountPersonID
+
+
+async function mockAuthenticate(email, lastName) {
+
+  /*
+  This is where we would use the Minthouse API and make a post call to https://mint-mw-acc.ireckonu.com/api/person/lookup
+  and use the email and lastName values provided in the request body.
+
+
+  */
+
+  //Right now these are just dummy values, but ideally we would want to set these values to the values that were returned in the response body of the POST call
+  accountEmail = 'Test@gmail.com'
+  accountLastName = 'Parker'
+  accountFirstName = 'Peter'
+  accountPersonID = '123'
+
+  if (email.toLowerCase() === accountEmail.toLowerCase() && lastName.toLowerCase() === accountLastName.toLowerCase()) {
     return 'fakeToken1A';
   }
   throw new Error('Authentication failed');
@@ -15,22 +35,22 @@ async function mockAuthenticate(username, password) {
 
 function App() {
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [lastname, setLastName] = useState('');
 
-  const usernameInput = (event) => {
-    setUsername(event.target.value);
+  const emailInput = (event) => {
+    setEmail(event.target.value);
   };
 
-  const passwordInput = (event) => {
-    setPassword(event.target.value);
+  const lastNameInput = (event) => {
+    setLastName(event.target.value);
   };
 
   const navigate = useNavigate();
 
   const handleLogin = async () => {
       try {
-        const token = await mockAuthenticate(username, password);
+        const token = await mockAuthenticate(email, lastname);
         console.log('Login successful');
         alert('Login Successful. Redirecting to Shop.');
         localStorage.setItem('token', token);
@@ -40,6 +60,14 @@ function App() {
         alert('Invalid Login. Please Try Again.');
       }
   };
+
+  const enterKeyPressed = (event) =>{
+    if (event.key === 'Enter'){
+      event.preventDefault();
+      handleLogin();
+    }
+  }
+
 
   return (
     <div className='App'>
@@ -53,13 +81,13 @@ function App() {
                     <h1> Login </h1>
 
                     <Form.Group>
-                      <h6> Username </h6>
-                      <Form.Control type="text" value= {username} onChange = {usernameInput} placeholder="username" />
+                      <h6> Email </h6>
+                      <Form.Control type="text" value= {email} onChange = {emailInput} onKeyDown = {enterKeyPressed} placeholder="email" />
                     </Form.Group>
 
                     <Form.Group>
-                      <h6> Password</h6>
-                      <Form.Control type="text" value= {password} onChange = {passwordInput} placeholder="password" />
+                      <h6> Lastname</h6>
+                      <Form.Control type="text" value= {lastname} onChange = {lastNameInput} onKeyDown = {enterKeyPressed} placeholder="lastname" />
                     </Form.Group>
 
                     <Button variant="primary" onClick = {handleLogin}>Login</Button>

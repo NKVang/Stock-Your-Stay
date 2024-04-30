@@ -15,18 +15,22 @@ router.post ('/', async(req, res, next) => {
     res.status(201).json({
         message: 'Successfully added to order',
     });
+
+    dbConnection.release();
 });
 
 router.get('/:orderNum', async(req, res, next) => {
 
     let orderNum = req.params.orderNum;
     let dbConnection = await databasePool.getConnection();
-    let query = "SELECT * FROM stock.orderdetails WHERE OrderNum = " + orderNum
+    let query = "SELECT * FROM stock.orderdetails WHERE OrderNum = " + "'" +  orderNum + "'"
     const orderdetails = await dbConnection.query(query);
 
     res.status(200).json({
         orderdetails: orderdetails
     });
+
+    dbConnection.release();
 });
 
 
