@@ -351,7 +351,10 @@ const Cart = (props) => {
                     className="cart-item d-flex justify-content-between"
                   >
                     <Col xs="auto">
-                      <Link to={`/shop/product/${item.id}`}>
+                      <Link
+                        to={`/shop/product/${item.id}`}
+                        state={{ category: item.category }}
+                      >
                         <Image
                           className="shopping-cart-image"
                           src={item.image}

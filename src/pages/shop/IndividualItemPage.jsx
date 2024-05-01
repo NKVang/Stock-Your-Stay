@@ -37,7 +37,7 @@ const ItemPage = () => {
   const [imageClicked, setImageClicked] = useState(false);
 
   const location = useLocation();
-  const category = location.state.category;
+  const category = location?.state?.category;
 
   // set loading to true when product hasn't been fetched, aka when it is null
   useEffect(() => {
@@ -58,10 +58,6 @@ const ItemPage = () => {
       setLoading(false);
     });
   }, [recordId, base]);
-
-  useEffect(() => {
-    console.log(location);
-  }, []);
 
   // add item to cart
   const addItemToCart = (newItem) => {
@@ -117,6 +113,7 @@ const ItemPage = () => {
         quantity: quantity,
         price: product.fields.price,
         pricePerQuantity: quantity * product.fields.price,
+        category: category,
       };
 
       // add item to cart
