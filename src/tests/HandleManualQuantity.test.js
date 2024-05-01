@@ -4,14 +4,14 @@ const handleManualQuantity = require("./HandleManualQuantity");
 
 const cart = [
   {
-    id: "recykszNBQ2bItdTJ",
+    id: "recGVU0W5WVWcgq7p",
     name: "ZEPHYRHILLS NATURAL SPRING WATER, 12 OZ, 12 COUNT",
     quantity: 31,
     price: 5.72,
     pricePerQuantity: 177.32,
   },
   {
-    id: "recdpEOiDDAebK4Eu",
+    id: "recl06fr7JtZFxhSa",
     name: "Banana, 1ct",
     quantity: 1,
     price: 8.77,
@@ -39,14 +39,14 @@ test("Input value is checked against stock qty, if valid, update", async () => {
   // should receive this as the newly updated cart
   expect(data1).toEqual([
     {
-      id: "recykszNBQ2bItdTJ",
+      id: "recGVU0W5WVWcgq7p",
       name: "ZEPHYRHILLS NATURAL SPRING WATER, 12 OZ, 12 COUNT",
       quantity: 5,
       price: 5.72,
       pricePerQuantity: 28.6,
     },
     {
-      id: "recdpEOiDDAebK4Eu",
+      id: "recl06fr7JtZFxhSa",
       name: "Banana, 1ct",
       quantity: 1,
       price: 8.77,
@@ -111,7 +111,7 @@ test("Input value is checked against stock qty, if valid, update", async () => {
   // should receive this as the newly updated cart
   expect(data4).toEqual([
     {
-      id: "recykszNBQ2bItdTJ",
+      id: "recGVU0W5WVWcgq7p",
       name: "ZEPHYRHILLS NATURAL SPRING WATER, 12 OZ, 12 COUNT",
       quantity: 31,
       price: 5.72,
@@ -138,7 +138,7 @@ test("Input value is checked against stock qty, if valid, update", async () => {
   // should receive this as the newly updated cart
   expect(data5).toEqual([
     {
-      id: "recdpEOiDDAebK4Eu",
+      id: "recl06fr7JtZFxhSa",
       name: "Banana, 1ct",
       quantity: 1,
       price: 8.77,

@@ -3,14 +3,14 @@
 // example cart
 const cartItems = [
   {
-    id: "recykszNBQ2bItdTJ",
+    id: "recGVU0W5WVWcgq7p",
     name: "ZEPHYRHILLS NATURAL SPRING WATER, 12 OZ, 12 COUNT",
     quantity: 31,
     price: 5.72,
     pricePerQuantity: 177.32,
   },
   {
-    id: "recdpEOiDDAebK4Eu",
+    id: "recl06fr7JtZFxhSa",
     name: "Banana, 1ct",
     quantity: 1,
     price: 8.77,
