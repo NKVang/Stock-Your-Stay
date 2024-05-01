@@ -46,7 +46,8 @@ function Gallery() {
       tableTag: "lunch",
       sortField: "",
     },
-    // add more category as needed, local favorates incomplete due to lacking location information saved and in airtable field
+    // add more categories as needed for main shop page, local favorites has a
+    // specific exception as it isn't a tag, thus will make usage of location instead
   ];
 
   return (
