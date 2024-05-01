@@ -20,6 +20,11 @@ import { useBase } from "../assets/hooks/useBase";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { truncate } from "./Functions";
 
+let houseLocation = localStorage.getItem('hotelAddress');
+let checkInDate = localStorage.getItem(('startDate')).substring(0,10);
+let reservationID = localStorage.getItem('reservationID')
+
+
 const Cart = (props) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -423,8 +428,9 @@ const Cart = (props) => {
                 <div className="cart-total-main-container">
                   <Row>
                     <Col>
-                      <Row>Delivery Date: 12-31-23</Row>
-                      <Row>Location: Austin, TX</Row>
+                      <Row>Location: {houseLocation}</Row>
+                      <Row>Check-In Date: {checkInDate}</Row>
+                      <Row>ReservationID: {reservationID}</Row>
                       <Row style={{ marginTop: 50 }}>
                         Subtotal (
                         {cartQuantity > 1 || cartQuantity === 0
@@ -448,6 +454,12 @@ const Cart = (props) => {
                           Check Out
                         </Button>
                       </Col>
+                    </Row>
+                    <Row style={{ textDecoration: 'underline', fontWeight: 'bold', color: 'red', marginTop: 50 }}>Note:</Row>
+                    <Row>
+                      Specific product availability may vary as items come in and out of stock at local stores. If possible, Mint House 
+                      will provide a replacement item similar in product quality, size, and type. Additionally we will be unable to fulill 
+                      any orders placed less than 48 hours prior to arrival.
                     </Row>
                   </Row>
                 </div>
