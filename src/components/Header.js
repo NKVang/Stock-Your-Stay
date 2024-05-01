@@ -63,6 +63,10 @@ const Header = (props) => {
           <Nav>
             <NavDropdown title={<i className="bi bi-list"></i>}>
               <EmployeeLoginNav />
+              <Row>
+              <Link to="/reservations">Reservations</Link>
+                <Link to="/">Logout</Link>
+              </Row>
             </NavDropdown>
           </Nav>
         </Col>

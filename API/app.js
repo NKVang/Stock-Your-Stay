@@ -2,7 +2,16 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    methods:["GET", "POST", "PATCH", "DELETE", "PUT"],
+    optionSuccessStatus:200
+}
+
+app.use(cors(corsOptions));
 
 //Routes
 const accountsRoutes = require('./routes/accounts');
