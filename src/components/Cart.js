@@ -21,8 +21,11 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { truncate } from "./Functions";
 
 let houseLocation = localStorage.getItem('hotelAddress');
-let checkInDate = localStorage.getItem(('startDate')).substring(0,10);
 let reservationID = localStorage.getItem('reservationID')
+let checkInDate = localStorage.getItem(('startDate'));
+
+if (checkInDate !== null)
+  checkInDate = checkInDate.substring(0,10);
 
 
 const Cart = (props) => {
