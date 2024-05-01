@@ -6,34 +6,69 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-let accountEmail
-let accountLastName
-let accountFirstName
-let accountPersonID
+async function authenticate(email, lastName) {
 
-
-async function mockAuthenticate(email, lastName) {
-
-  /*
-  This is where we would use the Minthouse API and make a post call to https://mint-mw-acc.ireckonu.com/api/person/lookup
-  and use the email and lastName values provided in the request body.
-
-
-  */
-
-  //Right now these are just dummy values, but ideally we would want to set these values to the values that were returned in the response body of the POST call
-  accountEmail = 'Test@gmail.com'
-  accountLastName = 'Parker'
-  accountFirstName = 'Peter'
-  accountPersonID = '123'
-
-  if (email.toLowerCase() === accountEmail.toLowerCase() && lastName.toLowerCase() === accountLastName.toLowerCase()) {
-    return 'fakeToken1A';
+  const checkDatabase = await fetch('http://localHost:8000/accounts/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      lastName: lastName,
+      email: email,
+    })
+  })
+  
+  if (checkDatabase.ok){
+    const data = await checkDatabase.json();
+    let matchedAccount = data.matchedAccount;
+    localStorage.setItem('personID', matchedAccount.personID);
+    return data.grantAccess;
   }
-  throw new Error('Authentication failed');
+
+  
+  /*This is where we would use the Minthouse API and make a post call to https://mint-mw-acc.ireckonu.com/api/person/lookup
+  and use the user inputed email and lastName values to search for a match.
+  .
+  .
+  .*/
+
+  /*Then if a succesful response is returned, then we would take the information from the json file and set them equal to their respective variables 
+  This is just dummy data assuming that we found a match and took the info and stored it into these variables.*/
+  //Note we would replace the "true" value inside the if statement with something to check if a successful response was returned.
+  if (false){
+    let mintHouseEmail = 'MintHouse@gmail.com';
+    let mintHouseLastName = 'House';
+    let mintHouseFirstName = "Mint";
+    let mintHousePersonID = '999';
+    localStorage.setItem('personID', mintHousePersonID);
+
+    const addAccountToDatabase = await fetch('http://localHost:8000/accounts/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        personID: mintHousePersonID,
+        firstName: mintHouseFirstName,
+        lastName: mintHouseLastName,
+        email: mintHouseEmail
+      })
+    });
+  
+    await addAccountToDatabase.json();
+    return true;
+}
+
+throw new Error('Authentication failed');
+
 }
 
 function App() {
+
+  //initilize local storage values
+  localStorage.clear();
+  localStorage.setItem('loggedIn', false);
 
   const [email, setEmail] = useState('');
   const [lastname, setLastName] = useState('');
@@ -50,10 +85,10 @@ function App() {
 
   const handleLogin = async () => {
       try {
-        const token = await mockAuthenticate(email, lastname);
+        const loggedIn = await authenticate(email, lastname);
         console.log('Login successful');
-        alert('Login Successful. Redirecting to Shop.');
-        localStorage.setItem('token', token);
+        alert('Login Successful. Redirecting to Reservation Selection.');
+        localStorage.setItem('loggedIn', loggedIn);
         navigate('/reservations');
       } catch (error) {
         console.error('Login failed');

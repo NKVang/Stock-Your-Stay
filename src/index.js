@@ -13,9 +13,7 @@ root.render(
       redirect_uri: "http://localhost:3000/employee"
     }}
   >
-    <React.StrictMode>
       <App />
-    </React.StrictMode>
   </Auth0Provider>,
 );
 
