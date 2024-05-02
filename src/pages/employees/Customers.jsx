@@ -121,31 +121,31 @@ const Customers = () => {
                 <li className="page-item disabled">
                   <a
                     className="page-link text-success"
-                    href="/"
+                    href="/employee/customers"
                     aria-label="Previous"
                   >
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/customers">
                     1
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/customers">
                     2
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/customers">
                     3
                   </a>
                 </li>
                 <li className="page-item">
                   <a
                     className="page-link text-success"
-                    href="/"
+                    href="/employee/customers"
                     aria-label="Next"
                   >
                     <span aria-hidden="true">&raquo;</span>

@@ -122,31 +122,31 @@ const Inventory = () => {
                 <li className="page-item disabled">
                   <a
                     className="page-link text-success"
-                    href="/"
+                    href="/employee/inventory"
                     aria-label="Previous"
                   >
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/inventory">
                     1
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/inventory">
                     2
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/inventory">
                     3
                   </a>
                 </li>
                 <li className="page-item">
                   <a
                     className="page-link text-success"
-                    href="/"
+                    href="/employee/inventory"
                     aria-label="Next"
                   >
                     <span aria-hidden="true">&raquo;</span>

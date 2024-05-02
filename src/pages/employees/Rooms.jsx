@@ -122,31 +122,31 @@ const Rooms = () => {
                 <li className="page-item disabled">
                   <a
                     className="page-link text-success"
-                    href="/"
+                    href="/employee/rooms"
                     aria-label="Previous"
                   >
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/rooms">
                     1
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/rooms">
                     2
                   </a>
                 </li>
                 <li className="page-item">
-                  <a className="page-link text-success" href="/">
+                  <a className="page-link text-success" href="/employee/rooms">
                     3
                   </a>
                 </li>
                 <li className="page-item">
                   <a
                     className="page-link text-success"
-                    href="/"
+                    href="/employee/rooms"
                     aria-label="Next"
                   >
                     <span aria-hidden="true">&raquo;</span>
