@@ -58,12 +58,17 @@ CSC 191 placeholder
 # Developer Instructions
 1. First, make sure your terminal is in the right directory. You want to be in the directory that contains the "node_modules", "public", "src" folders also known as the root directory. You will know your terminal is in the right directory when it looks something like this:
 ![Root directory of Project](/src/components/assets/terminal.JPG "Root directory of Project")
+
+2. Make sure to add a ```.env``` file in the project root with this inside of it
+```STRIPE_API_KEY=YOUR_STRIPE_API_KEY```<br>
+```STRIPE_WEBHOOK_SECRET=YOUR_STRIPE_WEBHOOK_SECRET_KEY```<br>
+```JWT_KEY=YOUR_JWT_KEY```
   
-2. In the terminal, run the command ```npm install``` to install all the dependencies and get the "node_modules" folder. 
+3. In the terminal, run the command ```npm install``` to install all the dependencies and get the "node_modules" folder. 
 
-3. Open up another terminal and navigate to the API directory using command ```cd API```. Once inside the API directory, run ```npm install``` once again to install dependencies for the server side.
+4. Open up another terminal and navigate to the API directory using command ```cd API```. Once inside the API directory, run ```npm install``` once again to install dependencies for the server side.
 
-4. Download the [Stripe CLI](https://docs.stripe.com/stripe-cli), grab the .exe file from the zip and store it inside ```C:\Stripe CLI```.
+5. Download the [Stripe CLI](https://docs.stripe.com/stripe-cli), grab the .exe file from the zip and store it inside ```C:\Stripe CLI```.
   * Update your PATH environment to include the .exe file.
   * ```Windows + S``` and search for “environment variables” and open “Edit the system environment variables”
   * Click **Environment Variables…** on the bottom right
