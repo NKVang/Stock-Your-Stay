@@ -8,7 +8,7 @@ router.post ('/', async(req, res, next) => {
     let itemID = req.body.itemID;
     let itemName = req.body.itemName;
     let Quantity = req.body.Quantity;
-    let query = "INSERT INTO stock.orderdetails VALUES (" + orderNum + ", " + itemID + ", " + "'"  + itemName + "'" + ", " + Quantity + ")";
+    let query = "INSERT INTO stock.orderdetails VALUES (" + "'" + orderNum + "'" + ", " + "'"+ itemID + "'" + ", " + "'"  + itemName + "'" + ", " + Quantity + ")";
 
     await dbConnection.query(query);
 
@@ -19,7 +19,7 @@ router.post ('/', async(req, res, next) => {
     dbConnection.release();
 });
 
-router.get('/:orderNum', async(req, res, next) => {
+router.get('/orderNum/:orderNum', async(req, res, next) => {
 
     let orderNum = req.params.orderNum;
     let dbConnection = await databasePool.getConnection();

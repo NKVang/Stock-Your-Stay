@@ -21,7 +21,8 @@ router.post ('/', async(req, res, next) => {
     let date = req.body.date;
     let totalPrice = req.body.totalPrice;
     let status = req.body.status;
-    let query = "INSERT INTO stock.orders VALUES (" + orderNum + ", " + PersonID + ", " + ReservationID + ", " + "'"  + date + "'" + ", " + totalPrice + ", " + "'" + status + "'" + ")";
+    let Instructions = req.body.Instructions;
+    let query = "INSERT INTO stock.orders VALUES ("+ "'" + orderNum + "'" + ", " + PersonID + ", " + ReservationID + ", " + "'"  + date + "'" + ", " + totalPrice + ", " + "'" + status + "'"+ ", " + "'" + Instructions + "'" + ")";
 
     await dbConnection.query(query);
 
@@ -36,7 +37,7 @@ router.get('/:orderNum', async(req, res, next) => {
 
     let orderNum = req.params.orderNum;
     let dbConnection = await databasePool.getConnection();
-    let query = "SELECT * FROM stock.orders WHERE OrderNum = " + orderNum
+    let query = "SELECT * FROM stock.orders WHERE OrderNum = " + "'" + orderNum + "'"
     const order = await dbConnection.query(query);
 
     res.status(200).json({
@@ -47,7 +48,7 @@ router.get('/:orderNum', async(req, res, next) => {
 });
 
 //Note you can only change the total price and/or delivery status
-router.patch('/:orderNum/', async(req, res, next) => {
+router.patch('/:orderNum', async(req, res, next) => {
     let orderNum = req.params.orderNum;
     let dbConnection = await databasePool.getConnection();
     let totalPrice = req.body.totalPrice;
@@ -56,12 +57,12 @@ router.patch('/:orderNum/', async(req, res, next) => {
 
     if (typeof totalPrice  !== 'undefined')
     {
-        let query = "UPDATE stock.orders SET TotalPrice = " + totalPrice + " WHERE OrderNum = " + orderNum;
+        let query = "UPDATE stock.orders SET TotalPrice = " + totalPrice + " WHERE orderNum = " + "'" + orderNum + "'";
         await dbConnection.query(query);
     }
     if (typeof status  !== 'undefined')
     {
-        let query = "UPDATE stock.orders SET Status = " + "'" + status + "' " + " WHERE OrderNum = " + orderNum;
+        let query = "UPDATE stock.orders SET Status = " + "'" + status + "' " + " WHERE orderNum = " + "'" + orderNum + "'";
         console.log(query);
         await dbConnection.query(query);
     }
@@ -76,7 +77,7 @@ router.patch('/:orderNum/', async(req, res, next) => {
 router.delete('/:orderNum', async(req, res, next) => {
     let orderNum = req.params.orderNum;
     let dbConnection = await databasePool.getConnection();
-    let query = "DELETE FROM stock.orders WHERE OrderNum = " + orderNum
+    let query = "DELETE FROM stock.orders WHERE OrderNum = " + "'" + orderNum + "'"
     await dbConnection.query(query);
 
     res.status(200).json({
